@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<entity id="mentor">
+    <attribute>
+        <key>firstName</key>
+        <value>Ema</value>
+    </attribute>
+
+    <attribute>
+        <key>lastName</key>
+        <value>Huston</value>
+    </attribute>
+
+    <attribute>
+        <key>language</key>
+        <value>english</value>
+        <value>italian</value>
+        <value>german</value>
+    </attribute>
+
+    <attribute>
+        <key>programmingLanguage</key>
+        <value>Java</value>
+        <value>C</value>
+        <value>CSS</value>
+        <value>Python</value>
+        <value>HTML</value>
+        <value>JS</value>
+    </attribute>
+
+    <attribute>
+        <key>country</key>
+        <value>Switzerland</value>
+    </attribute>
+
+    <attribute>
+        <key>timeZone</key>
+        <value>GMT+1</value>
+    </attribute>
+
+    <attribute>
+        <key>score</key>
+        <value>56</value>
+    </attribute>
+</entity>

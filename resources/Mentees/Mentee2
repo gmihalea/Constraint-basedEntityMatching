@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<entity id="mentee">
+    <attribute>
+        <key>firstName</key>
+        <value>Geanina</value>
+    </attribute>
+
+    <attribute>
+        <key>lastName</key>
+        <value>Mihalea</value>
+    </attribute>
+
+    <attribute>
+        <key>language</key>
+        <value>english</value>
+        <value>german</value>
+        <value>polish</value>
+    </attribute>
+
+    <attribute>
+        <key>programmingLanguage</key>
+        <value>Java</value>
+        <value>C</value>
+        <value>Ruby</value>
+    </attribute>
+
+    <attribute>
+        <key>country</key>
+        <value>Romania</value>
+    </attribute>
+
+    <attribute>
+        <key>timeZone</key>
+        <value>GMT+2</value>
+    </attribute>
+</entity>

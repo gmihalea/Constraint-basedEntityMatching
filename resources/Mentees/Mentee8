@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<entity id="mentee">
+    <attribute>
+        <key>firstName</key>
+        <value>Meredith</value>
+    </attribute>
+
+    <attribute>
+        <key>lastName</key>
+        <value>Grey</value>
+    </attribute>
+
+    <attribute>
+        <key>language</key>
+        <value>english</value>
+        <value>russian</value>
+        <value>spanish</value>
+    </attribute>
+
+    <attribute>
+        <key>programmingLanguage</key>
+        <value>HTML</value>
+    </attribute>
+
+    <attribute>
+        <key>country</key>
+        <value>Spain</value>
+    </attribute>
+
+    <attribute>
+        <key>timeZone</key>
+        <value>GMT+1</value>
+    </attribute>
+</entity>
