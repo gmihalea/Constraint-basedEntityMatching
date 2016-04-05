@@ -17,7 +17,8 @@ public class MatchEntities {
     /**
      * File with the constraints definition.
      */
-    private static final String CONSTRAINTS_FILE_NAME = "./resources/Constraints.xml";
+    //TODO add constraint file name
+    private static final String CONSTRAINTS_FILE_NAME = "";
 
     /**
      * List of entities of type A.
