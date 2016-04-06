@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by gmihalea on 3/14/2016.
  */
-public class MatchEntities {
+public class Matcher {
 
     /**
      * List of entities of type A.
@@ -27,12 +27,12 @@ public class MatchEntities {
     /**
      * HashMap of constraints on which the matching is made.
      */
-    private HashMap<String, ArrayList<String>> constraints;
+    private ArrayList<Entity> constraints;
 
 
-    public MatchEntities(ArrayList<Entity> aEntity,
-                         ArrayList<Entity> bEntity,
-                         HashMap<String, ArrayList<String>> constraints){
+    public Matcher(ArrayList<Entity> aEntity,
+                   ArrayList<Entity> bEntity,
+                   ArrayList<Entity> constraints){
         this.aEntity = aEntity;
         this.bEntity = bEntity;
         this.constraints = constraints;
