@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
 public class Mentee extends Entity {
     //TODO add the specific keys for Mentee in the attribute hashMap
 
-    public Mentee(HashMap<String, List<String>> attributes){
+    public Mentee(HashMap<String, ArrayList<String>> attributes){
         super(attributes);
     }
 }

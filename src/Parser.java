@@ -10,11 +10,11 @@ public class Parser {
 
     /**
      * Parses the CSV file.
-     * @return the list of HashMaps associated with the CSV file.
+     * @return the list of Entities associated with the CSV file.
      */
-    public static ArrayList<HashMap<String, ArrayList<String>>> parseCSV(String path) {
+    public static ArrayList<Entity> parseCSV(String path) {
 
-        ArrayList<HashMap<String, ArrayList<String>>> listOfHashMaps = new ArrayList();
+        ArrayList<Entity> entities = new ArrayList();
         HashMap<String, ArrayList<String>> hashMap;
         boolean keyCollected = false;
         BufferedReader br = null;
@@ -33,7 +33,7 @@ public class Parser {
                 } else {
                     String[] attributes = line.split(Constants.CSV_SEPARATOR);
                     Parser.addAttributes(hashMap, attributes, keys);
-                    listOfHashMaps.add(hashMap);
+                    entities.add(new Entity(hashMap));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -49,7 +49,40 @@ public class Parser {
                 }
             }
         }
-        return listOfHashMaps;
+        return entities;
+    }
+
+    /**
+     * Initializes the HashMap with specific keys
+     * @param hashMap
+     * @param keys
+     */
+    private static void initializeHashMap(HashMap<String, ArrayList<String>> hashMap, String[] keys) {
+        ArrayList<String> emptyList = new ArrayList<>();
+
+        for(int i = 0; i < keys.length; ++i) {
+            hashMap.put(keys[i], emptyList);
+        }
+    }
+
+    /**
+     * Adds values to a specific key of the HashMap
+     * @param hashMap
+     * @param attributes
+     * @param keys
+     */
+    private static void addAttributes(HashMap<String, ArrayList<String>> hashMap, String[] attributes, String[]keys) {
+        ArrayList<String> value;
+
+        for(int i = 0; i < attributes.length; ++i) {
+            value = new ArrayList<>();
+            String[] pieces = attributes[i].split(Constants.SPACE);
+
+            for(int j = 0; j < pieces.length; ++j){
+                value.add(pieces[j]);
+            }
+            hashMap.put(keys[i], value);
+        }
     }
 
     /**
@@ -57,7 +90,6 @@ public class Parser {
      * @param attributes
      */
     public static void printHashMap(HashMap<String, ArrayList<String>> attributes) {
-
         for (Map.Entry<String, ArrayList<String>> entry : attributes.entrySet()) {
             System.out.print(entry.getKey() + Constants.SPACE + Constants.COLON + Constants.SPACE);
             for (int i = 0; i < entry.getValue().size(); ++i) {
@@ -77,40 +109,4 @@ public class Parser {
             Parser.printHashMap(hashMaps.get(i));
         }
     }
-
-    /**
-     * Initializes the HashMap with specific keys
-     * @param hashMap
-     * @param keys
-     */
-    private static void initializeHashMap(HashMap<String, ArrayList<String>> hashMap, String[] keys) {
-
-        ArrayList<String> emptyList = new ArrayList<>();
-
-        for(int i = 0; i < keys.length; ++i) {
-            hashMap.put(keys[i], emptyList);
-        }
-    }
-
-    /**
-     * Adds values to a specific key of the HashMap
-     * @param hashMap
-     * @param attributes
-     * @param keys
-     */
-    private static void addAttributes(HashMap<String, ArrayList<String>> hashMap, String[] attributes, String[]keys) {
-
-        ArrayList<String> value;
-
-        for(int i = 0; i < attributes.length; ++i) {
-            value = new ArrayList<>();
-            String[] pieces = attributes[i].split(Constants.SPACE);
-
-            for(int j = 0; j < pieces.length; ++j){
-                value.add(pieces[j]);
-            }
-            hashMap.put(keys[i], value);
-        }
-    }
-
 }

@@ -8,16 +8,8 @@ public class UseCase {
 
     public static void main(String[] args){
 
-        ArrayList<HashMap<String, ArrayList<String>>> mentees = Parser.parseCSV(Constants.CSV_MENTEES);
-        System.out.println("----------------- MENTEES -------------------");
-        Parser.printAllHashMaps(mentees);
-
-        ArrayList<HashMap<String, ArrayList<String>>> mentors = Parser.parseCSV(Constants.CSV_MENTORS);
-        System.out.println("----------------- MENTORS -------------------");
-        Parser.printAllHashMaps(mentors);
-
-        ArrayList<HashMap<String, ArrayList<String>>> constraints = Parser.parseCSV(Constants.CSV_CONSTRAINTS);
-        System.out.println("----------------- CONSTRAINTS -------------------");
-        Parser.printAllHashMaps(constraints);
+        ArrayList<Entity> mentees = Parser.parseCSV(Constants.CSV_MENTEES);
+        ArrayList<Entity> mentors = Parser.parseCSV(Constants.CSV_MENTORS);
+        ArrayList<Entity> constraints = Parser.parseCSV(Constants.CSV_CONSTRAINTS);
     }
 }

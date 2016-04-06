@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,14 +11,10 @@ public class Entity {
     /**
      * HashMap containing the attributes of the entity
      */
-    private HashMap<String, List<String>> attributes;
+    private HashMap<String, ArrayList<String>> attributes;
 
 
-    public Entity(){
-        this.attributes = new HashMap<String, List<String>>();
-    }
-
-    public Entity(HashMap<String, List<String>> attributes){
+    public Entity(HashMap<String, ArrayList<String>> attributes){
         this.attributes = attributes;
     }
 
@@ -33,17 +30,6 @@ public class Entity {
      * Print the HashMap of attributes.
      */
     protected void printAttributes(){
-        for(Map.Entry<String, List<String>> entry : this.attributes.entrySet()){
-            System.out.print(entry.getKey() + Constants.SPACE + Constants.COLON + Constants.SPACE);
-            for(int i = 0; i < entry.getValue().size(); ++i){
-                System.out.print(entry.getValue().get(i) + Constants.COMMA + Constants.SPACE);
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-    public void readAttributes(){
-
+        Parser.printHashMap(this.attributes);
     }
 }
