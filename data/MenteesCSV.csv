@@ -1,12 +1,12 @@
-FirstName,  LastName,   Country,    TimeZone,   Languages,                  ProgrammingLanguages
-Geanina,    Mihalea,    Romania,    GMT+2,      Romanian English German,    Java C
-Adnena,     Manai,      France,     GMT+1,      French English,             C# Python
-Gabriela,   Stefan,     Romania,    GMT+2,      Romanian English French,    Java
-Adriana,    Ene,        Bulgaria,   GMT+2,      Romanian Bulgarian English, JS HTML CSS
-Jenna,      Tatum,      Germany,    GMT+1,      English German,             Ruby CSS
-Maria,      Sarapova,   Russia,     GMT+1,      English Russian,            Assembly
-Jennifer,   Win,        Belgium,    GMT+1,      English German,             C
-Borjana,    Mojsovska,  Poland,     GMT+1,      English German Polish,      C CSS
-Christina,  Young,      France,     GMT+1,      English France,             PHP
-Meredith,   Grey,       Spain,      GMT+1,      English Russian Spanish,    HTML
-Hilary,     Grey,       Canada,     GMT-5,      English Spanish,            Java
+FirstName,LastName,Country,TimeZone,Languages,ProgrammingLanguages
+Geanina,Mihalea,Romania,GMT+2,Romanian English German,Java C
+Adnena,Manai,France,GMT+1,French English,C# Python
+Gabriela,Stefan,Romania,GMT+2,Romanian English French,Java
+Adriana,Ene,Bulgaria,GMT+2,Romanian Bulgarian English,JS HTML CSS
+Jenna,Tatum,Germany,GMT+1,English German,Ruby CSS
+Maria,Sarapova,Russia,GMT+1,English Russian,Assembly
+Jennifer,Win,Belgium,GMT+1,English German,C
+Borjana,Mojsovska,Poland,GMT+1,English German Polish,C C#
+Christina,Young,France,GMT+1,English France,PHP
+Meredith,Grey,Spain,GMT+1,English Russian Spanish,HTML
+Hilary,Grey,Canada,GMT-5,English Spanish,Java
