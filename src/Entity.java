@@ -22,7 +22,7 @@ public class Entity {
      *
      * @return the HashMap of attributes
      */
-    protected HashMap getAttributes(){
+    protected HashMap<String, ArrayList<String>> getAttributes(){
         return this.attributes;
     }
 

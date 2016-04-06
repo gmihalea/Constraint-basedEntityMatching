@@ -12,7 +12,14 @@ public class UseCase {
         ArrayList<Entity> mentors = Parser.parseCSV(Constants.CSV_MENTORS);
         ArrayList<Entity> constraints = Parser.parseCSV(Constants.CSV_CONSTRAINTS);
 
-        //TODO sanity checks
-        Matcher matcher = new Matcher(mentees, mentors, constraints);
+        if(!Checker.checkAllEntities(mentees)
+            && !Checker.checkAllEntities(mentors)
+            && !Checker.checkAllEntities(constraints)) {
+            return;
+        } else {
+            Matcher matcher = new Matcher(mentees, mentors, constraints);
+        }
+
+
     }
 }
