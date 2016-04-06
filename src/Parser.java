@@ -1,5 +1,4 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +33,8 @@ public class Parser {
                 } else {
                     String[] attributes = line.split(Constants.CSV_SEPARATOR);
                     Parser.addAttributes(hashMap, attributes, keys);
+                    listOfHashMaps.add(hashMap);
                 }
-                listOfHashMaps.add(hashMap);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
