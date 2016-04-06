@@ -1,0 +1,5 @@
+Name,Constraint
+Country,diff
+ProgrammingLanguages,min1
+Languages,min1
+TimeZone,max3
