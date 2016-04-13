@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by gmihalea on 3/14/2016.
+ * Class that incapsulates the attributes of an entity.
  */
 public class Entity {
 

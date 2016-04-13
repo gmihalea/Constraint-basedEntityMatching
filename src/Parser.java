@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by gmihalea on 3/16/2016.
+ * Class that parses a CSV file.
  */
 public class Parser {
 
@@ -85,6 +85,8 @@ public class Parser {
         }
     }
 
+    //TODO delete these print methods
+    //For debug only
     /**
      * Prints the entire HashMap
      * @param attributes

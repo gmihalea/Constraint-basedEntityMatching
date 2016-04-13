@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by gmihalea on 3/14/2016.
+ * Matcher class.
  */
 public class Matcher {
 
@@ -25,7 +25,7 @@ public class Matcher {
     private ArrayList<Entity> bEntity;
 
     /**
-     * HashMap of constraints on which the matching is made.
+     * List of constraints entities.
      */
     private ArrayList<Entity> constraints;
 

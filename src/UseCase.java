@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
- * Created by gmihalea on 3/14/2016.
+ * The UseCase class
  */
 public class UseCase {
 
@@ -12,14 +11,12 @@ public class UseCase {
         ArrayList<Entity> mentors = Parser.parseCSV(Constants.CSV_MENTORS);
         ArrayList<Entity> constraints = Parser.parseCSV(Constants.CSV_CONSTRAINTS);
 
+        // Sanity checks
         if(!Checker.checkAllEntities(mentees)
-            && !Checker.checkAllEntities(mentors)
-            && !Checker.checkAllEntities(constraints)) {
+                && !Checker.checkAllEntities(mentors)
+                && !Checker.checkAllEntities(constraints))
             return;
-        } else {
-            Matcher matcher = new Matcher(mentees, mentors, constraints);
-        }
 
-
+        Matcher matcher = new Matcher(mentees, mentors, constraints);
     }
 }
