@@ -14,7 +14,7 @@ public class Entity {
     private HashMap<String, ArrayList<String>> attributes;
 
 
-    public Entity(HashMap<String, ArrayList<String>> attributes){
+    public Entity(final HashMap<String, ArrayList<String>> attributes){
         this.attributes = attributes;
     }
 

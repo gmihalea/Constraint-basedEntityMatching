@@ -30,9 +30,9 @@ public class Matcher {
     private ArrayList<Entity> constraints;
 
 
-    public Matcher(ArrayList<Entity> aEntity,
-                   ArrayList<Entity> bEntity,
-                   ArrayList<Entity> constraints){
+    public Matcher(final ArrayList<Entity> aEntity,
+                   final ArrayList<Entity> bEntity,
+                   final ArrayList<Entity> constraints){
         this.aEntity = aEntity;
         this.bEntity = bEntity;
         this.constraints = constraints;
@@ -43,7 +43,7 @@ public class Matcher {
      * @param a,b Entities to check
      * @return true if the entities are eligible, and false otherwise
      */
-    public boolean checkEligibility(Entity a, Entity b){
+    public boolean checkEligibility(final Entity a, final Entity b){
         //TODO implementation
         //TODO read the constraints from file and compare the keys
         //TODO start with the entities who have only one element into the HashMap lists

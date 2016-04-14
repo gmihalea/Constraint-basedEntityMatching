@@ -7,9 +7,10 @@ public class UseCase {
 
     public static void main(String[] args){
 
-        ArrayList<Entity> mentees = Parser.parseCSV(Constants.CSV_MENTEES);
-        ArrayList<Entity> mentors = Parser.parseCSV(Constants.CSV_MENTORS);
-        ArrayList<Entity> constraints = Parser.parseCSV(Constants.CSV_CONSTRAINTS);
+        //Parse all the CSV files.
+        final ArrayList<Entity> mentees = Parser.parseCSV(Constants.CSV_MENTEES);
+        final ArrayList<Entity> mentors = Parser.parseCSV(Constants.CSV_MENTORS);
+        final ArrayList<Entity> constraints = Parser.parseCSV(Constants.CSV_CONSTRAINTS);
 
         // Sanity checks
         if(!Checker.checkAllEntities(mentees)
