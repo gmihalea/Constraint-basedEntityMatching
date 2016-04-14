@@ -25,7 +25,7 @@ public class Matcher {
     private ArrayList<Entity> bEntity;
 
     /**
-     * List of constraints entities.
+     * List of constraints.
      */
     private ArrayList<Entity> constraints;
 
@@ -39,14 +39,17 @@ public class Matcher {
     }
 
     /**
-     * Check if tow entities are eligible for the matching process
-     * @param a,b Entities to check
-     * @return true if the entities are eligible, and false otherwise
+     * Check if tow entities are eligible for the matching process.
+     * @param a,b Entities to be checked.
+     * @return true if the entities are eligible, and false otherwise.
      */
     public boolean checkEligibility(final Entity a, final Entity b){
         //TODO implementation
         //TODO read the constraints from file and compare the keys
         //TODO start with the entities who have only one element into the HashMap lists
+
+        final HashMap<String, ArrayList<String>> aHashMap = a.getAttributes();
+        final HashMap<String, ArrayList<String>> bHashMap = b.getAttributes();
 
         return false;
     }

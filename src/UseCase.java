@@ -12,10 +12,13 @@ public class UseCase {
         final ArrayList<Entity> mentors = Parser.parseCSV(Constants.CSV_MENTORS);
         final ArrayList<Entity> constraints = Parser.parseCSV(Constants.CSV_CONSTRAINTS);
 
+//        System.out.println(constraints.size());
+//        Parser.printHashMap(constraints.get(0).getAttributes());
+
         // Sanity checks
-        if(!Checker.checkAllEntities(mentees)
-                && !Checker.checkAllEntities(mentors)
-                && !Checker.checkAllEntities(constraints))
+        if(!Checker.checkAllEntitiesCorrectness(mentees)
+                && !Checker.checkAllEntitiesCorrectness(mentors)
+                && !Checker.checkAllEntitiesCorrectness(constraints))
             return;
 
         Matcher matcher = new Matcher(mentees, mentors, constraints);

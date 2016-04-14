@@ -1,5 +1,2 @@
-Key,Constraint
-Country,diff
-ProgrammingLanguages,min1
-Languages,min1
-TimeZone,max3
+Country,ProgrammingLanguages,Languages,TimeZone
+diff,min1,min1,max3

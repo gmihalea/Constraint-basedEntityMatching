@@ -12,7 +12,7 @@ public class Parser {
      * Parses the CSV file.
      * @return the list of Entities associated with the CSV file.
      */
-    public static ArrayList<Entity> parseCSV(String path) {
+    public static ArrayList<Entity> parseCSV(final String path) {
 
         ArrayList<Entity> entities = new ArrayList();
         HashMap<String, ArrayList<String>> hashMap;
@@ -57,7 +57,7 @@ public class Parser {
      * @param hashMap
      * @param keys
      */
-    private static void initializeHashMap(HashMap<String, ArrayList<String>> hashMap, String[] keys) {
+    private static void initializeHashMap(final HashMap<String, ArrayList<String>> hashMap, final String[] keys) {
         ArrayList<String> emptyList = new ArrayList<>();
 
         for(int i = 0; i < keys.length; ++i) {
@@ -66,12 +66,13 @@ public class Parser {
     }
 
     /**
-     * Adds values to a specific key of the HashMap
+     * Adds values to a specific key of the HashMap.
      * @param hashMap
      * @param attributes
      * @param keys
      */
-    private static void addAttributes(HashMap<String, ArrayList<String>> hashMap, String[] attributes, String[]keys) {
+    private static void addAttributes(final HashMap<String, ArrayList<String>> hashMap,
+                                      final String[] attributes, final String[]keys) {
         ArrayList<String> value;
 
         for(int i = 0; i < attributes.length; ++i) {
@@ -91,7 +92,7 @@ public class Parser {
      * Prints the entire HashMap
      * @param attributes
      */
-    public static void printHashMap(HashMap<String, ArrayList<String>> attributes) {
+    public static void printHashMap(final HashMap<String, ArrayList<String>> attributes) {
         for (Map.Entry<String, ArrayList<String>> entry : attributes.entrySet()) {
             System.out.print(entry.getKey() + Constants.SPACE + Constants.COLON + Constants.SPACE);
             for (int i = 0; i < entry.getValue().size(); ++i) {
@@ -106,7 +107,7 @@ public class Parser {
      * Prints a list of HashMaps
      * @param hashMaps
      */
-    public static void printAllHashMaps(ArrayList<HashMap<String, ArrayList<String>>> hashMaps) {
+    public static void printAllHashMaps(final ArrayList<HashMap<String, ArrayList<String>>> hashMaps) {
         for(int i = 0; i < hashMaps.size(); ++i) {
             Parser.printHashMap(hashMaps.get(i));
         }

@@ -11,7 +11,7 @@ public class Checker {
      * @param e the entity to check
      * @return true if the entity is correct, false otherwise
      */
-    public static boolean checkEntity(final Entity e) {
+    public static boolean checkEntityCorrectness(final Entity e) {
 
         if(e.getAttributes().size() == 0){
             System.out.println("[ERROR] The Entity has no attributes.");
@@ -32,9 +32,9 @@ public class Checker {
      * @param entities the entities to check
      * @return true if the list is correct, false otherwise
      */
-    public static boolean checkAllEntities(final ArrayList<Entity> entities) {
+    public static boolean checkAllEntitiesCorrectness(final ArrayList<Entity> entities) {
         for(int i = 0; i < entities.size(); ++i) {
-            if(!Checker.checkEntity(entities.get(i))) {
+            if(!Checker.checkEntityCorrectness(entities.get(i))) {
                 System.out.println("[ERROR] Entity " + i + " is incorrect.");
                 return false;
             }
