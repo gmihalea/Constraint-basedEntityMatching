@@ -51,6 +51,43 @@ public class Matcher {
         final HashMap<String, ArrayList<String>> aHashMap = a.getAttributes();
         final HashMap<String, ArrayList<String>> bHashMap = b.getAttributes();
 
+        //TODO modify constraint.get(0)
+        for (HashMap.Entry<String, ArrayList<String>> constraint : this.constraints.get(0).getAttributes().entrySet()) {
+            //Sanity checks.
+            if(!aHashMap.containsKey(constraint.getKey()) || bHashMap.containsKey(constraint.getKey())){
+                System.out.println("[ERROR] The key " + constraint.getKey() + "does not appear in both entities.");
+                return false;
+            }
+            if(this.evaluateConstraint(aHashMap.get(constraint.getKey()),
+                    bHashMap.get(constraint.getKey()),
+                    constraint.getValue()) == false){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Evaluates if two given values respect the constraint.
+     * @param aValue value of type A.
+     * @param bValue value of type B.
+     * @param constraintValue value of the constraint.
+     * @return
+     */
+    public boolean evaluateConstraint(final ArrayList<String> aValue,
+                                      final ArrayList<String> bValue,
+                                      final ArrayList<String> constraintValue) {
+
+        //TODO change that
+        switch(constraintValue.get(0)){
+            case Constants.DIFF:
+                break;
+            case Constants.MAX:
+                break;
+            case Constants.MIN:
+                break;
+        }
+
         return false;
     }
 }

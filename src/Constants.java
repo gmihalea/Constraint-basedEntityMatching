@@ -12,4 +12,7 @@ public interface Constants {
     public static final String COMMA = ",";
     public static final String CSV_SEPARATOR = ",";
 
+    public static final String DIFF = "diff";
+    public static final String MIN = "min";
+    public static final String MAX = "max";
 }
