@@ -12,9 +12,6 @@ public class UseCase {
         final ArrayList<Entity> mentors = Parser.parseCSV(Constants.CSV_MENTORS);
         final ArrayList<Entity> constraints = Parser.parseCSV(Constants.CSV_CONSTRAINTS);
 
-//        System.out.println(constraints.size());
-//        Parser.printHashMap(constraints.get(0).getAttributes());
-
         // Sanity checks
         if(!Checker.checkAllEntitiesCorrectness(mentees)
                 && !Checker.checkAllEntitiesCorrectness(mentors)
@@ -23,15 +20,16 @@ public class UseCase {
 
         Matcher matcher = new Matcher(mentees, mentors, constraints);
 
-        Entity mentor = mentors.get(2);
-        Entity mentee = mentees.get(2);
-        Entity cons = constraints.get(0);
-
-        mentor.printAttributes();
-        mentee.printAttributes();
-        cons.printAttributes();
-
-        System.out.println("Final result: " + matcher.checkEligibility(mentor, mentee));
-
+        for(int i = 0; i < mentees.size(); ++i) {
+            System.out.println(" --- Mentee " + i);
+            mentees.get(i).printAttributes();
+            for(int j = 0; j < mentors.size(); ++j) {
+                System.out.println(" --- Mentor " + j);
+                mentors.get(j).printAttributes();
+                System.out.println("--->>  Final result: [" + i + "][" + j + "]: "
+                        + matcher.checkEligibility(mentees.get(i), mentors.get(j)));
+                System.out.println();
+            }
+        }
     }
 }
