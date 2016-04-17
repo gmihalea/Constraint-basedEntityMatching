@@ -22,5 +22,16 @@ public class UseCase {
             return;
 
         Matcher matcher = new Matcher(mentees, mentors, constraints);
+
+        Entity mentor = mentors.get(2);
+        Entity mentee = mentees.get(2);
+        Entity cons = constraints.get(0);
+
+        mentor.printAttributes();
+        mentee.printAttributes();
+        cons.printAttributes();
+
+        System.out.println("Final result: " + matcher.checkEligibility(mentor, mentee));
+
     }
 }
