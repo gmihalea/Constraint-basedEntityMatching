@@ -76,7 +76,7 @@ public class CSVParser {
      * @param keys
      */
     private static void addAttributes(final HashMap<String, ArrayList<String>> hashMap,
-                                      final String[] attributes, final String[]keys) {
+                                      final String[] attributes, final String[] keys) {
         ArrayList<String> value;
 
         for(int i = 0; i < attributes.length; ++i) {
@@ -84,7 +84,10 @@ public class CSVParser {
             String[] pieces = attributes[i].split(Constants.SPACE);
 
             for(int j = 0; j < pieces.length; ++j){
-                value.add(pieces[j]);
+                if (!pieces[j].equals(Constants.EMPTY_STRING)) {
+                    value.add(pieces[j]);
+                }
+
             }
             hashMap.put(keys[i], value);
         }
