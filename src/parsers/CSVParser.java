@@ -1,12 +1,16 @@
+package parsers;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import core.*;
+import util.*;
 
 /**
  * Class that parses a CSV file.
  */
-public class Parser {
+public class CSVParser {
 
     /**
      * Parses the CSV file.
@@ -28,11 +32,11 @@ public class Parser {
                 hashMap = new HashMap();
                 if (!keyCollected) {
                     keys = line.split(Constants.CSV_SEPARATOR);
-                    Parser.initializeHashMap(hashMap, keys);
+                    CSVParser.initializeHashMap(hashMap, keys);
                     keyCollected = true;
                 } else {
                     String[] attributes = line.split(Constants.CSV_SEPARATOR);
-                    Parser.addAttributes(hashMap, attributes, keys);
+                    CSVParser.addAttributes(hashMap, attributes, keys);
                     entities.add(new Entity(hashMap));
                 }
             }
@@ -109,7 +113,7 @@ public class Parser {
      */
     public static void printAllHashMaps(final ArrayList<HashMap<String, ArrayList<String>>> hashMaps) {
         for(int i = 0; i < hashMaps.size(); ++i) {
-            Parser.printHashMap(hashMaps.get(i));
+            CSVParser.printHashMap(hashMaps.get(i));
         }
     }
 }

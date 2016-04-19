@@ -1,7 +1,9 @@
+package util;
+
 /**
  * Class with constants.
  */
-public interface Constants {
+public class Constants {
 
     public static final String CSV_MENTEES = "./data/MenteesCSV.csv";
     public static final String CSV_MENTORS = "./data/MentorsCSV.csv";
