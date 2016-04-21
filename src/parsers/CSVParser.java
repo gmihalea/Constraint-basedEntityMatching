@@ -28,7 +28,7 @@ public class CSVParser {
         try {
             br = new BufferedReader(new FileReader(path));
 
-            while((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
                 hashMap = new HashMap();
                 if (!keyCollected) {
                     keys = line.split(Constants.CSV_SEPARATOR);
@@ -64,7 +64,7 @@ public class CSVParser {
     private static void initializeHashMap(final HashMap<String, ArrayList<String>> hashMap, final String[] keys) {
         ArrayList<String> emptyList = new ArrayList<>();
 
-        for(int i = 0; i < keys.length; ++i) {
+        for (int i = 0; i < keys.length; ++i) {
             hashMap.put(keys[i], emptyList);
         }
     }
@@ -79,11 +79,11 @@ public class CSVParser {
                                       final String[] attributes, final String[] keys) {
         ArrayList<String> value;
 
-        for(int i = 0; i < attributes.length; ++i) {
+        for (int i = 0; i < attributes.length; ++i) {
             value = new ArrayList<>();
             String[] pieces = attributes[i].split(Constants.SPACE);
 
-            for(int j = 0; j < pieces.length; ++j){
+            for (int j = 0; j < pieces.length; ++j){
                 if (!pieces[j].equals(Constants.EMPTY_STRING)) {
                     value.add(pieces[j]);
                 }
@@ -115,7 +115,7 @@ public class CSVParser {
      * @param hashMaps
      */
     public static void printAllHashMaps(final ArrayList<HashMap<String, ArrayList<String>>> hashMaps) {
-        for(int i = 0; i < hashMaps.size(); ++i) {
+        for (int i = 0; i < hashMaps.size(); ++i) {
             CSVParser.printHashMap(hashMaps.get(i));
         }
     }

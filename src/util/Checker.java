@@ -16,13 +16,13 @@ public class Checker {
      */
     public static boolean checkEntityCorrectness(final Entity e) {
 
-        if(e.getAttributes().size() == 0){
+        if (e.getAttributes().size() == 0) {
             System.out.println("[ERROR] The Entity has no attributes.");
             return false;
         }
 
         for (Map.Entry<String, ArrayList<String>> entry : e.getAttributes().entrySet()) {
-            if(entry.getValue().size() == 0) {
+            if (entry.getValue().size() == 0) {
                 System.out.println("[ERROR] The key " + entry.getKey() + " has no value.");
                 return false;
             }
@@ -36,8 +36,8 @@ public class Checker {
      * @return true if the list is correct, false otherwise
      */
     public static boolean checkAllEntitiesCorrectness(final ArrayList<Entity> entities) {
-        for(int i = 0; i < entities.size(); ++i) {
-            if(!Checker.checkEntityCorrectness(entities.get(i))) {
+        for (int i = 0; i < entities.size(); ++i) {
+            if (!Checker.checkEntityCorrectness(entities.get(i))) {
                 System.out.println("[ERROR] Entity " + i + " is incorrect.");
                 return false;
             }

@@ -27,7 +27,7 @@ public class Matcher {
 
     public Matcher(final ArrayList<Entity> aEntity,
                    final ArrayList<Entity> bEntity,
-                   final ArrayList<Entity> constraints){
+                   final ArrayList<Entity> constraints) {
         this.aEntity = aEntity;
         this.bEntity = bEntity;
         this.constraints = constraints;
@@ -38,7 +38,7 @@ public class Matcher {
      * @param a,b Entities to be checked.
      * @return true if the entities are eligible, and false otherwise.
      */
-    public boolean checkEligibility(final Entity a, final Entity b){
+    public boolean checkEligibility(final Entity a, final Entity b) {
 
         final HashMap<String, ArrayList<String>> aHashMap = a.getAttributes();
         final HashMap<String, ArrayList<String>> bHashMap = b.getAttributes();
@@ -50,7 +50,7 @@ public class Matcher {
                 System.out.println("[ERROR] The key " + constraint.getKey() + " does not appear in both entities.");
                 return false;
             }
-            if(!this.evaluateConstraint(aHashMap.get(constraint.getKey()),
+            if (!this.evaluateConstraint(aHashMap.get(constraint.getKey()),
                     bHashMap.get(constraint.getKey()),
                     constraint)){
                 return false;
@@ -72,10 +72,10 @@ public class Matcher {
 
         // Iterates through all the list, in case the constraint is more complex
         // e.g. min1, max3
-        for(int i = 0; i < constraint.getValue().size(); ++i) {
+        for (int i = 0; i < constraint.getValue().size(); ++i) {
             // All the elements in aValue must be different from the
             // elements in bValue
-            if(constraint.getValue().get(i).equals(Constants.DIFF)) {
+            if (constraint.getValue().get(i).equals(Constants.DIFF)) {
                 // If the two lists are not entirely different, then the constraint is not respected
                 if(!this.checkDiff(aValue, bValue)) {
                     System.out.println("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
@@ -83,7 +83,7 @@ public class Matcher {
                     return false;
                 }
             }
-            if(constraint.getValue().get(i).startsWith(Constants.MIN)) {
+            if (constraint.getValue().get(i).startsWith(Constants.MIN)) {
                 // Extract the number that follows the string MIN
                 final int count = Integer.parseInt(constraint.getValue().get(i).substring(Constants.MIN.length()));
 
@@ -94,7 +94,7 @@ public class Matcher {
                     return false;
                 }
             }
-            if(constraint.getValue().get(i).startsWith(Constants.MAX)) {
+            if (constraint.getValue().get(i).startsWith(Constants.MAX)) {
                 final int count = Integer.parseInt(constraint.getValue().get(i).substring(Constants.MAX.length()));
 
                 // The number of attributes in common must be lower than or equal to count
@@ -104,7 +104,7 @@ public class Matcher {
                     return false;
                 }
             }
-            if(constraint.getValue().get(i).startsWith(Constants.GMT_MAX)) {
+            if (constraint.getValue().get(i).startsWith(Constants.GMT_MAX)) {
                 final int count = Integer.parseInt(constraint.getValue().get(i).substring(Constants.GMT_MAX.length()));
 
                 // Extract both timezones and compare them
@@ -113,7 +113,7 @@ public class Matcher {
 
                 // If the difference between the two timezones is bigger than count,
                 // then the constraint is not respected.
-                if(Math.abs(aTimeZone - bTimeZone) > count) {
+                if (Math.abs(aTimeZone - bTimeZone) > count) {
                     System.out.println("[REASON]:" + constraint.getValue().get(i) + "["
                             + aValue.get(0) + " vs. " + bValue + "]");
                     return false;
@@ -135,13 +135,13 @@ public class Matcher {
 
         int noOfDifferences = 0;
 
-        for(int i = 0; i < aValue.size(); ++i) {
+        for (int i = 0; i < aValue.size(); ++i) {
             if(!bValue.contains(aValue.get(i))) {
                 ++noOfDifferences;
             }
         }
 
-        if(noOfDifferences == aValue.size()) {
+        if (noOfDifferences == aValue.size()) {
             return true;
         }
         return false;
@@ -157,7 +157,7 @@ public class Matcher {
 
         int noOfCommonAttributes = 0;
 
-        for(int i = 0; i < aValue.size(); ++i) {
+        for (int i = 0; i < aValue.size(); ++i) {
             if(bValue.contains(aValue.get(i))) {
                 ++noOfCommonAttributes;
             }

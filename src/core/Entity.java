@@ -15,7 +15,7 @@ public class Entity {
     private HashMap<String, ArrayList<String>> attributes;
 
 
-    public Entity(final HashMap<String, ArrayList<String>> attributes){
+    public Entity(final HashMap<String, ArrayList<String>> attributes) {
         this.attributes = attributes;
     }
 
@@ -23,14 +23,14 @@ public class Entity {
      *
      * @return the HashMap of attributes
      */
-    public HashMap<String, ArrayList<String>> getAttributes(){
+    public HashMap<String, ArrayList<String>> getAttributes() {
         return this.attributes;
     }
 
     /**
      * Print the HashMap of attributes.
      */
-    public void printAttributes(){
+    public void printAttributes() {
         CSVParser.printHashMap(this.attributes);
     }
 }
