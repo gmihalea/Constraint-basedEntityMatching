@@ -21,7 +21,7 @@ public class Checker {
             return false;
         }
 
-        for (Map.Entry<String, ArrayList<String>> entry : e.getAttributes().entrySet()) {
+        for (final Map.Entry<String, ArrayList<String>> entry : e.getAttributes().entrySet()) {
             if (entry.getValue().size() == 0) {
                 System.out.println("[ERROR] The key " + entry.getKey() + " has no value.");
                 return false;

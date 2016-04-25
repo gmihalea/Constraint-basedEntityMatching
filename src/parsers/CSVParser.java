@@ -18,7 +18,7 @@ public class CSVParser {
      */
     public static ArrayList<Entity> parseCSV(final String path) {
 
-        ArrayList<Entity> entities = new ArrayList();
+        final ArrayList<Entity> entities = new ArrayList();
         HashMap<String, ArrayList<String>> hashMap;
         boolean keyCollected = false;
         BufferedReader br = null;
@@ -35,7 +35,7 @@ public class CSVParser {
                     CSVParser.initializeHashMap(hashMap, keys);
                     keyCollected = true;
                 } else {
-                    String[] attributes = line.split(Constants.CSV_SEPARATOR);
+                    final String[] attributes = line.split(Constants.CSV_SEPARATOR);
                     CSVParser.addAttributes(hashMap, attributes, keys);
                     entities.add(new Entity(hashMap));
                 }
@@ -62,7 +62,7 @@ public class CSVParser {
      * @param keys
      */
     private static void initializeHashMap(final HashMap<String, ArrayList<String>> hashMap, final String[] keys) {
-        ArrayList<String> emptyList = new ArrayList<>();
+        final ArrayList<String> emptyList = new ArrayList<>();
 
         for (int i = 0; i < keys.length; ++i) {
             hashMap.put(keys[i], emptyList);
@@ -81,13 +81,12 @@ public class CSVParser {
 
         for (int i = 0; i < attributes.length; ++i) {
             value = new ArrayList<>();
-            String[] pieces = attributes[i].split(Constants.SPACE);
+            final String[] pieces = attributes[i].split(Constants.SPACE);
 
             for (int j = 0; j < pieces.length; ++j){
                 if (!pieces[j].equals(Constants.EMPTY_STRING)) {
                     value.add(pieces[j]);
                 }
-
             }
             hashMap.put(keys[i], value);
         }
@@ -100,7 +99,7 @@ public class CSVParser {
      * @param attributes
      */
     public static void printHashMap(final HashMap<String, ArrayList<String>> attributes) {
-        for (Map.Entry<String, ArrayList<String>> entry : attributes.entrySet()) {
+        for (final Map.Entry<String, ArrayList<String>> entry : attributes.entrySet()) {
             System.out.print(entry.getKey() + Constants.SPACE + Constants.COLON + Constants.SPACE);
             for (int i = 0; i < entry.getValue().size(); ++i) {
                 System.out.print(entry.getValue().get(i) + Constants.COMMA + Constants.SPACE);

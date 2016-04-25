@@ -34,6 +34,13 @@ public class Matcher {
     }
 
     /**
+     * Does all the matching logic and writes the result in a specific file
+     */
+    public void matchEntities() {
+        //TODO implementation
+    }
+
+    /**
      * Check if tow entities are eligible for the matching process.
      * @param a,b Entities to be checked.
      * @return true if the entities are eligible, and false otherwise.
@@ -132,7 +139,6 @@ public class Matcher {
      * @return true if the lists are entirely different, false otherwise.
      */
     public boolean checkDiff(final ArrayList<String> aValue, final ArrayList<String> bValue) {
-
         int noOfDifferences = 0;
 
         for (int i = 0; i < aValue.size(); ++i) {
@@ -154,7 +160,6 @@ public class Matcher {
      * @return the number of attributes in common.
      */
     public int computeAttributesInCommon(final ArrayList<String> aValue, final ArrayList<String> bValue) {
-
         int noOfCommonAttributes = 0;
 
         for (int i = 0; i < aValue.size(); ++i) {
