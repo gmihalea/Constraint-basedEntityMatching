@@ -1,7 +1,2 @@
-FirstName,LastName,Country,TimeZone,Languages,ProgrammingLanguages,Score
-Alex,Popescu,Romania,GMT+1,English German Polish,Java C Assembly Python Ruby,36
-Dewan,Tris,Albany,GMT+2,English French,Java C#,75
-Adriane,Bartolo,Italy,GMT+2,English French Italian,HTML CSS JS PHP,26
-Ema,Huston,Switzerland,GMT+1,English Italian German,Java C CSS Python HTML JS,95
-Margaret,Grey,Mexico,GMT-6,English French Italian German,Java C C# Perl Python,55
-Iulia,Pana,Romania,GMT+2,English French,CSS HTSML Javascript,78
+FirstName,LastName,Gender,HomeCountry,Email,ProfBackground,TimeToDedicate,ReasonMentor,Languages,ProgrammingLanguages,GetInTouch,Projects,CurrentCountry,TimeZone,BeginnerOrNew,ApplicationSuggestion,HardConcept,MentorExperience,TeachingStory,VSCFamiliar
+Cosmina,Poplahov,Female,Romania,cosmina@gmail.com,Engineer,3-6,Pleasure to teach others,English Spanish Romanian,C Java C# Ruby Scala,A friend,Constraint-based entity matching,Romania,GMT+2,Beginner,Website,Concurrecy,Teaching assistent,Teaching assistent in my university,Yes
