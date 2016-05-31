@@ -1,6 +1,7 @@
 package core;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import util.*;
@@ -35,10 +36,22 @@ public class Matcher {
     }
 
     /**
-     * Does all the matching logic and writes the result in a specific file
+     * Phase One for generating matching candidates for given Entity.
+     * In this phase, the entities are filtered by the mandatory attributes
+     * @param aTypeEntity entity to match
      */
-    public void matchEntities() {
-        //TODO implementation
+    public ArrayList<Entity> generatesCandidatesPhaseOne(Entity aTypeEntity) throws IOException {
+        ArrayList<Entity> candidates = new ArrayList<>();
+
+        System.out.println("Candidates: ");
+        // Iterates through all bTypeEntities and check eligibility
+        for(int i = 0; i < this.bEntity.size(); ++i) {
+            if(checkEligibility(aTypeEntity, this.bEntity.get(i))) {
+                candidates.add(this.bEntity.get(i));
+                this.bEntity.get(i).printAttributes();
+            }
+        }
+        return candidates;
     }
 
     /**

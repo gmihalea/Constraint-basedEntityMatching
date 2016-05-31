@@ -46,11 +46,13 @@ public class UseCase {
                                                          + mentors.get(j).getAttributes().get("ProgrammingLevel")
                                                          + mentors.get(j).getAttributes().get("Country")+"\n");
 
-
                 Printer.printInFile("--->>  Final result: [" + i + "][" + j + "]: "
                         + matcher.checkEligibility(mentees.get(i), mentors.get(j)) + "\n");
                 Printer.printInFile("-------------------------------------------------------------------------------------\n");
             }
         }
+
+        matcher.generatesCandidatesPhaseOne(mentors.get(1));
+
     }
 }
