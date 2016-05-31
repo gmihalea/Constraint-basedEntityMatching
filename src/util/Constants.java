@@ -5,9 +5,9 @@ package util;
  */
 public class Constants {
 
-    public static final String CSV_MENTEES = "./data/MenteesCSV.csv";
-    public static final String CSV_MENTORS = "./data/MentorsCSV.csv";
-    public static final String CSV_CONSTRAINTS = "./data/ConstraintsCSV.csv";
+    public static final String CSV_MENTEES = "./data/MenteesDB.csv";
+    public static final String CSV_MENTORS = "./data/MentorsDB.csv";
+    public static final String CSV_CONSTRAINTS = "./data/ConstraintsDB.csv";
 
     public static final String COLON = ":";
     public static final String SPACE = " ";
