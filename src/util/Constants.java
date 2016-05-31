@@ -23,4 +23,8 @@ public class Constants {
 
     public static final String ENTITY = "entity";
     public static final String CONSTRAINT = "constraint";
+
+    public static final int CONSTRAINTS_INDEX = 0;
+
+    public static final String OUTPUT_FILE_PATH = "/home/geanina/Desktop/Licenta/EntityMatching/output.txt";
 }

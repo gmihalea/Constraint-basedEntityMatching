@@ -1,7 +1,6 @@
 package tests;
 
 import core.Constraint;
-import core.Matcher;
 import org.junit.Test;
 
 import parsers.CSVParser;
@@ -9,6 +8,7 @@ import util.Checker;
 import util.Constants;
 import core.Entity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -27,17 +27,17 @@ public class MatcherTest {
     //final Matcher matcher = new Matcher(mentees, mentors, constraints);
 
     @Test
-    public void checkMenteesCorrectness() {
+    public void checkMenteesCorrectness() throws IOException {
         assertTrue(Checker.checkAllEntitiesCorrectness(mentees));
     }
 
     @Test
-    public void checkMentorsCorrectness() {
+    public void checkMentorsCorrectness() throws IOException {
         assertTrue(Checker.checkAllEntitiesCorrectness(mentors));
     }
 
-//    @Test
-//    public void checkConstraintsCorrectness() {
-//        assertTrue(Checker.checkAllEntitiesCorrectness(constraints));
-//    }
+    @Test
+    public void checkConstraintsCorrectness() throws IOException {
+        assertTrue(Checker.checkAllEntitiesCorrectness(constraints));
+    }
 }

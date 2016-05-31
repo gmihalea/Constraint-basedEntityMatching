@@ -15,5 +15,6 @@ public class MatcherTestRunner {
             System.out.println(failure.toString());
         }
         System.out.println(result.wasSuccessful());
+
     }
 }

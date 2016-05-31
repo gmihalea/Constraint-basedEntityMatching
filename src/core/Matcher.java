@@ -22,15 +22,15 @@ public class Matcher {
     /**
      * List of constraints.
      */
-    private ArrayList<Entity> constraints;
+    private Constraint constraints;
 
 
     public Matcher(final ArrayList<Entity> aEntity,
                    final ArrayList<Entity> bEntity,
-                   final ArrayList<Entity> constraints) {
+                   final ArrayList<Constraint> constraints) {
         this.aEntity = aEntity;
         this.bEntity = bEntity;
-        this.constraints = constraints;
+        this.constraints = constraints.get(Constants.CONSTRAINTS_INDEX);
     }
 
     /**
@@ -47,18 +47,17 @@ public class Matcher {
      */
     public boolean checkEligibility(final Entity a, final Entity b) {
 
-        final HashMap<String, ArrayList<String>> aHashMap = a.getAttributes();
-        final HashMap<String, ArrayList<String>> bHashMap = b.getAttributes();
+        final HashMap<String, ArrayList<String>> aTypeHashMap = a.getAttributes();
+        final HashMap<String, ArrayList<String>> bTypeHashMap = b.getAttributes();
 
-        //TODO modify constraint.get(0)
-        for (HashMap.Entry<String, ArrayList<String>> constraint : this.constraints.get(0).getAttributes().entrySet()) {
+        for (HashMap.Entry<String, ArrayList<String>> constraint : this.constraints.getAttributes().entrySet()) {
             //Sanity checks.
-            if(!aHashMap.containsKey(constraint.getKey()) || !bHashMap.containsKey(constraint.getKey())){
+            if(!aTypeHashMap.containsKey(constraint.getKey()) || !bTypeHashMap.containsKey(constraint.getKey())){
                 System.out.println("[ERROR] The key " + constraint.getKey() + " does not appear in both entities.");
                 return false;
             }
-            if (!this.evaluateConstraint(aHashMap.get(constraint.getKey()),
-                    bHashMap.get(constraint.getKey()),
+            if (!this.evaluateConstraint(aTypeHashMap.get(constraint.getKey()),
+                    bTypeHashMap.get(constraint.getKey()),
                     constraint)){
                 return false;
             }
@@ -68,25 +67,25 @@ public class Matcher {
 
     /**
      * Evaluates if two given values respect the constraint.
-     * @param aValue value of type A.
-     * @param bValue value of type B.
+     * @param aTypeValue value of type A.
+     * @param bTypeValue value of type B.
      * @param constraint the constraint.
      * @return
      */
-    public boolean evaluateConstraint(final ArrayList<String> aValue,
-                                      final ArrayList<String> bValue,
+    public boolean evaluateConstraint(final ArrayList<String> aTypeValue,
+                                      final ArrayList<String> bTypeValue,
                                       final HashMap.Entry<String, ArrayList<String>> constraint) {
 
         // Iterates through all the list, in case the constraint is more complex
         // e.g. min1, max3
         for (int i = 0; i < constraint.getValue().size(); ++i) {
-            // All the elements in aValue must be different from the
-            // elements in bValue
+            // All the elements in aTypeValue must be different from the
+            // elements in bTypeValue
             if (constraint.getValue().get(i).equals(Constants.DIFF)) {
                 // If the two lists are not entirely different, then the constraint is not respected
-                if(!this.checkDiff(aValue, bValue)) {
+                if(!this.checkDiff(aTypeValue, bTypeValue)) {
                     System.out.println("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
-                            + "> " +  aValue +  " vs. " + bValue);
+                            + "> " +  aTypeValue +  " vs. " + bTypeValue);
                     return false;
                 }
             }
@@ -95,9 +94,9 @@ public class Matcher {
                 final int count = Integer.parseInt(constraint.getValue().get(i).substring(Constants.MIN.length()));
 
                 // The number of attributes in common must be greater than or equal to count
-                if(this.computeAttributesInCommon(aValue, bValue) < count) {
+                if(this.computeAttributesInCommon(aTypeValue, bTypeValue) < count) {
                     System.out.println("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
-                            + "> " +  "[" + this.computeAttributesInCommon(aValue, bValue) +  " vs. " + count + "]");
+                            + "> " +  "[" + this.computeAttributesInCommon(aTypeValue, bTypeValue) +  " vs. " + count + "]");
                     return false;
                 }
             }
@@ -105,9 +104,9 @@ public class Matcher {
                 final int count = Integer.parseInt(constraint.getValue().get(i).substring(Constants.MAX.length()));
 
                 // The number of attributes in common must be lower than or equal to count
-                if(this.computeAttributesInCommon(aValue, bValue) > count) {
+                if(this.computeAttributesInCommon(aTypeValue, bTypeValue) > count) {
                     System.out.println("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
-                            + "> " + "[" + this.computeAttributesInCommon(aValue, bValue) +  " vs. " + count + "]");
+                            + "> " + "[" + this.computeAttributesInCommon(aTypeValue, bTypeValue) +  " vs. " + count + "]");
                     return false;
                 }
             }
@@ -115,14 +114,14 @@ public class Matcher {
                 final int count = Integer.parseInt(constraint.getValue().get(i).substring(Constants.GMT_MAX.length()));
 
                 // Extract both timezones and compare them
-                final int aTimeZone = Integer.parseInt(aValue.get(0).substring(Constants.GMT.length()));
-                final int bTimeZone = Integer.parseInt(bValue.get(0).substring(Constants.GMT.length()));
+                final int aTimeZone = Integer.parseInt(aTypeValue.get(0).substring(Constants.GMT.length()));
+                final int bTimeZone = Integer.parseInt(bTypeValue.get(0).substring(Constants.GMT.length()));
 
                 // If the difference between the two timezones is bigger than count,
                 // then the constraint is not respected.
                 if (Math.abs(aTimeZone - bTimeZone) > count) {
                     System.out.println("[REASON]:" + constraint.getValue().get(i) + "["
-                            + aValue.get(0) + " vs. " + bValue + "]");
+                            + aTypeValue.get(0) + " vs. " + bTypeValue + "]");
                     return false;
                 }
             }
@@ -134,20 +133,20 @@ public class Matcher {
      * Checks if two given lists contain entirely different elements.
      * E.g. for (1,2,3) and (1,2,4) the result must be false.
      * E.g. for (1,2,3) and (4,5,6) the result must be true.
-     * @param aValue the first list
-     * @param bValue the second list
+     * @param aTypeValue the first list
+     * @param bTypeValue the second list
      * @return true if the lists are entirely different, false otherwise.
      */
-    public boolean checkDiff(final ArrayList<String> aValue, final ArrayList<String> bValue) {
+    public boolean checkDiff(final ArrayList<String> aTypeValue, final ArrayList<String> bTypeValue) {
         int noOfDifferences = 0;
 
-        for (int i = 0; i < aValue.size(); ++i) {
-            if(!bValue.contains(aValue.get(i))) {
+        for (int i = 0; i < aTypeValue.size(); ++i) {
+            if(!bTypeValue.contains(aTypeValue.get(i))) {
                 ++noOfDifferences;
             }
         }
 
-        if (noOfDifferences == aValue.size()) {
+        if (noOfDifferences == aTypeValue.size()) {
             return true;
         }
         return false;
@@ -155,15 +154,15 @@ public class Matcher {
 
     /**
      * Calculates the number of attributes in common.
-     * @param aValue the first list.
-     * @param bValue the second list.
+     * @param aTypeValue the first list.
+     * @param bTypeValue the second list.
      * @return the number of attributes in common.
      */
-    public int computeAttributesInCommon(final ArrayList<String> aValue, final ArrayList<String> bValue) {
+    public int computeAttributesInCommon(final ArrayList<String> aTypeValue, final ArrayList<String> bTypeValue) {
         int noOfCommonAttributes = 0;
 
-        for (int i = 0; i < aValue.size(); ++i) {
-            if(bValue.contains(aValue.get(i))) {
+        for (int i = 0; i < aTypeValue.size(); ++i) {
+            if(bTypeValue.contains(aTypeValue.get(i))) {
                 ++noOfCommonAttributes;
             }
         }
