@@ -15,14 +15,18 @@ public class UseCase {
         //Parse all the CSV files.
         final ArrayList<Entity> mentees = CSVParser.parseCSV(Constants.CSV_MENTEES);
         final ArrayList<Entity> mentors = CSVParser.parseCSV(Constants.CSV_MENTORS);
-//        final ArrayList<Entity> constraints = CSVParser.parseCSV(Constants.CSV_CONSTRAINTS);
-//
-//        // Sanity checks
-//        if (!Checker.checkAllEntitiesCorrectness(mentees)
-//                && !Checker.checkAllEntitiesCorrectness(mentors)
-//                && !Checker.checkAllEntitiesCorrectness(constraints))
-//            return;
-//
+        final ArrayList<Entity> constraints = CSVParser.parseCSV(Constants.CSV_CONSTRAINTS);
+
+        // Sanity checks
+        if (!Checker.checkAllEntitiesCorrectness(mentees)
+                && !Checker.checkAllEntitiesCorrectness(mentors)
+                && !Checker.checkAllEntitiesCorrectness(constraints))
+            return;
+
+        System.out.println("It's all ok !");
+
+
+
 //        Matcher matcher = new Matcher(mentees, mentors, constraints);
 //
 //        for (int i = 0; i < mentees.size(); ++i) {
