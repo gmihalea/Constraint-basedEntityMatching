@@ -16,7 +16,7 @@ public class CSVParser {
      * Parses the CSV file.
      * @return the list of Entities associated with the CSV file.
      */
-    public static ArrayList<?> parseCSV(final String path, final String type) {
+    public static ArrayList<? extends Item> parseCSV(final String path, final String type) {
         if(!Constants.CONSTRAINT.equals(type) && !Constants.ENTITY.equals(type)) {
             System.out.println("[ERROR] Method < parseCSV > called with wrong parameter < " + type + " >");
             return null;
