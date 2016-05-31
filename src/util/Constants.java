@@ -20,4 +20,7 @@ public class Constants {
     public static final String MAX = "max";
     public static final String GMT_MAX = "gmtMax";
     public static final String GMT = "GMT+";
+
+    public static final String ENTITY = "entity";
+    public static final String CONSTRAINT = "constraint";
 }

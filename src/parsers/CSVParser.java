@@ -16,8 +16,13 @@ public class CSVParser {
      * Parses the CSV file.
      * @return the list of Entities associated with the CSV file.
      */
-    public static ArrayList<Entity> parseCSV(final String path) {
+    public static ArrayList<?> parseCSV(final String path, final String type) {
+        if(!Constants.CONSTRAINT.equals(type) && !Constants.ENTITY.equals(type)) {
+            System.out.println("[ERROR] Method < parseCSV > called with wrong parameter < " + type + " >");
+            return null;
+        }
 
+        final ArrayList<Constraint> constraints = new ArrayList();
         final ArrayList<Entity> entities = new ArrayList();
         HashMap<String, ArrayList<String>> hashMap;
         boolean keyCollected = false;
@@ -37,7 +42,11 @@ public class CSVParser {
                 } else {
                     final String[] attributes = line.split(Constants.CSV_SEPARATOR);
                     CSVParser.addAttributes(hashMap, attributes, keys);
-                    entities.add(new Entity(hashMap));
+                    if(Constants.ENTITY.equals(type)) {
+                        entities.add(new Entity(hashMap));
+                    } else {
+                        constraints.add(new Constraint(hashMap));
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
@@ -53,7 +62,7 @@ public class CSVParser {
                 }
             }
         }
-        return entities;
+        return Constants.CONSTRAINT.equals(type) ? constraints : entities;
     }
 
     /**

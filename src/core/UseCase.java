@@ -12,19 +12,19 @@ public class UseCase {
 
     public static void main(String[] args){
 
-        //Parse all the CSV files.
-        final ArrayList<Entity> mentees = CSVParser.parseCSV(Constants.CSV_MENTEES);
-        final ArrayList<Entity> mentors = CSVParser.parseCSV(Constants.CSV_MENTORS);
-        final ArrayList<Entity> constraints = CSVParser.parseCSV(Constants.CSV_CONSTRAINTS);
-
-        // Sanity checks
-        if (!Checker.checkAllEntitiesCorrectness(mentees)
-                && !Checker.checkAllEntitiesCorrectness(mentors)
-                && !Checker.checkAllEntitiesCorrectness(constraints))
-            return;
-
-        System.out.println("It's all ok !");
-
+//        //Parse all the CSV files.
+//        final ArrayList<Entity> mentees = CSVParser.parseCSV(Constants.CSV_MENTEES);
+//        final ArrayList<Entity> mentors = CSVParser.parseCSV(Constants.CSV_MENTORS);
+//        final ArrayList<Constraint> constraints = CSVParser.parseCSV(Constants.CSV_CONSTRAINTS);
+//
+//        // Sanity checks
+//        if (!Checker.checkAllEntitiesCorrectness(mentees)
+//                && !Checker.checkAllEntitiesCorrectness(mentors)
+//                && !Checker.checkAllEntitiesCorrectness(constraints))
+//            return;
+//
+//        System.out.println("It's all ok !");
+//
 
 
 //        Matcher matcher = new Matcher(mentees, mentors, constraints);
