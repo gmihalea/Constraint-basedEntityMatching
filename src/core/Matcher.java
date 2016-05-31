@@ -1,5 +1,6 @@
 package core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import util.*;
@@ -45,7 +46,7 @@ public class Matcher {
      * @param a,b Entities to be checked.
      * @return true if the entities are eligible, and false otherwise.
      */
-    public boolean checkEligibility(final Entity a, final Entity b) {
+    public boolean checkEligibility(final Entity a, final Entity b) throws IOException {
 
         final HashMap<String, ArrayList<String>> aTypeHashMap = a.getAttributes();
         final HashMap<String, ArrayList<String>> bTypeHashMap = b.getAttributes();
@@ -74,7 +75,7 @@ public class Matcher {
      */
     public boolean evaluateConstraint(final ArrayList<String> aTypeValue,
                                       final ArrayList<String> bTypeValue,
-                                      final HashMap.Entry<String, ArrayList<String>> constraint) {
+                                      final HashMap.Entry<String, ArrayList<String>> constraint) throws IOException {
 
         // Iterates through all the list, in case the constraint is more complex
         // e.g. min1, max3
@@ -84,7 +85,7 @@ public class Matcher {
             if (constraint.getValue().get(i).equals(Constants.DIFF)) {
                 // If the two lists are not entirely different, then the constraint is not respected
                 if(!this.checkDiff(aTypeValue, bTypeValue)) {
-                    System.out.println("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
+                    Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
                             + "> " +  aTypeValue +  " vs. " + bTypeValue);
                     return false;
                 }
@@ -95,7 +96,7 @@ public class Matcher {
 
                 // The number of attributes in common must be greater than or equal to count
                 if(this.computeAttributesInCommon(aTypeValue, bTypeValue) < count) {
-                    System.out.println("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
+                    Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
                             + "> " +  "[" + this.computeAttributesInCommon(aTypeValue, bTypeValue) +  " vs. " + count + "]");
                     return false;
                 }
@@ -105,26 +106,26 @@ public class Matcher {
 
                 // The number of attributes in common must be lower than or equal to count
                 if(this.computeAttributesInCommon(aTypeValue, bTypeValue) > count) {
-                    System.out.println("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
+                    Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + constraint.getValue().get(i)
                             + "> " + "[" + this.computeAttributesInCommon(aTypeValue, bTypeValue) +  " vs. " + count + "]");
                     return false;
                 }
             }
-            if (constraint.getValue().get(i).startsWith(Constants.GMT_MAX)) {
-                final int count = Integer.parseInt(constraint.getValue().get(i).substring(Constants.GMT_MAX.length()));
-
-                // Extract both timezones and compare them
-                final int aTimeZone = Integer.parseInt(aTypeValue.get(0).substring(Constants.GMT.length()));
-                final int bTimeZone = Integer.parseInt(bTypeValue.get(0).substring(Constants.GMT.length()));
-
-                // If the difference between the two timezones is bigger than count,
-                // then the constraint is not respected.
-                if (Math.abs(aTimeZone - bTimeZone) > count) {
-                    System.out.println("[REASON]:" + constraint.getValue().get(i) + "["
-                            + aTypeValue.get(0) + " vs. " + bTypeValue + "]");
-                    return false;
-                }
-            }
+//            if (constraint.getValue().get(i).startsWith(Constants.GMT_MIN)) {
+//                final int count = Integer.parseInt(constraint.getValue().get(i).substring(Constants.GMT_MIN.length()));
+//
+//                // Extract both timezones and compare them
+//                final int aTimeZone = Integer.parseInt(aTypeValue.get(0).substring(Constants.GMT.length()));
+//                final int bTimeZone = Integer.parseInt(bTypeValue.get(0).substring(Constants.GMT.length()));
+//
+//                // If the difference between the two timezones is bigger than count,
+//                // then the constraint is not respected.
+//                if (Math.abs(aTimeZone - bTimeZone) > count) {
+//                    System.out.println("[REASON]:" + constraint.getValue().get(i) + "["
+//                            + aTypeValue.get(0) + " vs. " + bTypeValue + "]");
+//                    return false;
+//                }
+//            }
         }
         return true;
     }
@@ -141,7 +142,7 @@ public class Matcher {
         int noOfDifferences = 0;
 
         for (int i = 0; i < aTypeValue.size(); ++i) {
-            if(!bTypeValue.contains(aTypeValue.get(i))) {
+            if(!CustomContains.containsCaseInsensitive(aTypeValue.get(i), bTypeValue)) {
                 ++noOfDifferences;
             }
         }
@@ -162,7 +163,7 @@ public class Matcher {
         int noOfCommonAttributes = 0;
 
         for (int i = 0; i < aTypeValue.size(); ++i) {
-            if(bTypeValue.contains(aTypeValue.get(i))) {
+            if(CustomContains.containsCaseInsensitive(aTypeValue.get(i), bTypeValue)) {
                 ++noOfCommonAttributes;
             }
         }

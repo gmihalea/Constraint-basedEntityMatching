@@ -18,7 +18,7 @@ public class Constants {
     public static final String DIFF = "diff";
     public static final String MIN = "min";
     public static final String MAX = "max";
-    public static final String GMT_MAX = "gmtMax";
+    public static final String GMT_MIN = "gmtMin";
     public static final String GMT = "GMT+";
 
     public static final String ENTITY = "entity";
