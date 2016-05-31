@@ -1,0 +1,8 @@
+Key,Constraint
+Language,min1
+ProgrammingLanguages,min1
+TimeZone,min
+ProgrammingLevel,min1
+DedicatedTime,moreWithBeginner
+Country,diff
+
