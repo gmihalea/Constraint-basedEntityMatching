@@ -34,8 +34,8 @@ public class MatcherTest {
         assertTrue(Checker.checkAllEntitiesCorrectness(mentors));
     }
 
-//    @Test
-//    public void checkConstraintsCorrectness() {
-//        assertTrue(Checker.checkAllEntitiesCorrectness(constraints));
-//    }
+    @Test
+    public void checkConstraintsCorrectness() {
+        assertTrue(Checker.checkAllEntitiesCorrectness(constraints));
+    }
 }
