@@ -52,7 +52,10 @@ public class UseCase {
             }
         }
 
-        matcher.generatesCandidatesPhaseOne(mentors.get(1));
-
+        //matcher.generatesCandidatesPhaseOne(mentors.get(1));
+//        mentors.get(0).printAttributes();
+//        mentees.get(0).printAttributes();
+//
+//        System.out.println(matcher.computeAttributesInCommon(mentors.get(0).getAttributes().get("ProgrammingLanguages"), mentees.get(0).getAttributes().get("ProgrammingLanguages")));
     }
 }

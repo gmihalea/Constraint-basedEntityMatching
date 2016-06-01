@@ -89,13 +89,12 @@ public class Matcher {
                                           final ArrayList<String> bTypeValue,
                                           final HashMap.Entry<String, ArrayList<String>> constraint) throws IOException {
 
-        // Iterates through all the list, in case the constraint is more complex
-        // e.g. min1, max3
+        // Iterates through all the list, in case the constraint is more complex ( e.g. min1, max3)
         for (int i = 0; i < constraint.getValue().size(); ++i) {
             final String originalConstraint = constraint.getValue().get(i);
-            final String typeOfConstraint = originalConstraint.substring(0, Constants.CONSTRAINTS_CODE_SIZE - 1);
+            final String typeOfConstraint = originalConstraint.substring(0, Constants.CONSTRAINTS_CODE_SIZE);
             final String pieceOfConstraint = originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE,
-                                                                    originalConstraint.length() - 1);
+                                                                    originalConstraint.length());
 
             if(Constants.HARD_CONSTRAINT.equals(typeOfConstraint)) {
                 // All the elements in aTypeValue must be different from the elements in bTypeValue
@@ -114,7 +113,7 @@ public class Matcher {
                     // The number of attributes in common must be greater than or equal to count
                     if (this.computeAttributesInCommon(aTypeValue, bTypeValue) < count) {
                         Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
-                                + "> " + "[" + this.computeAttributesInCommon(aTypeValue, bTypeValue)
+                                + "> " + "[" + this.computeAttributesInCommon(aTypeValue, bTypeValue) //TODO keep the call in a variable
                                 + " vs. " + count + "]");
                         return false;
                     }
