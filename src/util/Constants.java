@@ -24,7 +24,11 @@ public class Constants {
     public static final String ENTITY = "entity";
     public static final String CONSTRAINT = "constraint";
 
+    public static final String HARD_CONSTRAINT = "[hard]";
+    public static final String SOFT_CONSTRAINT = "[soft]";
+
     public static final int CONSTRAINTS_INDEX = 0;
+    public static final int CONSTRAINTS_CODE_SIZE = 6;
 
     public static final String OUTPUT_FILE_PATH = "/home/geanina/Desktop/Licenta/EntityMatching/output.txt";
 }
