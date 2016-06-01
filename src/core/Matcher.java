@@ -88,7 +88,7 @@ public class Matcher {
     public boolean evaluateHardConstraint(final ArrayList<String> aTypeValue,
                                           final ArrayList<String> bTypeValue,
                                           final HashMap.Entry<String, ArrayList<String>> constraint) throws IOException {
-
+        int count = 0;
         // Iterates through all the list, in case the constraint is more complex ( e.g. min1, max3)
         for (int i = 0; i < constraint.getValue().size(); ++i) {
             final String originalConstraint = constraint.getValue().get(i);
@@ -108,24 +108,22 @@ public class Matcher {
                 }
                 if (pieceOfConstraint.startsWith(Constants.MIN)) {
                     // Extract the number that follows the string MIN
-                    final int count = Integer.parseInt(pieceOfConstraint.substring(Constants.MIN.length()));
+                    final int threshold = Integer.parseInt(pieceOfConstraint.substring(Constants.MIN.length()));
 
                     // The number of attributes in common must be greater than or equal to count
-                    if (this.computeAttributesInCommon(aTypeValue, bTypeValue) < count) {
+                    if ((count = this.computeAttributesInCommon(aTypeValue, bTypeValue)) < threshold) {
                         Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
-                                + "> " + "[" + this.computeAttributesInCommon(aTypeValue, bTypeValue) //TODO keep the call in a variable
-                                + " vs. " + count + "]");
+                                + "> " + "[" + count + " vs. " + threshold + "]");
                         return false;
                     }
                 }
                 if (pieceOfConstraint.startsWith(Constants.MAX)) {
-                    final int count = Integer.parseInt(pieceOfConstraint.substring(Constants.MAX.length()));
+                    final int threshold = Integer.parseInt(pieceOfConstraint.substring(Constants.MAX.length()));
 
-                    // The number of attributes in common must be lower than or equal to count
-                    if (this.computeAttributesInCommon(aTypeValue, bTypeValue) > count) {
+                    // The number of attributes in common must be lower than or equal to the threshold
+                    if ((count = this.computeAttributesInCommon(aTypeValue, bTypeValue)) > threshold) {
                         Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
-                                + "> " + "[" + this.computeAttributesInCommon(aTypeValue, bTypeValue)
-                                + " vs. " + count + "]");
+                                + "> " + "[" + count + " vs. " + threshold + "]");
                         return false;
                     }
                 }
