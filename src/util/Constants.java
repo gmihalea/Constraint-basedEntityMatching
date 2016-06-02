@@ -27,6 +27,9 @@ public class Constants {
     public static final String HARD_CONSTRAINT = "[hard]";
     public static final String SOFT_CONSTRAINT = "[soft]";
 
+    public static final int ASCENDING_SORT = 1;
+    public static final int DESCENDING_SORT = 0;
+
     public static final int CONSTRAINTS_INDEX = 0;
     public static final int CONSTRAINTS_CODE_SIZE = 6;
 
