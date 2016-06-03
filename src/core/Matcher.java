@@ -35,7 +35,22 @@ public class Matcher {
     }
 
     /**
-     * Phase One for generating matching candidates for given Entity.
+     * Phase Two of generating matching candidates for given Entity.
+     * In this phase, the entities are filtered by the soft attributes
+     * @param aTypeEntity entity to match
+     * @return
+     */
+    public ArrayList<Entity> generatesCandidatesPhaseTwo(Entity aTypeEntity) {
+        //TODO take the sorted list of elements of type A (sorted based on Score criteria)
+        //TODO check if there is minimum one candidate. If not, then return an empty list + a message
+        //TODO check if there are more than one candidate
+        //TODO begin applying the soft constraints and reducing the number of candidates
+        //TODO pick the
+        return null;
+    }
+
+    /**
+     * Phase One of generating matching candidates for given Entity.
      * In this phase, the entities are filtered by the mandatory attributes
      * @param aTypeEntity entity to match
      */
