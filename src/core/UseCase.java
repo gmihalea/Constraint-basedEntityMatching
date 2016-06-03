@@ -14,9 +14,9 @@ public class UseCase {
     public static void main(String[] args) throws IOException {
 
         //Parse all the CSV files.
-        final ArrayList<Entity> mentees = (ArrayList<Entity>) CSVParser.parseCSV(Constants.CSV_MENTEES, Constants.ENTITY);
-        final ArrayList<Entity> mentors = (ArrayList<Entity>) CSVParser.parseCSV(Constants.CSV_MENTORS, Constants.ENTITY);
-        final ArrayList<Constraint> constraints = (ArrayList<Constraint>) CSVParser.parseCSV(Constants.CSV_CONSTRAINTS,
+         ArrayList<Entity> mentees = (ArrayList<Entity>) CSVParser.parseCSV(Constants.CSV_MENTEES, Constants.ENTITY);
+         ArrayList<Entity> mentors = (ArrayList<Entity>) CSVParser.parseCSV(Constants.CSV_MENTORS, Constants.ENTITY);
+         ArrayList<Constraint> constraints = (ArrayList<Constraint>) CSVParser.parseCSV(Constants.CSV_CONSTRAINTS,
                 Constants.CONSTRAINT);
 
         // Sanity checks
@@ -59,7 +59,13 @@ public class UseCase {
 //        System.out.println(matcher.computeAttributesInCommon(mentors.get(0).getAttributes().get("ProgrammingLanguages"), mentees.get(0).getAttributes().get("ProgrammingLanguages")));
 
         //check Sorter class
-        Sorter.sortListByCriteria(mentors, 1, "Score");
-
+        mentors = (ArrayList<Entity>) Sorter.sortListByCriteria(mentors, 1, "Score");
+        for (int i = 0; i < mentors.size(); ++i) {
+            Printer.printInFile("------------------------------------------------------------------------------------\n");
+            Printer.printInFile("Mentee " + i + ": "
+                            + mentors.get(i).getAttributes().get("Score")
+                    + mentors.get(i).getAttributes().get("FirstName")
+                    + mentors.get(i).getAttributes().get("LastName"));
+        }
     }
 }

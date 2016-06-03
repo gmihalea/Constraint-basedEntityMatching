@@ -1,5 +1,6 @@
 package util;
 
+import core.Entity;
 import core.Item;
 
 import java.util.ArrayList;
@@ -12,17 +13,17 @@ import java.util.Comparator;
 public class Sorter {
 
     public static ArrayList<? extends Item> sortListByCriteria(final ArrayList<? extends Item> list,
-                                                     final int type,
-                                                     final String criteria) {
+                                                               final int type,
+                                                               final String criteria) {
 
-        Collections.sort(list, new Comparator<Item>() {
-            @Override
-            public int compare(Item item1, Item item2)
-            {
-                return  Double.parseDouble(item1.getAttributes().get(criteria).get(Constants.CONSTRAINTS_INDEX))
-                        - Double.parseDouble(item2.getAttributes().get(criteria).get(Constants.CONSTRAINTS_INDEX))
-                        < 0 ? -1 : 1;
-            }
+        Collections.sort(list, (item1, item2) -> {
+            double diff = Double.parseDouble(item1.getAttributes().get(criteria).get(Constants.CONSTRAINTS_INDEX))
+                    - Double.parseDouble(item2.getAttributes().get(criteria).get(Constants.CONSTRAINTS_INDEX));
+
+            if(diff == 0)
+                return 0;
+
+            return diff < 0 ? -1 : 1;
         });
 
         if(type == Constants.ASCENDING_SORT) {
