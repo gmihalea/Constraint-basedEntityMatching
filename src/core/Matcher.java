@@ -5,6 +5,8 @@ import java.util.*;
 
 import util.*;
 
+import javax.lang.model.type.ArrayType;
+
 /**
  * core.Matcher class.
  */
@@ -42,7 +44,7 @@ public class Matcher {
      * @param criteria    specifies the sorting criteria for the list of candidates.
      * @return the list of matching entities.
      */
-    public ArrayList<Entity> generatesCandidatesPhaseTwo(final Entity aTypeEntity,
+    public Entity generatesCandidatesPhaseTwo(final Entity aTypeEntity,
                                                          final ArrayList<Entity> candidates,
                                                          final String criteria) {
         ArrayList<Entity> sortedListOfCandidates;
@@ -51,14 +53,12 @@ public class Matcher {
             // If the criteria is Score, then the list of candidates should be sorted descending.
             case Constants.SCORE_CRITERIA:
                 sortedListOfCandidates = (ArrayList<Entity>) Sorter.sortListByCriteria(candidates,
-                        Constants.DESCENDING_SORT,
-                        criteria);
+                        Constants.DESCENDING_SORT, criteria);
                 break;
             // If the criteria is ProgrammingLanguages, then the list of candidates should be sorted ascending.
             case Constants.PROGRAMMING_LANGUAGES_CRITERIA:
                 sortedListOfCandidates = (ArrayList<Entity>) Sorter.sortListByCriteria(candidates,
-                        Constants.ASCENDING_SORT,
-                        criteria);
+                        Constants.ASCENDING_SORT, criteria);
                 break;
             // If the criteria does not match any of the above possibilities, then it is wrong.
             default:
@@ -66,18 +66,17 @@ public class Matcher {
                 return null;
         }
 
-        // If the number of candidates is 0 or 1, then the final result is list of candidates itself.
-        if (candidates.size() == 0 || candidates.size() == 1) {
-            return candidates;
+        if(candidates.size() == 0) {
+            System.out.println("[NO candidates]");
+            return null;
         }
 
+        // If the number of candidates 1, then the final result is the first element of the list
+        if (candidates.size() == 1) {
+            return candidates.get(0);
+        }
 
-        //[done] TODO take the sorted list of elements of type A (sorted based on Score criteria)
-        //[done] TODO check if there is minimum one candidate. If not, then return an empty list + a message
-        //[done] TODO check if there are more than one candidate
-        //TODO begin applying the soft constraints and reducing the number of candidates
-        //TODO pick the
-        return null;
+        return this.evaluateSoftConstraint(aTypeEntity, sortedListOfCandidates);
     }
 
     /**
@@ -87,28 +86,38 @@ public class Matcher {
      * @param candidates
      * @return
      */
-    public ArrayList<Entity> evaluateSoftConstraint(final Entity aTypeEntity,
-                                                    final ArrayList<Entity> candidates) {
+    public Entity evaluateSoftConstraint(final Entity aTypeEntity,
+                                         final ArrayList<Entity> candidates) {
         Map<String, ArrayList<String>> softConstraints = this.getSoftConstraintsByPriority();
+        ArrayList<Entity> shortList = new ArrayList<>();
+        boolean found = false;
 
         for (final Map.Entry<String, ArrayList<String>> entry : softConstraints.entrySet()) {
-            final String constraint = entry.getKey();
-            // In case the constraint is more complex (e.g. Languages: min1, max 3)
-            for (int i = 0; i < entry.getValue().size(); ++i) {
-                final String originalConstraint = entry.getValue().get(i);
+            if(!found) {
+                final String originalConstraint = entry.getValue().get(Constants.CONSTRAINTS_INDEX);
 
                 final String typeOfConstraint = originalConstraint.substring(0, Constants.CONSTRAINTS_CODE_SIZE);
                 final int priority = Integer.parseInt(originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE,
                         (Constants.CONSTRAINTS_CODE_SIZE + Constants.CONSTRAINT_PRIORITY_SIZE)));
                 final String pieceOfConstraint = originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE,
                         originalConstraint.length());
-                // Iterates through the candidates
-                for (int j = 0; j < candidates.size(); ++j) {
 
+                if (Constants.SOFT_CONSTRAINT.equals(typeOfConstraint)) {
+                    switch (pieceOfConstraint) {
+                        case Constants.GMT_MIN_CONSTRAINT:
+                            shortList = this.getMinimumTimeZoneEntities(aTypeEntity, candidates);
+                            break;
+                        case Constants.MORE_WITH_BEGINNER_CONSTRAINT:
+                            // TODO
+                            break;
+                    }
+                    // If the list contains only one element, then the match was found
+                    if(shortList.size() == 1)
+                        found = true;
                 }
             }
         }
-        return null;
+        return shortList.get(0);
     }
 
 
@@ -291,19 +300,22 @@ public class Matcher {
     }
 
     /**
-     * Returns the Entity that has the closest TimeZone to the target.
+     * Returns the list of entities that have the closest TimeZone to the target.
      * @param aTypeEntity target entity.
      * @param candidates list of candidates entities
-     * @return the entity that has the minimum distance to the target.
+     * @return the entities that have the minimum distance to the target.
      */
-    public Entity getMinimumTimeZoneEntity(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
+    public ArrayList<Entity> getMinimumTimeZoneEntities(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
+        return this.getEntitiesWithMinTimeZoneDiff(aTypeEntity, candidates);
+    }
+
+    public int getMinimumTimeZoneDiff(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
         final String aTypeEntityTimeZone = aTypeEntity.getAttributes().get(Constants.TIME_ZONE_CONSTRAINT)
                 .get(Constants.CONSTRAINTS_INDEX);
         final int aTypeEntityDelay = Integer.parseInt(aTypeEntityTimeZone
                 .substring(Constants.GMT.length(), aTypeEntityTimeZone.length()));
 
-        Entity entity = null;
-        int diff = Integer.MAX_VALUE;
+        int minDiff = Integer.MAX_VALUE;
 
         for(int i = 0; i < candidates.size(); ++i) {
             String candidateTimeZone = candidates.get(i).getAttributes().get(Constants.TIME_ZONE_CONSTRAINT)
@@ -311,12 +323,33 @@ public class Matcher {
             int candidateDelay = Integer.parseInt(candidateTimeZone
                     .substring(Constants.GMT.length(), candidateTimeZone.length()));
 
-            if(Math.abs(candidateDelay - aTypeEntityDelay) < diff) {
-                diff = Math.abs(candidateDelay - aTypeEntityDelay);
-                entity = candidates.get(i);
+            if (Math.abs(candidateDelay - aTypeEntityDelay) < minDiff) {
+                minDiff = Math.abs(candidateDelay - aTypeEntityDelay);
             }
         }
-        return entity;
+        return minDiff;
+    }
+
+    public ArrayList<Entity> getEntitiesWithMinTimeZoneDiff(final Entity aTypeEntity,
+                                                            final ArrayList<Entity> candidates) {
+        ArrayList<Entity> shortListOfCandidates = new ArrayList<>();
+
+        final String aTypeEntityTimeZone = aTypeEntity.getAttributes().get(Constants.TIME_ZONE_CONSTRAINT)
+                .get(Constants.CONSTRAINTS_INDEX);
+        final int aTypeEntityDelay = Integer.parseInt(aTypeEntityTimeZone
+                .substring(Constants.GMT.length(), aTypeEntityTimeZone.length()));
+
+        for(int i = 0; i < candidates.size(); ++i) {
+            String candidateTimeZone = candidates.get(i).getAttributes().get(Constants.TIME_ZONE_CONSTRAINT)
+                    .get(Constants.CONSTRAINTS_INDEX);
+            int candidateDelay = Integer.parseInt(candidateTimeZone
+                    .substring(Constants.GMT.length(), candidateTimeZone.length()));
+
+            if (Math.abs(candidateDelay - aTypeEntityDelay) == this.getMinimumTimeZoneDiff(aTypeEntity, candidates)) {
+                shortListOfCandidates.add(candidates.get(i));
+            }
+        }
+        return shortListOfCandidates;
     }
 }
 

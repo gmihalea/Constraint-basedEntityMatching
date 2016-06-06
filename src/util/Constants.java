@@ -36,9 +36,10 @@ public class Constants {
     public static final String SCORE_CRITERIA = "Score";
     public static final String PROGRAMMING_LANGUAGES_CRITERIA = "ProgrammingLanguages";
 
-    public static final String UNIQUE_ATTRIBUTE = "Email";
     public static final String TIME_ZONE_CONSTRAINT = "TimeZone";
     public static final String GMT = "GMT";
+    public static final String GMT_MIN_CONSTRAINT = "gmtMin";
+    public static final String MORE_WITH_BEGINNER_CONSTRAINT = "moreWithBeginner";
 
     public static final String OUTPUT_FILE_PATH = "/home/geanina/Desktop/Licenta/EntityMatching/output.txt";
 }
