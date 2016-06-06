@@ -31,7 +31,6 @@ Score,LastName,FirstName,Country,Languages,TimeZone,Email,ProgrammingLanguages,P
 75,Daniel,Pokusa,Poland,English Polish,GMT+1,daniel.pokusa@gmail.com,Java,Beginner Medium Confident,Male,3-5 h,Yes
 16.27,Davoudi,Anahita,USA,English,GMT-4,anahita.davoudi@gmail.com,C++ Java Python C# HTML CSS JavaScript Ruby matlab,Beginner Medium Confident,Female,3-5 h,Yes
 75,Derda,Jakub,Poland,English Polish,GMT+1,jakub.derda@gmail.com,Java,Beginner Medium Confident,Male,7-10 h,Yes
--1,Dhemaid,Ouijden,Tunisia,English,GMT+1,dh.ouijden@gmail.com,C Java HTML CSS,Beginner Medium Confident,Female,3-5 h,Yes
 24.38,Dorneanu,Daniela,Romania,Romanian English,GMT+2,dana.dorneanu@gmail.com,C C++ Java Python,Beginner Medium Confident,Female,1-3 h,Yes
 24.8,Duke,Debra,USA,English,GMT-4,debra.duke@gmail.com,C C++ Java HTML CSS,Beginner Medium Confident,Female,1-3 h,Yes
 21.64,Fang,Zhou,Germany,English,GMT+2,yz.fang1@gmail.com,Java Python Prolog,Beginner Medium Confident,Female,1-3 h,Yes
@@ -39,7 +38,6 @@ Score,LastName,FirstName,Country,Languages,TimeZone,Email,ProgrammingLanguages,P
 75,Galewska,Joanna,Poland,English Polish,GMT+1,galewska.joanna@gmail.com,C C++ Java Python,Beginner Medium Confident,Female,5-7 h,Yes
 24,Gaman,Mihaela,Romania,Romanian English,GMT+2,mp.gaman@gmail.com,Java,Beginner Medium Confident,Female,3-5 h,Yes
 22.81,Gavrilovska,Aleksandra,Macedonia,English,GMT+2,gavrilovska@gmail.com,Objective-C,Beginner Medium Confident,Female,1-3 h,Yes
--1,Gonzalez Montoya,Ana Maria,Mexico,English,GMT-7,gomitaana09@gmail.com,C Java C# HTML CSS JavaScript,Beginner,Female,5-7 h,Yes
 22,Gródek,Piotr,Poland,English Polish,GMT+1,grodekpiotr@gmail.com,C C++ Python C#,Beginner Medium Confident,Male,1-3 h,Yes
 29.31,Grosu,Madalina,Romania,Romanian English,GMT+2,madalina92.grosu@gmail.com,C Java,Beginner Medium Confident,Female,1-3 h,Yes
 75,Gupta,Ishita,India,English,GMT+5,guptaishita93@gmail.com,C C++,Beginner Medium Confident,Female,7-10 h,Yes
@@ -47,7 +45,6 @@ Score,LastName,FirstName,Country,Languages,TimeZone,Email,ProgrammingLanguages,P
 24,Hachilif,Narjis,France,English French,GMT+2,hnarjis@gmail.com,Ruby,Beginner Medium Confident,Female,1-3 h,Yes
 26.02,heena,heena,India,English,GMT+5,heena393@gmail.com,C C++ Java Qt QML,Beginner Medium Confident,Female,7-10 h,Yes
 26,Heine,Dominik,Germany,English Dutch,GMT+2,dominik@codesneeze.com,Java Python,Beginner Medium Confident,Male,7-10 h,Yes
--1,Huggi,Preeti,India,English,GMT+5,preetihuggi@gmail.com,C C++ Java HTML CSS,Beginner Medium Confident,Female,1-3 h,No
 31.95,Ilinca,Catalin,Romania,Romanian English,GMT+2,c@talin.ro,HTML CSS JavaScript Ruby,Beginner Medium Confident,Male,1-3 h,Yes
 22.19,Issartel,Maria,Romania,Romanian English,GMT+2,zambet@gmail.com,C C++,Beginner Medium Confident,Female,<1 h,Yes
 75,Ivana,Alexandru,Romania,Romanian English,GMT+2,Alexandru.Ivana@endava.com,Java C# Java SDK,Beginner Medium Confident,Male,1-3 h,Yes
@@ -78,11 +75,9 @@ Score,LastName,FirstName,Country,Languages,TimeZone,Email,ProgrammingLanguages,P
 28.52,Niculaescu,Oana,Romania,Romanian English,GMT+2,oana.niculaescu@gmail.com,C Java HTML CSS JavaScript,Beginner Medium Confident,Female,3-5 h,Yes
 28.19,Nita,Maria,Romania,Romanian English,GMT+2,maria.nita.dn@gmail.com,Python Ruby Go,Beginner Medium Confident,Female,3-5 h,Yes
 29,Nitz,Nitz,Germany,English Dutch,GMT+2,nitz.carola@googlemail.com,Objective-C Swift,Beginner Medium Confident,Female,1-3 h,Yes
--1,Obloj,Robert,Poland,English Polish,GMT+1,robloj@gmail.com,Java Python,Beginner Medium Confident,Male,3-5 h,Yes
 22.3,Oprea,Matei,Romania,English Romanian,GMT+2,eu@opreamatei.ro,C C++ HTML CSS JavaScript Haskell Scheme PHP Node.js,Beginner,Female,3-5 h,Yes
 30.81,Oprea,Ana,Romania,English Romanian,GMT+2,ioanaanamaria.oprea@gmail.com,Java Python,Beginner Medium Confident,Female,3-5 h,Yes
 23,Pasterczyk,Andrzej,Poland,English Polish,GMT+1,andrzej.pasterczyk@gmail.com,C#,Beginner Medium Confident,Male,1-3 h,Yes
--1,Patel,Brijesh,United States,English,GMT-4,brijeshrpatel9@gmail.com,Java Python HTML CSS,Beginner Medium Confident,Male,3-5 h,Yes
 22.05,Patel,Harshna,United Kingdom,English,GMT+1,harshna.p90@gmail.com,C C++ Python,Beginner,Female,1-3 h,Yes
 25.5,Pejic,Jana,Serbia,English,GMT+2,jana.pejic.9@gmail.com,C C++ Java Objective-C HTML CSS JavaScript,Beginner Medium Confident,Female,3-5 h,Yes
 23.6,Petrescu,Cristiana,Romania,Romanian English,GMT+2,cristianapetrescu92@gmail.com,C C++ C#,Beginner Medium Confident,Female,1-3 h,No
@@ -93,11 +88,9 @@ Score,LastName,FirstName,Country,Languages,TimeZone,Email,ProgrammingLanguages,P
 57.32,Poenaru,Radu,Romania,Romanian English,GMT+2,radupoenaru2005@yahoo.com,C Java,Beginner,Male,3-5h,Yes
 26.33,Poilinca,Simona,Romania,Romanian English,GMT+2,simona.poilinca@gmail.com,C Java Matlab,Beginner Medium Confident,Female,3-5 h,Yes
 23.56,Pollet,Christophe,Switzerland,English Dutch,GMT+2 ,christophe.learnitgirl@pollet.ch,Java,Beginner Medium Confident,Male,1-3 h,Yes
--1,Pooja,Prakash,India,English,GMT+5,poojaprakash747@gmail.com,C,Beginner Medium Confident,Female,3-5 h,Yes
 50.64,Pramiti goel,Pramiti Goel,India,English,GMT+5,pramitigoel20@gmail.com,C++,Beginner Medium Confident,Female,1-3 h,Yes
 15.95,Pruszkowski,Paweł,Poland,English Polish,GMT+1,ppruszkowski@gmail.com,HTML CSS JavaScript,Beginner Medium Confident,Male,5-7 h,No
 28.75,Raduta,Alexandru,Romania,English,GMT+2,alexandru.raduta@gmail.com,HTML CSS JavaScript PHP,Beginner Medium Confident,Male,1-3 h,Yes
--1,Rahul,Banker,India,English,GMT+5,bankerrahul@gmail.com,C C++ Java HTML CSS,Beginner,Male,1-3 h,Yes
 26,Ramos,Sabela,Spain,English Spanish French,GMT+2,sabelaraga@gmail.com,C Java,Beginner Medium Confident,Female,1-3 h,Yes
 75,Regan,Janice,Canada,English,GMT-7,jregan@sfu.ca,C C++ Java Python,Medium Confident,Female,3-5 h,Yes
 75,Robak,Sylwia,Poland,English Polish,GMT+1,sylwiar92@gmail.com,Ruby Ruby on Rails,Beginner Medium Confident,Female,3-5 h,Yes
@@ -111,7 +104,6 @@ Score,LastName,FirstName,Country,Languages,TimeZone,Email,ProgrammingLanguages,P
 26,Shah,Kesha,India,English norwegian,GMT+5,kesha.shah1106@gmail.com,C C++ Java Python HTML CSS JavaScript Ruby,Beginner Medium Confident,Female,1-3 h,Yes
 25,Singh,Abhishek,India,English,GMT+5,abhishekkumarsingh.cse@gmail.com,C C++ Python,Beginner Medium Confident,Male,>10 h,Yes
 23.5,Skurczynski,Marcin,Poland,English Polish,GMT+1,marcin.skurczynski@gmail.com,Python HTML CSS,Beginner Medium Confident,Male,3-5 h,Yes
--1,Soroushnia,Shima,Iran,English italian,GMT+4,shisor@utu.fi,C C++ C# CUDA,Medium Confident,Female,1-3 h,Yes
 75,Stanciu,Adelina,Romania,Romanian English,GMT+2,adelina.stanciu@yahoo.com,C C++ Java Python,Beginner Medium Confident,Female,>10 h,Yes
 75,Stancu,Mihai,Romania,Romanian English,GMT+2,stancu.t.mihai@gmail.com,C HTML CSS JavaScript PHP,Beginner Medium Confident,Male,1-3 h,Yes
 25.95,Stankiewicz,Adam,Poland,English Polish,GMT+1,sheerun@sher.pl,HTML CSS JavaScript Ruby,Beginner Medium Confident,Male,3-5 h,Yes
@@ -125,7 +117,6 @@ Score,LastName,FirstName,Country,Languages,TimeZone,Email,ProgrammingLanguages,P
 24.56,Thumé,Gabriela,Brazil,English Spanish,GMT-3,gabithume@gmail.com,C C++ Python HTML CSS JavaScript,Beginner Medium Confident,Female,3-5 h,Yes
 19.06,Trajchevska,Katerina,Macedonia,English French,GMT+2,ktrajchevska@gmail.com,HTML CSS JavaScript PHP jQuery,Beginner Medium Confident,Female,1-3 h,Yes
 51,Tsai,Chia-Yin,Taiwan,English italian,GMT+8,cy.tsai0904@gmail.com,C++ Matlab,Beginner Medium Confident,Female,3-5 h,Yes
--1,Tyagi,Shobha,India,English,GMT+5,tyagishobha@gmail.com,C Python,Beginner Medium Confident,Female,3-5 h,Yes
 75,Vazhayil,Anu,India,English,GMT+5,anuv.1994@gmail.com,C Ruby,Beginner Medium Confident,Female,1-3 h,Yes
 28,Verebi,Ioana,Romania,Romanian English,GMT+2,ioanaverebi@gmail.com,Java Coffeescript,Beginner Medium Confident,Female,1-3 h,Yes
 16.03,Zalewa,Beata,Poland,English Polish,GMT+1,beata.zalewa@gmail.com,C# .NET HTML CSS JavaScript T-SQL,Beginner Medium Confident,Female,7-10 h,Yes

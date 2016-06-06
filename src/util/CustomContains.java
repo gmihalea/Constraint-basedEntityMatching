@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class CustomContains {
 
-    public static boolean containsCaseInsensitive(String strToCompare, ArrayList<String> list)
+    public static boolean containsCaseInsensitive(final String strToCompare, final ArrayList<String> list)
     {
-        for(String str : list) {
+        for(final String str : list) {
             if(str.equalsIgnoreCase(strToCompare)) {
                 return true;
             }

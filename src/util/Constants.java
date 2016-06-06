@@ -19,7 +19,6 @@ public class Constants {
     public static final String MIN = "min";
     public static final String MAX = "max";
     public static final String GMT_MIN = "gmtMin";
-    public static final String GMT = "GMT+";
 
     public static final String ENTITY = "entity";
     public static final String CONSTRAINT = "constraint";
@@ -32,9 +31,14 @@ public class Constants {
 
     public static final int CONSTRAINTS_INDEX = 0;
     public static final int CONSTRAINTS_CODE_SIZE = 6;
+    public static final int CONSTRAINT_PRIORITY_SIZE = 3;
 
     public static final String SCORE_CRITERIA = "Score";
     public static final String PROGRAMMING_LANGUAGES_CRITERIA = "ProgrammingLanguages";
+
+    public static final String UNIQUE_ATTRIBUTE = "Email";
+    public static final String TIME_ZONE_CONSTRAINT = "TimeZone";
+    public static final String GMT = "GMT";
 
     public static final String OUTPUT_FILE_PATH = "/home/geanina/Desktop/Licenta/EntityMatching/output.txt";
 }

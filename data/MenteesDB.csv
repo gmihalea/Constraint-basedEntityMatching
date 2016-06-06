@@ -56,7 +56,6 @@ Score,FirstName,LastName,Gender,HomeCountry,Email,ProgrammingLevel,DedicatedTime
 8,Geogea,Alexandra,Female,Romania,alexandra.geogea@gmail.com,Medium,7-10 h,HTML CSS JavaScript Ruby,JavaScript Ruby PHP Node.js jQuery CoffeeScript,Romania,GMT+2,English
 3.8,Ghenciu,Anamaria,Female,Romania,anamaria.ghenciu@gmail.com,Beginner,5-7 h,HTML CSS,Python HTML CSS Ruby SQL Node.js jQuery CoffeeScript,Romania,GMT+2,English
 3,Ghetie Doncu,Georgiana,Female,Romania,georgiana_ghetie@yahoo.fr,Beginner,7-10 h,-,Java Python,UK,GMT+1,English
--1,Ghidin,Oxana,Female,Moldova,kasanacika@gmail.com,Beginner,1-3 h,-,C++ HTML CSS JavaScript PHP Objective-C,Moldova,GMT+2,English
 2,Giedroyc-Piasecka,Wiktoria,Female,Poland,wpiasecka@gmail.com,Medium,1-3 h,Python,C++ Ruby bash,Poland,GMT+1,English
 2.31,Ginalska,Olga,Female,Poland,olggaaa@gmail.com,Medium,3-5 h,C++ HTML CSS JavaScript,Java JavaScript PHP jQuery,Poland,GMT+1,Polish English
 1.4,Góra,Anna,Female,Poland,czarrrna@gmail.com,Beginner,>10 h,HTML CSS,Python Ruby,Poland,GMT+1,Polish English
@@ -203,7 +202,6 @@ Score,FirstName,LastName,Gender,HomeCountry,Email,ProgrammingLevel,DedicatedTime
 8,Visanoiu,Andreea,Female,Romania,andreea.visanoiu@gmail.com,Beginner,>10 h,Python,Python HTML CSS JavaScript Ruby SQL,Malaysia,GMT+8,English
 3,Voicu,Laura,Female,Romania,laura.voicu1985@gmail.com,Beginner,3-5 h,Pascal,C++ Python SQL,Romania,GMT+2,Romanian English French
 4.2,Wąchała,Anna,Female,Poland,anka.wachala@gmail.com,Beginner,7-10 h,SQL,Java HTML CSS,Poland,GMT+1,Polish English
--1,Wachowicz,Anna,Female,Poland,zersen@gmail.com,Beginner,7-10 h,-,C# HTML CSS JavaScript,Poland,GMT+1,Polish English
 8,Werner-Mozolewska,Katarzyna,Female,Poland,kwerner@centrumcyfrowe.pl,Beginner,5-7 h,-,Java Python .NET JavaScript Ruby PHP GNU/R SQL XML Node.js MongoDB,Poland,GMT+1,Polish English
 4,Wilk,Barbara,Female,Poland,wilk.basia@yahoo.com,Beginner,>10 h,HTML CSS,Java Python Ruby PHP SQL Objective-C Scala Swift,Poland,GMT+1,Polish English
 7,Wojdon,Agata,Female,Poland,a.wojdon@gmail.com,Beginner,5-7 h,-,C++ Java Python PHP,Poland,GMT+1,Polish English
