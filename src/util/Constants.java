@@ -33,5 +33,8 @@ public class Constants {
     public static final int CONSTRAINTS_INDEX = 0;
     public static final int CONSTRAINTS_CODE_SIZE = 6;
 
+    public static final String SCORE_CRITERIA = "Score";
+    public static final String PROGRAMMING_LANGUAGES_CRITERIA = "ProgrammingLanguages";
+
     public static final String OUTPUT_FILE_PATH = "/home/geanina/Desktop/Licenta/EntityMatching/output.txt";
 }

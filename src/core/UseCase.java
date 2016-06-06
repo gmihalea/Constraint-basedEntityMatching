@@ -59,13 +59,14 @@ public class UseCase {
 //        System.out.println(matcher.computeAttributesInCommon(mentors.get(0).getAttributes().get("ProgrammingLanguages"), mentees.get(0).getAttributes().get("ProgrammingLanguages")));
 
         //check Sorter class
-        mentors = (ArrayList<Entity>) Sorter.sortListByCriteria(mentors, 1, "Score");
+        mentors = (ArrayList<Entity>) Sorter.sortListByCriteria(mentors, Constants.DESCENDING_SORT, "ProgrammingLanguages");
         for (int i = 0; i < mentors.size(); ++i) {
             Printer.printInFile("------------------------------------------------------------------------------------\n");
             Printer.printInFile("Mentee " + i + ": "
                             + mentors.get(i).getAttributes().get("Score")
                     + mentors.get(i).getAttributes().get("FirstName")
-                    + mentors.get(i).getAttributes().get("LastName"));
+                    + mentors.get(i).getAttributes().get("LastName")
+                    + mentors.get(i).getAttributes().get("ProgrammingLanguages"));
         }
     }
 }

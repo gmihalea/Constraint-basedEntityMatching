@@ -25,7 +25,6 @@ public class Matcher {
      */
     private Constraint constraints;
 
-
     public Matcher(final ArrayList<Entity> aEntity,
                    final ArrayList<Entity> bEntity,
                    final ArrayList<Constraint> constraints) {
