@@ -39,6 +39,7 @@ public class Matcher {
 
         for(Entity entity : this.aEntity) {
             Entity matchingEntity = this.pickTheMatchingEntity(entity, this.generatesCandidates(entity, this.bEntity), criteria);
+            //TODO check NO candidate
             matching.put(entity, matchingEntity);
             this.bEntity.remove(matchingEntity);
         }
