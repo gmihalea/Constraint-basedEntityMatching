@@ -11,8 +11,4 @@ public class Constraint extends Item {
     public Constraint(final HashMap<String, ArrayList<String>> attributes) {
         super(attributes);
     }
-
-    public Constraint() {
-        super();
-    }
 }

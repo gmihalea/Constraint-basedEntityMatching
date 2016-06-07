@@ -67,8 +67,8 @@ public class CSVParser {
 
     /**
      * Initializes the HashMap with specific keys
-     * @param hashMap
-     * @param keys
+     * @param hashMap the hashMap to initialize
+     * @param keys the specific keys
      */
     private static void initializeHashMap(final HashMap<String, ArrayList<String>> hashMap, final String[] keys) {
         final ArrayList<String> emptyList = new ArrayList<>();
@@ -80,9 +80,9 @@ public class CSVParser {
 
     /**
      * Adds values to a specific key of the HashMap.
-     * @param hashMap
-     * @param attributes
-     * @param keys
+     * @param hashMap the hashMap that contains the key
+     * @param attributes attributes
+     * @param keys keys to add
      */
     private static void addAttributes(final HashMap<String, ArrayList<String>> hashMap,
                                       final String[] attributes, final String[] keys) {

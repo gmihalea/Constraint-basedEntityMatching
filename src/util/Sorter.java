@@ -1,11 +1,9 @@
 package util;
 
-import core.Entity;
 import core.Item;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Class that incapsulates a sorter.
@@ -19,8 +17,10 @@ public class Sorter {
         // Sorts by the Score criteria (checks which of the items has a bigger score)
         if(Constants.SCORE_CRITERIA.equals(criteria)) {
             Collections.sort(list, (item1, item2) -> {
-                final double diff = Double.parseDouble(item1.getAttributes().get(criteria).get(Constants.CONSTRAINTS_INDEX))
-                        - Double.parseDouble(item2.getAttributes().get(criteria).get(Constants.CONSTRAINTS_INDEX));
+                final double diff = Double.parseDouble(item1.getAttributes().get(criteria)
+                        .get(Constants.CONSTRAINTS_INDEX))
+                                - Double.parseDouble(item2.getAttributes().get(criteria)
+                        .get(Constants.CONSTRAINTS_INDEX));
 
                 if (diff == 0)
                     return 0;
