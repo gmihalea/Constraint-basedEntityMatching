@@ -97,10 +97,10 @@ public class Matcher {
                 final String originalConstraint = entry.getValue().get(Constants.CONSTRAINTS_INDEX);
 
                 final String typeOfConstraint = originalConstraint.substring(0, Constants.CONSTRAINTS_CODE_SIZE);
-                final int priority = Integer.parseInt(originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE,
-                        (Constants.CONSTRAINTS_CODE_SIZE + Constants.CONSTRAINT_PRIORITY_SIZE)));
-                final String pieceOfConstraint = originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE,
-                        originalConstraint.length());
+                final int priority = Integer.parseInt(originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE + 1,
+                        (Constants.CONSTRAINTS_CODE_SIZE + Constants.CONSTRAINT_PRIORITY_SIZE - 1)));
+                final String pieceOfConstraint = originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE
+                        + Constants.CONSTRAINT_PRIORITY_SIZE, originalConstraint.length());
 
                 if (Constants.SOFT_CONSTRAINT.equals(typeOfConstraint)) {
                     switch (pieceOfConstraint) {
@@ -117,6 +117,11 @@ public class Matcher {
                 }
             }
         }
+        System.out.println("Mentorul: ");
+        aTypeEntity.printAttributes();
+        System.out.println("Mentee-ul cu care face match: ");
+        shortList.get(0).printAttributes();
+
         return shortList.get(0);
     }
 
@@ -269,23 +274,24 @@ public class Matcher {
 
 
     public Map<String, ArrayList<String>> getSoftConstraintsByPriority() {
-        Set<Map.Entry<String,ArrayList<String>>> constraints = this.constraints.getAttributes().entrySet();
+        //Set<Map.Entry<String,ArrayList<String>>> constraintsCopy = this.constraints.getAttributes().entrySet();
+        Set<Map.Entry<String,ArrayList<String>>> softs = new HashSet<>();
 
         // Removes all the hard constraints
         for (final Map.Entry<String, ArrayList<String>> entry : this.constraints.getAttributes().entrySet()) {
             final String value = entry.getValue().get(Constants.CONSTRAINTS_INDEX);
-            if(value.startsWith(Constants.HARD_CONSTRAINT)) {
-                constraints.remove(entry.getKey());
+            if(value.startsWith(Constants.SOFT_CONSTRAINT)) {
+                softs.add(entry);
             }
         }
 
-        List<Map.Entry<String,ArrayList<String>>> list = new LinkedList<>(constraints);
+        List<Map.Entry<String,ArrayList<String>>> list = new LinkedList<>(softs);
 
         Collections.sort(list, (e1, e2) -> {
             final int priority1 = Integer.parseInt(e1.getValue().get(Constants.CONSTRAINTS_INDEX)
-                    .substring(Constants.CONSTRAINTS_CODE_SIZE, Constants.CONSTRAINTS_CODE_SIZE + 1));
+                    .substring(Constants.CONSTRAINTS_CODE_SIZE + 1, Constants.CONSTRAINTS_CODE_SIZE + 2));
             final int priority2 = Integer.parseInt(e2.getValue().get(Constants.CONSTRAINTS_INDEX)
-                    .substring(Constants.CONSTRAINTS_CODE_SIZE, Constants.CONSTRAINTS_CODE_SIZE + 1));
+                    .substring(Constants.CONSTRAINTS_CODE_SIZE + 1, Constants.CONSTRAINTS_CODE_SIZE + 2));
 
             if(priority1 == priority2)
                 return 0;

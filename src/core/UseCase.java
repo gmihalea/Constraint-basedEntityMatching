@@ -54,6 +54,7 @@ public class UseCase {
 
         matcher.generatesCandidatesPhaseTwo(mentors.get(0),
                 matcher.generatesCandidatesPhaseOne(mentors.get(0), mentees), Constants.SCORE_CRITERIA);
+
 ////        mentors.get(0).printAttributes();
 ////        mentees.get(0).printAttributes();
 ////
