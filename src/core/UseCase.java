@@ -52,8 +52,8 @@ public class UseCase {
 //            }
 //        }
 
-        matcher.generatesCandidatesPhaseTwo(mentors.get(0),
-                matcher.generatesCandidatesPhaseOne(mentors.get(0), mentees), Constants.SCORE_CRITERIA);
+        matcher.pickTheMatchingEntity(mentors.get(0),
+                matcher.generatesCandidates(mentors.get(0), mentees), Constants.SCORE_CRITERIA);
 
 ////        mentors.get(0).printAttributes();
 ////        mentees.get(0).printAttributes();

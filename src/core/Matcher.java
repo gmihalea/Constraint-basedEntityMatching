@@ -5,7 +5,6 @@ import java.util.*;
 
 import util.*;
 
-import javax.lang.model.type.ArrayType;
 
 /**
  * core.Matcher class.
@@ -36,17 +35,16 @@ public class Matcher {
     }
 
     /**
-     * Phase Two of generating matching candidates for given Entity.
+     * Phase Two of matching.
      * In this phase, the entities are filtered by the soft attributes.
-     *
      * @param aTypeEntity entity to match.
      * @param candidates  the list of candidates.
      * @param criteria    specifies the sorting criteria for the list of candidates.
-     * @return the list of matching entities.
+     * @return the match entity.
      */
-    public Entity generatesCandidatesPhaseTwo(final Entity aTypeEntity,
-                                                         final ArrayList<Entity> candidates,
-                                                         final String criteria) {
+    public Entity pickTheMatchingEntity(final Entity aTypeEntity,
+                                        final ArrayList<Entity> candidates,
+                                        final String criteria) {
         ArrayList<Entity> sortedListOfCandidates;
 
         switch (criteria) {
@@ -62,7 +60,7 @@ public class Matcher {
                 break;
             // If the criteria does not match any of the above possibilities, then it is wrong.
             default:
-                System.out.println("[ERROR]: Wrong parameter <criteria> in generatesCandidatesPhaseTwo().");
+                System.out.println("[ERROR]: Wrong parameter <criteria> in pickTheMatchingEntity().");
                 return null;
         }
 
@@ -81,10 +79,9 @@ public class Matcher {
 
     /**
      * Chooses a candidate for the given aTypeEntity based on the soft constraints.
-     *
-     * @param aTypeEntity
-     * @param candidates
-     * @return
+     * @param aTypeEntity entity to match.
+     * @param candidates  the list of candidates.
+     * @return the Entity that matches.
      */
     public Entity evaluateSoftConstraint(final Entity aTypeEntity,
                                          final ArrayList<Entity> candidates) {
@@ -97,8 +94,6 @@ public class Matcher {
                 final String originalConstraint = entry.getValue().get(Constants.CONSTRAINTS_INDEX);
 
                 final String typeOfConstraint = originalConstraint.substring(0, Constants.CONSTRAINTS_CODE_SIZE);
-                final int priority = Integer.parseInt(originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE + 1,
-                        (Constants.CONSTRAINTS_CODE_SIZE + Constants.CONSTRAINT_PRIORITY_SIZE - 1)));
                 final String pieceOfConstraint = originalConstraint.substring(Constants.CONSTRAINTS_CODE_SIZE
                         + Constants.CONSTRAINT_PRIORITY_SIZE, originalConstraint.length());
 
@@ -129,13 +124,12 @@ public class Matcher {
     /**
      * Phase One of generating matching candidates for given Entity.
      * In this phase, the entities are filtered by the mandatory attributes.
-     *
      * @param aTypeEntity entity to match.
      * @param bTypeEntity list of entities to search in.
      * @return the list of candidates
      * @throws IOException
      */
-    public ArrayList<Entity> generatesCandidatesPhaseOne(final Entity aTypeEntity, ArrayList<Entity> bTypeEntity) throws IOException {
+    public ArrayList<Entity> generatesCandidates(final Entity aTypeEntity, final ArrayList<Entity> bTypeEntity) throws IOException {
         final ArrayList<Entity> candidates = new ArrayList<>();
 
         System.out.println("Candidates: ");
@@ -151,7 +145,6 @@ public class Matcher {
 
     /**
      * Check if tow entities are eligible for the matching process evaluating the hard constraints.
-     *
      * @param a,b Entities to be checked.
      * @return true if the entities are eligible, and false otherwise.
      */
@@ -272,10 +265,12 @@ public class Matcher {
         return noOfCommonAttributes;
     }
 
-
+    /**
+     * Returns the map including only the soft constraints.
+     * @return the list of soft constraints.
+     */
     public Map<String, ArrayList<String>> getSoftConstraintsByPriority() {
-        //Set<Map.Entry<String,ArrayList<String>>> constraintsCopy = this.constraints.getAttributes().entrySet();
-        Set<Map.Entry<String,ArrayList<String>>> softs = new HashSet<>();
+        final Set<Map.Entry<String,ArrayList<String>>> softs = new HashSet<>();
 
         // Removes all the hard constraints
         for (final Map.Entry<String, ArrayList<String>> entry : this.constraints.getAttributes().entrySet()) {
@@ -287,6 +282,7 @@ public class Matcher {
 
         List<Map.Entry<String,ArrayList<String>>> list = new LinkedList<>(softs);
 
+        // Sort the soft constraints based on their priority.
         Collections.sort(list, (e1, e2) -> {
             final int priority1 = Integer.parseInt(e1.getValue().get(Constants.CONSTRAINTS_INDEX)
                     .substring(Constants.CONSTRAINTS_CODE_SIZE + 1, Constants.CONSTRAINTS_CODE_SIZE + 2));
@@ -315,6 +311,12 @@ public class Matcher {
         return this.getEntitiesWithMinTimeZoneDiff(aTypeEntity, candidates);
     }
 
+    /**
+     * Computes the minimum time zone difference
+     * @param aTypeEntity target entity
+     * @param candidates list of candidates
+     * @return the minimum difference
+     */
     public int getMinimumTimeZoneDiff(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
         final String aTypeEntityTimeZone = aTypeEntity.getAttributes().get(Constants.TIME_ZONE_CONSTRAINT)
                 .get(Constants.CONSTRAINTS_INDEX);
@@ -336,6 +338,12 @@ public class Matcher {
         return minDiff;
     }
 
+    /**
+     * Computes the list of candidates that have the closest time zone with the aTypeEntity
+     * @param aTypeEntity the target entity
+     * @param candidates list of candidates
+     * @return the list of the closest candidates.
+     */
     public ArrayList<Entity> getEntitiesWithMinTimeZoneDiff(final Entity aTypeEntity,
                                                             final ArrayList<Entity> candidates) {
         ArrayList<Entity> shortListOfCandidates = new ArrayList<>();
