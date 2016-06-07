@@ -34,6 +34,15 @@ public class Matcher {
         this.constraints = constraints.get(Constants.CONSTRAINTS_INDEX);
     }
 
+    public HashMap<Entity, Entity> match(String criteria) throws IOException {
+        final HashMap<Entity, Entity> matching = new HashMap<>();
+
+        for(Entity entity : this.aEntity) {
+            matching.put(entity, this.pickTheMatchingEntity(entity, this.generatesCandidates(entity, this.bEntity), criteria));
+        }
+        return matching;
+    }
+
     /**
      * Phase Two of matching.
      * In this phase, the entities are filtered by the soft attributes.
@@ -120,7 +129,6 @@ public class Matcher {
         return shortList.get(0);
     }
 
-
     /**
      * Phase One of generating matching candidates for given Entity.
      * In this phase, the entities are filtered by the mandatory attributes.
@@ -132,12 +140,12 @@ public class Matcher {
     public ArrayList<Entity> generatesCandidates(final Entity aTypeEntity, final ArrayList<Entity> bTypeEntity) throws IOException {
         final ArrayList<Entity> candidates = new ArrayList<>();
 
-        System.out.println("Candidates: ");
+        //System.out.println("Candidates: ");
         // Iterates through all bTypeEntities and check eligibility
         for (int i = 0; i < bTypeEntity.size(); ++i) {
             if (checkEligibility(aTypeEntity, bTypeEntity.get(i))) {
                 candidates.add(bTypeEntity.get(i));
-                bTypeEntity.get(i).printAttributes();
+                //bTypeEntity.get(i).printAttributes();
             }
         }
         return candidates;
