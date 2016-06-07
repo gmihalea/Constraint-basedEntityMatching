@@ -51,7 +51,7 @@ public class Matcher {
      * @param criteria    specifies the sorting criteria for the list of candidates.
      * @return the match entity.
      */
-    public Entity pickTheMatchingEntity(final Entity aTypeEntity,
+    private Entity pickTheMatchingEntity(final Entity aTypeEntity,
                                         final ArrayList<Entity> candidates,
                                         final String criteria) {
         ArrayList<Entity> sortedListOfCandidates;
@@ -92,7 +92,7 @@ public class Matcher {
      * @param candidates  the list of candidates.
      * @return the Entity that matches.
      */
-    public Entity evaluateSoftConstraint(final Entity aTypeEntity,
+    private Entity evaluateSoftConstraint(final Entity aTypeEntity,
                                          final ArrayList<Entity> candidates) {
         Map<String, ArrayList<String>> softConstraints = this.getSoftConstraintsByPriority();
         ArrayList<Entity> shortList = new ArrayList<>();
@@ -137,7 +137,7 @@ public class Matcher {
      * @return the list of candidates
      * @throws IOException
      */
-    public ArrayList<Entity> generatesCandidates(final Entity aTypeEntity, final ArrayList<Entity> bTypeEntity) throws IOException {
+    private ArrayList<Entity> generatesCandidates(final Entity aTypeEntity, final ArrayList<Entity> bTypeEntity) throws IOException {
         final ArrayList<Entity> candidates = new ArrayList<>();
 
         //System.out.println("Candidates: ");
@@ -156,7 +156,7 @@ public class Matcher {
      * @param a,b Entities to be checked.
      * @return true if the entities are eligible, and false otherwise.
      */
-    public boolean checkEligibility(final Entity a, final Entity b) throws IOException {
+    private boolean checkEligibility(final Entity a, final Entity b) throws IOException {
 
         final HashMap<String, ArrayList<String>> aTypeHashMap = a.getAttributes();
         final HashMap<String, ArrayList<String>> bTypeHashMap = b.getAttributes();
@@ -184,7 +184,7 @@ public class Matcher {
      * @param constraint the constraint.
      * @return true if there is a match, false otherwise
      */
-    public boolean evaluateHardConstraint(final ArrayList<String> aTypeValue,
+    private boolean evaluateHardConstraint(final ArrayList<String> aTypeValue,
                                           final ArrayList<String> bTypeValue,
                                           final HashMap.Entry<String, ArrayList<String>> constraint) throws IOException {
         int count = 0;
@@ -240,7 +240,7 @@ public class Matcher {
      * @param bTypeValue the second list
      * @return true if the lists are entirely different, false otherwise.
      */
-    public boolean checkDiff(final ArrayList<String> aTypeValue, final ArrayList<String> bTypeValue) {
+    private boolean checkDiff(final ArrayList<String> aTypeValue, final ArrayList<String> bTypeValue) {
         int noOfDifferences = 0;
 
         for (int i = 0; i < aTypeValue.size(); ++i) {
@@ -262,7 +262,7 @@ public class Matcher {
      * @param bTypeValue the second list.
      * @return the number of attributes in common.
      */
-    public int computeAttributesInCommon(final ArrayList<String> aTypeValue, final ArrayList<String> bTypeValue) {
+    private int computeAttributesInCommon(final ArrayList<String> aTypeValue, final ArrayList<String> bTypeValue) {
         int noOfCommonAttributes = 0;
 
         for (int i = 0; i < aTypeValue.size(); ++i) {
@@ -277,7 +277,7 @@ public class Matcher {
      * Returns the map including only the soft constraints.
      * @return the list of soft constraints.
      */
-    public Map<String, ArrayList<String>> getSoftConstraintsByPriority() {
+    private Map<String, ArrayList<String>> getSoftConstraintsByPriority() {
         final Set<Map.Entry<String,ArrayList<String>>> softs = new HashSet<>();
 
         // Removes all the hard constraints
@@ -315,7 +315,7 @@ public class Matcher {
      * @param candidates list of candidates entities
      * @return the entities that have the minimum distance to the target.
      */
-    public ArrayList<Entity> getMinimumTimeZoneEntities(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
+    private ArrayList<Entity> getMinimumTimeZoneEntities(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
         return this.getEntitiesWithMinTimeZoneDiff(aTypeEntity, candidates);
     }
 
@@ -325,7 +325,7 @@ public class Matcher {
      * @param candidates list of candidates
      * @return the minimum difference
      */
-    public int getMinimumTimeZoneDiff(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
+    private int getMinimumTimeZoneDiff(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
         final String aTypeEntityTimeZone = aTypeEntity.getAttributes().get(Constants.TIME_ZONE_CONSTRAINT)
                 .get(Constants.CONSTRAINTS_INDEX);
         final int aTypeEntityDelay = Integer.parseInt(aTypeEntityTimeZone
@@ -352,7 +352,7 @@ public class Matcher {
      * @param candidates list of candidates
      * @return the list of the closest candidates.
      */
-    public ArrayList<Entity> getEntitiesWithMinTimeZoneDiff(final Entity aTypeEntity,
+    private ArrayList<Entity> getEntitiesWithMinTimeZoneDiff(final Entity aTypeEntity,
                                                             final ArrayList<Entity> candidates) {
         ArrayList<Entity> shortListOfCandidates = new ArrayList<>();
 
