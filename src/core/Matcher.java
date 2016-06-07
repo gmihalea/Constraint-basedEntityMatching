@@ -1,7 +1,9 @@
 package core;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import util.*;
 
@@ -95,7 +97,7 @@ public class Matcher {
     private Entity evaluateSoftConstraint(final Entity aTypeEntity,
                                          final ArrayList<Entity> candidates) {
         Map<String, ArrayList<String>> softConstraints = this.getSoftConstraintsByPriority();
-        ArrayList<Entity> shortList = new ArrayList<>();
+        ArrayList<Entity> shortList = candidates;
         boolean found = false;
 
         for (final Map.Entry<String, ArrayList<String>> entry : softConstraints.entrySet()) {
@@ -111,8 +113,24 @@ public class Matcher {
                         case Constants.GMT_MIN_CONSTRAINT:
                             shortList = this.getMinimumTimeZoneEntities(aTypeEntity, candidates);
                             break;
+                        // In case there are candidates who have the same time zone difference
+                        // If the aTypeEntity has multiple choices for ProgrammingLevel (e.g all of them: Beginner
+                        // Medium Confident) and it also has the maximum DedicatedTime (more than 7 or 10 h),
+                        // then it should be matched with a Beginner
                         case Constants.MORE_WITH_BEGINNER_CONSTRAINT:
-                            // TODO
+                            if (aTypeEntity.getAttributes().get(Constants.PROGRAMMING_LEVEL_ATTRIBUTE)
+                                    .contains(Constants.PROGRAMMING_LEVEL_BEGINNER)
+                                    && (Constants.MORE_THAN_SEVEN_HOURS.equals(aTypeEntity.getAttributes()
+                                    .get(Constants.DEDICATED_TIME_ATTRIBUTE))
+                                    || Constants.MORE_THAN_TEN_HOURS.equals(aTypeEntity.getAttributes()
+                                    .get(Constants.DEDICATED_TIME_ATTRIBUTE)))) {
+                                // In the short list remain only those entities that contain Beginner as
+                                // ProgrammingLevel attribute
+                                shortList = this.extractBeginners(shortList);
+                            }
+                            break;
+                        case Constants.BIGGER_SCORE_CONSTRAINT:
+                            shortList = this.getEntitiesWithMaxScore(shortList);
                             break;
                     }
                     // If the list contains only one element, then the match was found
@@ -125,7 +143,8 @@ public class Matcher {
         aTypeEntity.printAttributes();
         System.out.println("Mentee-ul cu care face match: ");
         shortList.get(0).printAttributes();
-
+        if(shortList.size() > 1)
+            System.out.println("MERGEAU MAI MULTI !!!");
         return shortList.get(0);
     }
 
@@ -373,5 +392,44 @@ public class Matcher {
         }
         return shortListOfCandidates;
     }
-}
 
+    /**
+     * Computes the list of beginners from the list of candidates
+     * @param candidates list of candidates
+     * @return the list of beginners
+     */
+    private ArrayList<Entity> extractBeginners(final ArrayList<Entity> candidates) {
+        final ArrayList<Entity> beginners = candidates.stream().filter(entity -> entity.getAttributes()
+                .get(Constants.PROGRAMMING_LEVEL_ATTRIBUTE).contains(Constants.PROGRAMMING_LEVEL_BEGINNER))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        return beginners;
+    }
+
+    private ArrayList<Entity> getEntitiesWithMaxScore(final ArrayList<Entity> candidates) {
+        final ArrayList<Entity> entities = new ArrayList<>();
+        final double maxScore = this.getMaxScore(candidates);
+
+        entities.addAll(candidates.stream().filter(entity -> Double.parseDouble(entity.getAttributes()
+                .get(Constants.SCORE_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)) == maxScore)
+                .collect(Collectors.toList()));
+        return entities;
+    }
+
+    /**
+     * Computes the maximum score.
+     * @param candidates list of candidates
+     * @return the maximum score
+     */
+    private double getMaxScore(final ArrayList<Entity> candidates) {
+        double maxScore = -1;
+        double temp;
+
+        for(Entity entity : candidates) {
+            if((temp = Double.parseDouble(entity.getAttributes().get(Constants.SCORE_ATTRIBUTE)
+                    .get(Constants.CONSTRAINTS_INDEX))) > maxScore)
+                maxScore = temp;
+        }
+        return maxScore;
+    }
+}
