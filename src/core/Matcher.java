@@ -1,12 +1,10 @@
 package core;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import util.*;
-
 
 /**
  * core.Matcher class.
@@ -40,8 +38,11 @@ public class Matcher {
         final HashMap<Entity, Entity> matching = new HashMap<>();
 
         for(Entity entity : this.aEntity) {
-            matching.put(entity, this.pickTheMatchingEntity(entity, this.generatesCandidates(entity, this.bEntity), criteria));
+            Entity matchingEntity = this.pickTheMatchingEntity(entity, this.generatesCandidates(entity, this.bEntity), criteria);
+            matching.put(entity, matchingEntity);
+            this.bEntity.remove(matchingEntity);
         }
+        System.out.println("Cupluri: " + matching.size());
         return matching;
     }
 
