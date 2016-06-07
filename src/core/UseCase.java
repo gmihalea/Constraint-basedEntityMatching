@@ -25,7 +25,7 @@ public class UseCase {
                 && !Checker.checkAllEntitiesCorrectness(constraints))
             return;
 
-        Matcher matcher = new Matcher(mentees, mentors, constraints);
+        Matcher matcher = new Matcher(mentors, mentees, constraints);
 
 //        for (int i = 0; i < mentees.size(); ++i) {
 ////            Printer.printInFile("Mentee " + i + ": " + mentees.get(i).getAttributes().get("FirstName") + "\n");
