@@ -1,13 +1,14 @@
-package core;
+package server.core;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import util.*;
+import server.util.*;
 
 /**
- * core.Matcher class.
+ * server.core.Matcher class.
  */
 public class Matcher {
 
@@ -37,14 +38,17 @@ public class Matcher {
     public HashMap<Entity, Entity> match(String criteria) throws IOException {
         final HashMap<Entity, Entity> matching = new HashMap<>();
 
+        int x = this.bEntity.size();
         for(Entity entity : this.aEntity) {
             Entity matchingEntity = this.pickTheMatchingEntity(entity, this.generatesCandidates(entity, this.bEntity), criteria);
             if(matchingEntity != null) {
                 matching.put(entity, matchingEntity);
                 this.bEntity.remove(matchingEntity);
             }
+            System.out.println("Din " + x + " mentees, mai am " + this.bEntity.size());
         }
         System.out.println("Cupluri: " + matching.size());
+
         return matching;
     }
 
@@ -58,7 +62,7 @@ public class Matcher {
      */
     private Entity pickTheMatchingEntity(final Entity aTypeEntity,
                                         final ArrayList<Entity> candidates,
-                                        final String criteria) {
+                                        final String criteria) throws IOException {
         ArrayList<Entity> sortedListOfCandidates;
 
         switch (criteria) {
@@ -79,7 +83,7 @@ public class Matcher {
         }
 
         if(candidates.size() == 0) {
-            System.out.println("[NO candidates]");
+            Printer.printInFile("[NO candidates]");
             return null;
         }
 
@@ -98,7 +102,7 @@ public class Matcher {
      * @return the Entity that matches.
      */
     private Entity evaluateSoftConstraint(final Entity aTypeEntity,
-                                         final ArrayList<Entity> candidates) {
+                                         final ArrayList<Entity> candidates) throws IOException {
         Map<String, ArrayList<String>> softConstraints = this.getSoftConstraintsByPriority();
         ArrayList<Entity> shortList = candidates;
         boolean found = false;
@@ -120,13 +124,13 @@ public class Matcher {
                         // If the aTypeEntity has multiple choices for ProgrammingLevel (e.g all of them: Beginner
                         // Medium Confident) and it also has the maximum DedicatedTime (more than 7 or 10 h),
                         // then it should be matched with a Beginner
-                        case Constants.MORE_WITH_BEGINNER_CONSTRAINT:
+                        case Constants.MORE_DEDICATED_TIME_WITH_BEGINNER_CONSTRAINT:
                             if (aTypeEntity.getAttributes().get(Constants.PROGRAMMING_LEVEL_ATTRIBUTE)
                                     .contains(Constants.PROGRAMMING_LEVEL_BEGINNER)
                                     && (Constants.MORE_THAN_SEVEN_HOURS.equals(aTypeEntity.getAttributes()
-                                    .get(Constants.DEDICATED_TIME_ATTRIBUTE))
+                                    .get(Constants.DEDICATED_TIME_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX))
                                     || Constants.MORE_THAN_TEN_HOURS.equals(aTypeEntity.getAttributes()
-                                    .get(Constants.DEDICATED_TIME_ATTRIBUTE)))) {
+                                    .get(Constants.DEDICATED_TIME_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)))) {
                                 // In the short list remain only those entities that contain Beginner as
                                 // ProgrammingLevel attribute
                                 shortList = this.extractBeginners(shortList);
@@ -135,6 +139,12 @@ public class Matcher {
                         case Constants.BIGGER_SCORE_CONSTRAINT:
                             shortList = this.getEntitiesWithMaxScore(shortList);
                             break;
+                        case Constants.MORE_DEDICATED_TIME:
+                            shortList = this.getEntitiesWithMaximumTime(shortList);
+                            break;
+                        case Constants.LESS_PROGRAMMING_LANGUAGES:
+                            shortList = this.getEntitiesWithLessProgrammingLanguages(shortList);
+                            break;
                     }
                     // If the list contains only one element, then the match was found
                     if(shortList.size() == 1)
@@ -142,12 +152,22 @@ public class Matcher {
                 }
             }
         }
-        System.out.println("Mentorul: ");
-        aTypeEntity.printAttributes();
-        System.out.println("Mentee-ul cu care face match: ");
-        shortList.get(0).printAttributes();
+        //Printer.printInFile("\nMatching results: \n");
+        //Printer.printInFile("Mentorul: \n");
+        //aTypeEntity.printAttributes();
+        //Printer.printInFile("Mentee-ul: \n");
+        //shortList.get(0).printAttributes();
+        Printer.printInFile("\n[Matching results]: "+ shortList.get(0).getAttributes().get("FirstName")
+                + shortList.get(0).getAttributes().get("LastName")
+                + shortList.get(0).getAttributes().get("Languages")
+                + shortList.get(0).getAttributes().get("ProgrammingLanguages")
+                + shortList.get(0).getAttributes().get("ProgrammingLevel")
+                + shortList.get(0).getAttributes().get("Country")
+                + shortList.get(0).getAttributes().get("TimeZone")
+                + shortList.get(0).getAttributes().get("DedicatedTime")
+                + shortList.get(0).getAttributes().get("Score") +"\n");
         if(shortList.size() > 1)
-            System.out.println("MERGEAU MAI MULTI !!!");
+            Printer.printInFile("MERGEAU MAI MULTI !!! : " + shortList.size() + " : " +shortList.get(1).getAttributes().get("FirstName")  + " \n");
         return shortList.get(0);
     }
 
@@ -162,12 +182,34 @@ public class Matcher {
     private ArrayList<Entity> generatesCandidates(final Entity aTypeEntity, final ArrayList<Entity> bTypeEntity) throws IOException {
         final ArrayList<Entity> candidates = new ArrayList<>();
 
-        //System.out.println("Candidates: ");
+        Printer.printInFile("------------------------------------------------------------------------------------------\n\n");
+        Printer.printInFile("--> Mentor to match: " + aTypeEntity.getAttributes().get("FirstName")
+                                                + aTypeEntity.getAttributes().get("LastName")
+                                                + aTypeEntity.getAttributes().get("Languages")
+                                                + aTypeEntity.getAttributes().get("ProgrammingLanguages")
+                                                + aTypeEntity.getAttributes().get("ProgrammingLevel")
+                                                + aTypeEntity.getAttributes().get("Country")
+                                                + aTypeEntity.getAttributes().get("TimeZone")
+                                                + aTypeEntity.getAttributes().get("DedicatedTime")+ "\n");
+        //aTypeEntity.printAttributes();
+
+        Printer.printInFile("\nCandidates: \n");
         // Iterates through all bTypeEntities and check eligibility
         for (int i = 0; i < bTypeEntity.size(); ++i) {
+
             if (checkEligibility(aTypeEntity, bTypeEntity.get(i))) {
                 candidates.add(bTypeEntity.get(i));
                 //bTypeEntity.get(i).printAttributes();
+                Printer.printInFile("[Candidate " + i + "]: "+ bTypeEntity.get(i).getAttributes().get("FirstName")
+                        + bTypeEntity.get(i).getAttributes().get("LastName")
+                        + bTypeEntity.get(i).getAttributes().get("Languages")
+                        + bTypeEntity.get(i).getAttributes().get("ProgrammingLanguages")
+                        + bTypeEntity.get(i).getAttributes().get("ProgrammingLevel")
+                        + bTypeEntity.get(i).getAttributes().get("Country")
+                        + bTypeEntity.get(i).getAttributes().get("TimeZone")
+                        + bTypeEntity.get(i).getAttributes().get("DedicatedTime")
+                        + bTypeEntity.get(i).getAttributes().get("Score")+"\n");
+                //Printer.printInFile("[MATCH]\n");
             }
         }
         return candidates;
@@ -185,10 +227,11 @@ public class Matcher {
 
         for (HashMap.Entry<String, ArrayList<String>> constraint : this.constraints.getAttributes().entrySet()) {
             //Sanity checks.
-            if (!aTypeHashMap.containsKey(constraint.getKey()) || !bTypeHashMap.containsKey(constraint.getKey())) {
-                System.out.println("[ERROR] The key " + constraint.getKey() + " does not appear in both entities.");
-                return false;
-            }
+            //TODO do sanity checks
+//            if (!aTypeHashMap.containsKey(constraint.getKey()) || !bTypeHashMap.containsKey(constraint.getKey())) {
+//                System.out.println("[ERROR] The key " + constraint.getKey() + " does not appear in both entities.");
+//                return false;
+//            }
             if (!this.evaluateHardConstraint(aTypeHashMap.get(constraint.getKey()),
                     bTypeHashMap.get(constraint.getKey()),
                     constraint)) {
@@ -222,8 +265,8 @@ public class Matcher {
                 if (Constants.DIFF.equals(pieceOfConstraint)) {
                     // If the two lists are not entirely different, then the constraint is not respected
                     if (!this.checkDiff(aTypeValue, bTypeValue)) {
-                        Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
-                                + "> " + aTypeValue + " vs. " + bTypeValue);
+                        //Printer.printInFile("[NO MATCH][REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
+                        //        + "> " + aTypeValue + " vs. " + bTypeValue + "\n");
                         return false;
                     }
                 }
@@ -233,8 +276,8 @@ public class Matcher {
 
                     // The number of attributes in common must be greater than or equal to count
                     if ((count = this.computeAttributesInCommon(aTypeValue, bTypeValue)) < threshold) {
-                        Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
-                                + "> " + "[" + count + " vs. " + threshold + "]");
+                        //Printer.printInFile("[NO MATCH][REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
+                        //        + "> " + "[" + count + " vs. " + threshold + "]" + "\n");
                         return false;
                     }
                 }
@@ -243,8 +286,8 @@ public class Matcher {
 
                     // The number of attributes in common must be lower than or equal to the threshold
                     if ((count = this.computeAttributesInCommon(aTypeValue, bTypeValue)) > threshold) {
-                        Printer.printInFile("[REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
-                                + "> " + "[" + count + " vs. " + threshold + "]");
+                        //Printer.printInFile("[NO MATCH][REASON]:" + "<" + constraint.getKey() + ": " + pieceOfConstraint
+                        //        + "> " + "[" + count + " vs. " + threshold + "]" + "\n");
                         return false;
                     }
                 }
@@ -434,5 +477,64 @@ public class Matcher {
                 maxScore = temp;
         }
         return maxScore;
+    }
+
+    private ArrayList<Entity> getEntitiesWithMaximumTime(final ArrayList<Entity> candidates) {
+        ArrayList<Entity> entities = new ArrayList<>();
+
+        for(Entity entity : candidates) {
+            if(entity.getAttributes().get(Constants.DEDICATED_TIME_ATTRIBUTE)
+                    .get(Constants.CONSTRAINTS_INDEX).equals(this.getMaxDedicatedTime(candidates))) {
+                entities.add(entity);
+            }
+        }
+        return entities;
+    }
+
+    private String getMaxDedicatedTime(final ArrayList<Entity> candidates) {
+        String maxDedicatedTime = Constants.EMPTY_STRING;
+        int maxHours = -1;
+        int hours;
+
+        for(Entity entity : candidates) {
+            String dedicatedTime = entity.getAttributes().get(Constants.DEDICATED_TIME_ATTRIBUTE)
+                    .get(Constants.CONSTRAINTS_INDEX);
+            if(dedicatedTime.startsWith(Constants.MORE)) {
+                hours = Integer.parseInt(dedicatedTime.substring(1, dedicatedTime.length()));
+            } else {
+                //TODO remove hardcoded values
+                hours = (Integer.parseInt(dedicatedTime.substring(0, 1))
+                        + Integer.parseInt(dedicatedTime.substring(2, 3))) / 2;
+            }
+            if(hours > maxHours) {
+                maxHours = hours;
+                maxDedicatedTime = dedicatedTime;
+            }
+        }
+        return maxDedicatedTime;
+    }
+
+    private ArrayList<Entity> getEntitiesWithLessProgrammingLanguages(final ArrayList<Entity> candidates) {
+        ArrayList<Entity> entities = new ArrayList<>();
+
+        for(Entity entity : candidates) {
+            if(entity.getAttributes().get(Constants.PROGRAMMING_LANGUAGES_ATTRIBUTE)
+                    .size()== this.getMinimumNumberOfProgrammingLanguages(candidates)) {
+                entities.add(entity);
+            }
+        }
+        return entities;
+    }
+
+    private int getMinimumNumberOfProgrammingLanguages(final ArrayList<Entity> candidates) {
+        int minimumNo = Integer.MAX_VALUE;
+        int temp;
+
+        for(Entity entity : candidates) {
+            if((temp = entity.getAttributes().get(Constants.PROGRAMMING_LANGUAGES_ATTRIBUTE).size()) < minimumNo)
+                minimumNo = temp;
+        }
+
+        return minimumNo;
     }
 }

@@ -1,7 +1,7 @@
-package core;
+package server.core;
 
-import parsers.CSVParser;
-import util.*;
+import server.parsers.CSVParser;
+import server.util.*;
 
 import java.io.IOException;
 import java.util.ArrayList;

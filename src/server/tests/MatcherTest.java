@@ -1,12 +1,12 @@
-package tests;
+package server.tests;
 
-import core.Constraint;
+import server.core.Constraint;
 import org.junit.Test;
 
-import parsers.CSVParser;
-import util.Checker;
-import util.Constants;
-import core.Entity;
+import server.parsers.CSVParser;
+import server.util.Checker;
+import server.util.Constants;
+import server.core.Entity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 /**
- * Test for core.Matcher class.
+ * Test for server.core.Matcher class.
  */
 public class MatcherTest {
 

@@ -1,6 +1,6 @@
-package util;
+package server.util;
 
-import core.Item;
+import server.core.Item;
 
 import java.util.ArrayList;
 import java.util.Collections;

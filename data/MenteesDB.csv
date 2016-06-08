@@ -75,7 +75,7 @@ Score,FirstName,LastName,Gender,HomeCountry,Email,ProgrammingLevel,DedicatedTime
 6,Jaroslawska,Ewa,Female,Poland,e.jaroslawska@gmail.com,Beginner,1-3 h,-,Java HTML CSS Ruby,Poland,GMT+1,Polish English
 5,Jarrett,Rhianna,Female,UK,rhiannasj@gmail.com,Beginner,3-5 h,-,C C++ Java C# HTML CSS JavaScript,UK,GMT+1,English
 3,Jurczak,Agnieszka,Female,Poland,jagaja@gmail.com,Medium,>10 h,VBA R SAS Base,C++ Java Python SQL Matlab,Poland,GMT+1,English
-6,Kacprowicz,Marzena,Female,Poland,kacprowicz.marzena@gmail.com,Beginner,5-7 h,HTML CSS,C C++ Java Python C# .NET HTML CSS JavaScript Ruby PHP Haskell GNU/R SQL bash Verilog VHDL Groovy XML XQuery Objective-C CUDA Qt QML Scala Matlab Node.js MongoDB jQuery CoffeeScript F# Swift Transact-SQL Prolog Go I checked everythingbecause I don't know much about themsoI'm not able to consciusly choose one :(,Poland,GMT+1,Polish English
+6,Kacprowicz,Marzena,Female,Poland,kacprowicz.marzena@gmail.com,Beginner,5-7 h,HTML CSS,C C++ Java Python C# .NET HTML CSS JavaScript Ruby PHP Haskell GNU/R SQL bash Verilog VHDL Groovy XML XQuery Objective-C CUDA Qt QML Scala Matlab Node.js MongoDB jQuery CoffeeScript F# Swift Transact-SQL Prolog Go,Poland,GMT+1,Polish English
 4,Kaczorek,Justyna,Female,Poland,justynakaczorek@gmail.com,Beginner,5-7 h,-,C++ JavaScript Ruby SQL,Poland,GMT+1,English
 4.2,Kalinowska,Anna,Female,Poland,ak.kalinowska@gmail.com,Beginner,>10 h,-,C++ Java Python HTML CSS JavaScript Ruby PHP,Poland,GMT+1,Polish English
 7,Kamila,Bilska,Female,Poland,kamila.bilska@gmail.com,Beginner,3-5 h,HTML CSS,Java Python,Poland,GMT+1,Polish English
@@ -86,7 +86,7 @@ Score,FirstName,LastName,Gender,HomeCountry,Email,ProgrammingLevel,DedicatedTime
 3.35,Kolasińska,Dorota,Female,Poland,d.kolasinska@wtfdesign.pl,Medium,5-7 h,HTML CSS JavaScript,JavaScript Ruby PHP jQuery,Poland,GMT+1,Polish English
 3.5,Kolodziejczyk,Malgorzata,Female,Poland,malgorzata.kolodziejczyk@gmail.com,Beginner,>10 h,-,Java C#,Poland,GMT+1,English
 3.5,Koman,Kate,Female,Poland,katarzyna.koman@gmail.com,Medium,7-10 h,Python,C++ Java,Poland,GMT+1,English
-4.75,Kostecka,Marta,Female,Poland,tapcia@gmail.com,Beginner,<1 h,HTML,CSS,Poland,GMT+1,Polish English
+4.75,Kostecka,Marta,Female,Poland,tapcia@gmail.com,Beginner,1-3 h,HTML,CSS,Poland,GMT+1,Polish English
 4.75,Kowalczuk,Aleksandra,Female,Poland,alexandra.kowalczuk@gmail.com,Medium,5-7 h,C HTML CSS Matlab R LabVIEW,Java Python JavaScript Ruby PHP CUDA Perl,Poland,GMT+1,English
 3.6,Koziol,Marta,Female,Poland,martusix@gmail.com,Medium,7-10 h,C# SQL,C# .NET Transact-SQL,Poland,GMT+1,English
 3.6,krishnan,devi,Female,India,devikrishnan67@yahoo.com,Medium,1-3 h,C++ HTML CSS,C C++ Python JavaScript,India,GMT+5,English
@@ -170,7 +170,7 @@ Score,FirstName,LastName,Gender,HomeCountry,Email,ProgrammingLevel,DedicatedTime
 6,Scimborska,Agnieszka,Female,Poland,aga.scimborska@gmail.com,Beginner,3-5 h,-,C++ Java Python C# .NET HTML CSS JavaScript Ruby PHP Objective-C,Poland,GMT+1,Polish English
 6,Sharma,Garvita,Female,India,garvita.2504@gmail.com,Medium,3-5 h,C C++,Java .NET JavaScript SQL XML jQuery Transact-SQL,USA,GMT-4,English
 5,Shilenga,Ndakondja,Female,Namibia,shlnda003@myuct.ac.za,Medium,3-5 h,Java Python C#,C++ Java JavaScript PHP SQL XML,Africa,GMT+2,English
-0.7,Siassi,Shirin,Female,Iran,shirinisiassi@yahoo.com,Beginner,7-10 h,-,C++ Java Python JavaScript SQL XML Any of the corssed above,Germany,GMT+2,English
+0.7,Siassi,Shirin,Female,Iran,shirinisiassi@yahoo.com,Beginner,7-10 h,-,C++ Java Python JavaScript SQL XML,Germany,GMT+2,English
 5,Sikora,Daniella,Female,Poland,daniella.sikora@gmail.com,Beginner,3-5 h,-,HTML CSS Ruby,Spain,GMT+2,English
 6,Singla,Ankita Singla,Female,India,ankita.singla20@gmail.com,Confident,5-7 h,C C++,Java Python Matlab Node.js,India,GMT+5,English
 0,Skrzypecka,Małgorzata,Female,Poland,malgorzata.skrzypecka@gmail.com,Beginner,5-7 h,HTML CSS,C C++ Java Python C# JavaScript Ruby,Poland,GMT+1,Norwegian

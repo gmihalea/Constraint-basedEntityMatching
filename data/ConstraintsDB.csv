@@ -1,2 +1,2 @@
-Languages,ProgrammingLanguages,TimeZone,ProgrammingLevel,DedicatedTime,Country,Score
-[hard]min1,[hard]min1,[soft][0]gmtMin,[hard]min1,[soft][1]moreWithBeginner,[hard]diff,[soft][2]biggerScore
+Languages,ProgrammingLanguages,TimeZone,ProgrammingLevel,DedicatedTime,Country,Score,Time,Programming
+[hard]min1,[hard]min1,[soft][0]gmtMin,[hard]min1,[soft][1]moreTimeWithBeginner,[hard]diff,[soft][2]biggerScore,[soft][3]moreTime,[soft][4]lessProgrammingLanguages

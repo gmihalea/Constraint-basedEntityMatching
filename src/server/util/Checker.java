@@ -1,8 +1,8 @@
-package util;
+package server.util;
 
 import java.util.ArrayList;
 import java.util.Map;
-import core.*;
+import server.core.*;
 
 /**
  * Class that makes sanity check for the entities.

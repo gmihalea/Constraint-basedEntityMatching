@@ -1,11 +1,11 @@
-package parsers;
+package server.parsers;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import core.*;
-import util.*;
+import server.core.*;
+import server.util.*;
 
 /**
  * Class that parses a CSV file.
@@ -107,22 +107,22 @@ public class CSVParser {
      * Prints the entire HashMap
      * @param attributes
      */
-    public static void printHashMap(final HashMap<String, ArrayList<String>> attributes) {
+    public static void printHashMap(final HashMap<String, ArrayList<String>> attributes) throws IOException {
         for (final Map.Entry<String, ArrayList<String>> entry : attributes.entrySet()) {
-            System.out.print(entry.getKey() + Constants.SPACE + Constants.COLON + Constants.SPACE);
+            Printer.printInFile(entry.getKey() + Constants.SPACE + Constants.COLON + Constants.SPACE);
             for (int i = 0; i < entry.getValue().size(); ++i) {
-                System.out.print(entry.getValue().get(i) + Constants.COMMA + Constants.SPACE);
+                Printer.printInFile(entry.getValue().get(i) + Constants.COMMA + Constants.SPACE);
             }
-            System.out.println();
+            Printer.printInFile("\n");
         }
-        System.out.println();
+        Printer.printInFile("\n");
     }
 
     /**
      * Prints a list of HashMaps
      * @param hashMaps
      */
-    public static void printAllHashMaps(final ArrayList<HashMap<String, ArrayList<String>>> hashMaps) {
+    public static void printAllHashMaps(final ArrayList<HashMap<String, ArrayList<String>>> hashMaps) throws IOException {
         for (int i = 0; i < hashMaps.size(); ++i) {
             CSVParser.printHashMap(hashMaps.get(i));
         }
