@@ -226,12 +226,6 @@ public class Matcher {
         final HashMap<String, ArrayList<String>> bTypeHashMap = b.getAttributes();
 
         for (HashMap.Entry<String, ArrayList<String>> constraint : this.constraints.getAttributes().entrySet()) {
-            //Sanity checks.
-            //TODO do sanity checks
-//            if (!aTypeHashMap.containsKey(constraint.getKey()) || !bTypeHashMap.containsKey(constraint.getKey())) {
-//                System.out.println("[ERROR] The key " + constraint.getKey() + " does not appear in both entities.");
-//                return false;
-//            }
             if (!this.evaluateHardConstraint(aTypeHashMap.get(constraint.getKey()),
                     bTypeHashMap.get(constraint.getKey()),
                     constraint)) {
@@ -479,6 +473,11 @@ public class Matcher {
         return maxScore;
     }
 
+    /**
+     * Compites
+     * @param candidates
+     * @return
+     */
     private ArrayList<Entity> getEntitiesWithMaximumTime(final ArrayList<Entity> candidates) {
         ArrayList<Entity> entities = new ArrayList<>();
 
@@ -491,6 +490,11 @@ public class Matcher {
         return entities;
     }
 
+    /**
+     * Computes the maximum dedicated time
+     * @param candidates list of candidates
+     * @return maximum dedicated time
+     */
     private String getMaxDedicatedTime(final ArrayList<Entity> candidates) {
         String maxDedicatedTime = Constants.EMPTY_STRING;
         int maxHours = -1;
@@ -514,6 +518,11 @@ public class Matcher {
         return maxDedicatedTime;
     }
 
+    /**
+     * Computes the list of entities that have minimum number of programming languages
+     * @param candidates list of candidates
+     * @return list of entities
+     */
     private ArrayList<Entity> getEntitiesWithLessProgrammingLanguages(final ArrayList<Entity> candidates) {
         ArrayList<Entity> entities = new ArrayList<>();
 
@@ -526,6 +535,11 @@ public class Matcher {
         return entities;
     }
 
+    /**
+     * Computes the minimum number of programming languages
+     * @param candidates list of candidates
+     * @return minimum number
+     */
     private int getMinimumNumberOfProgrammingLanguages(final ArrayList<Entity> candidates) {
         int minimumNo = Integer.MAX_VALUE;
         int temp;
@@ -534,7 +548,6 @@ public class Matcher {
             if((temp = entity.getAttributes().get(Constants.PROGRAMMING_LANGUAGES_ATTRIBUTE).size()) < minimumNo)
                 minimumNo = temp;
         }
-
         return minimumNo;
     }
 }
