@@ -1,5 +1,7 @@
 package server.core;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,18 +35,32 @@ public class Matcher {
         this.constraints = constraints.get(Constants.CONSTRAINTS_INDEX);
     }
 
-    public HashMap<Entity, Entity> match(String criteria) {
-        final HashMap<Entity, Entity> matching = new HashMap<>();
+    public HashMap<Entity, ArrayList<Entity>> match(final String criteria, final int relation) throws IOException {
+        final HashMap<Entity, ArrayList<Entity>> matching = new HashMap<>();
 
+        Printer.printInFile("Mentor <-> Mentee/s\n");
         for(Entity entity : this.aEntity) {
-            Entity matchingEntity = this.pickTheMatchingEntity(entity,
-                    this.generatesCandidates(entity, this.bEntity), criteria);
+            ArrayList<Entity> matchingEntity = this.pickTheMatchingEntity(entity,
+                    this.generatesCandidates(entity, this.bEntity), criteria, relation);
             if(matchingEntity != null) {
                 matching.put(entity, matchingEntity);
-                this.bEntity.remove(matchingEntity);
+                Printer.printInFile(entity.getAttributes().get("FirstName") + " "
+                        + entity.getAttributes().get("LastName") + " <-> ");
+                for(Entity e : matchingEntity) {
+                    Printer.printInFile(e.getAttributes().get("FirstName") + " "
+                            + e.getAttributes().get("LastName") + " , ");
+                    this.bEntity.remove(e);
+                }
+                Printer.printInFile("\n");
             }
         }
-        System.out.println("Matching couples: " + matching.size());
+        Printer.printInFile("----------------------------------------------\n\n");
+        Printer.printInFile("Sorting criteria: " + criteria + "\n");
+        Printer.printInFile("Matching couples: " + matching.size() + "\n");
+        Printer.printInFile("Mentors without a match: " + (this.aEntity.size() - matching.size())
+                + " out of " + this.aEntity.size() +  "\n");
+        Printer.printInFile("Mentees without a match: " + this.bEntity.size()
+                + " out of " + (this.bEntity.size() + matching.size()) +  "\n");
 
         return matching;
     }
@@ -57,9 +73,10 @@ public class Matcher {
      * @param criteria    specifies the sorting criteria for the list of candidates.
      * @return the match entity.
      */
-    private Entity pickTheMatchingEntity(final Entity aTypeEntity,
-                                        final ArrayList<Entity> candidates,
-                                        final String criteria) {
+    private ArrayList<Entity> pickTheMatchingEntity(final Entity aTypeEntity,
+                                                    final ArrayList<Entity> candidates,
+                                                    final String criteria,
+                                                    final int relation) {
         ArrayList<Entity> sortedListOfCandidates;
 
         switch (criteria) {
@@ -83,12 +100,7 @@ public class Matcher {
             return null;
         }
 
-        // If the number of candidates 1, then the final result is the first element of the list
-        if (candidates.size() == 1) {
-            return candidates.get(0);
-        }
-
-        return this.evaluateSoftConstraint(aTypeEntity, sortedListOfCandidates);
+        return this.evaluateSoftConstraint(aTypeEntity, sortedListOfCandidates, relation);
     }
 
     /**
@@ -97,14 +109,20 @@ public class Matcher {
      * @param candidates  the list of candidates.
      * @return the Entity that matches.
      */
-    private Entity evaluateSoftConstraint(final Entity aTypeEntity,
-                                         final ArrayList<Entity> candidates) {
+    private ArrayList<Entity> evaluateSoftConstraint(final Entity aTypeEntity,
+                                                     final ArrayList<Entity> candidates,
+                                                     final int relation) {
         Map<String, ArrayList<String>> softConstraints = this.getSoftConstraintsByPriority();
         ArrayList<Entity> shortList = candidates;
         boolean found = false;
 
+        if(shortList.size() == relation) {
+            return shortList;
+        }
+
         for (final Map.Entry<String, ArrayList<String>> entry : softConstraints.entrySet()) {
             if(!found) {
+
                 final String originalConstraint = entry.getValue().get(Constants.CONSTRAINTS_INDEX);
 
                 final String typeOfConstraint = originalConstraint.substring(0, Constants.CONSTRAINTS_CODE_SIZE);
@@ -114,7 +132,7 @@ public class Matcher {
                 if (Constants.SOFT_CONSTRAINT.equals(typeOfConstraint)) {
                     switch (pieceOfConstraint) {
                         case Constants.GMT_MIN_CONSTRAINT:
-                            shortList = this.getMinimumTimeZoneEntities(aTypeEntity, candidates);
+                            shortList = this.getMinimumTimeZoneEntities(aTypeEntity, candidates, relation);
                             break;
                         // In case there are candidates who have the same time zone difference
                         // If the aTypeEntity has multiple choices for ProgrammingLevel (e.g all of them: Beginner
@@ -135,7 +153,7 @@ public class Matcher {
                         // In case shortList has more than one item, there will be selected those items that
                         // have the biggest score
                         case Constants.BIGGER_SCORE_CONSTRAINT:
-                            shortList = this.getEntitiesWithMaxScore(shortList);
+                            shortList = this.getEntitiesWithMaxScore(shortList, relation);
                             break;
                         // In case shortList has more than one item, there will be selected those items that
                         // have the biggest dedicated time
@@ -148,14 +166,20 @@ public class Matcher {
                             shortList = this.getEntitiesWithLessProgrammingLanguages(shortList);
                             break;
                     }
-                    // If the list contains only one element, then the match was found
-                    if(shortList.size() == 1)
+                    // If the list contains exactly the required number, then the process should finish
+                    if(shortList.size() == relation)
                         found = true;
                 }
             }
         }
-        // If shortList has more the one item, the first one will be selected
-        return shortList.get(0);
+        // If there still are cases in which shortList includes more than required number of candidates, the last ones
+        // would be dropped
+        if(relation > shortList.size()) {
+            for(int i = relation; i < shortList.size(); ++i) {
+                shortList.remove(shortList.get(i));
+            }
+        }
+        return shortList;
     }
 
     /**
@@ -331,8 +355,19 @@ public class Matcher {
      * @param candidates list of candidates entities
      * @return the entities that have the minimum distance to the target.
      */
-    private ArrayList<Entity> getMinimumTimeZoneEntities(final Entity aTypeEntity, final ArrayList<Entity> candidates) {
-        return this.getEntitiesWithMinTimeZoneDiff(aTypeEntity, candidates);
+    private ArrayList<Entity> getMinimumTimeZoneEntities(final Entity aTypeEntity,
+                                                         final ArrayList<Entity> candidates,
+                                                         final int relation) {
+        final ArrayList<Entity> matches = new ArrayList<>();
+        final ArrayList<Entity> remainCandidates = candidates;
+        ArrayList<Entity> result;
+
+        for(int i = 0; i < relation; ++i) {
+            result = this.getEntitiesWithMinTimeZoneDiff(aTypeEntity, remainCandidates);
+            matches.addAll(result);
+            remainCandidates.removeAll(result);
+        }
+        return matches;
     }
 
     /**
@@ -408,13 +443,25 @@ public class Matcher {
      * @param candidates list of candidates
      * @return list of entities with max score
      */
-    private ArrayList<Entity> getEntitiesWithMaxScore(final ArrayList<Entity> candidates) {
+    private ArrayList<Entity> getEntitiesWithMaxScore(final ArrayList<Entity> candidates, final int relation) {
         final ArrayList<Entity> entities = new ArrayList<>();
+        final ArrayList<Entity> remainingCandidates = candidates;
         final double maxScore = this.getMaxScore(candidates);
 
-        entities.addAll(candidates.stream().filter(entity -> Double.parseDouble(entity.getAttributes()
-                .get(Constants.SCORE_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)) == maxScore)
-                .collect(Collectors.toList()));
+        for(int i = 0; i < relation; ++i) {
+            for(Entity candidate : candidates) {
+                if(Double.parseDouble(candidate.getAttributes().get(Constants.SCORE_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)) == this.getMaxScore(remainingCandidates)) {
+                    entities.add(candidate);
+
+                }
+            }
+            remainingCandidates.removeAll(entities);
+        }
+
+
+//        entities.addAll(candidates.stream().filter(entity -> Double.parseDouble(entity.getAttributes()
+//                .get(Constants.SCORE_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)) == maxScore)
+//                .collect(Collectors.toList()));
         return entities;
     }
 

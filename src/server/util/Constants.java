@@ -38,6 +38,7 @@ public class Constants {
     public static final String MORE_THAN_TEN_HOURS = ">10";
 
     public static final String SCORE_CRITERIA = "Score";
+    public static final String TIME_ZONE_CRITERIA = "TimeZone";
     public static final String PROGRAMMING_LANGUAGES_CRITERIA = "ProgrammingLanguages";
 
     public static final String TIME_ZONE_CONSTRAINT = "TimeZone";

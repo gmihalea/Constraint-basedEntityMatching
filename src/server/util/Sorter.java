@@ -38,6 +38,19 @@ public class Sorter {
 
                 return noOfProgrammingLanguages1 - noOfProgrammingLanguages2 < 0 ? -1 : 1;
             });
+        } else if(Constants.TIME_ZONE_CRITERIA.equals(criteria)) {
+            Collections.sort(list, (item1, item2) -> {
+                final String timeZone1 = item1.getAttributes().get(criteria).get(Constants.CONSTRAINTS_INDEX);
+                final String timeZone2 = item2.getAttributes().get(criteria).get(Constants.CONSTRAINTS_INDEX);
+
+                final int delay1 = Integer.parseInt(timeZone1.substring(Constants.GMT.length(), timeZone1.length()));
+                final int delay2 = Integer.parseInt(timeZone2.substring(Constants.GMT.length(), timeZone2.length()));
+
+                if(delay1 == delay2)
+                    return 0;
+
+                return delay1 - delay2 < 0 ? -1 : 1;
+            });
         }
 
         if(type == Constants.ASCENDING_SORT) {
