@@ -35,6 +35,14 @@ public class Matcher {
         this.constraints = constraints.get(Constants.CONSTRAINTS_INDEX);
     }
 
+    /**
+     * The main match method.
+     * Iterates through all aEntity list and finds suitable bEntities
+     * @param criteria
+     * @param relation
+     * @return
+     * @throws IOException
+     */
     public HashMap<Entity, ArrayList<Entity>> match(final String criteria, final int relation) throws IOException {
         final HashMap<Entity, ArrayList<Entity>> matching = new HashMap<>();
 
@@ -158,12 +166,12 @@ public class Matcher {
                         // In case shortList has more than one item, there will be selected those items that
                         // have the biggest dedicated time
                         case Constants.MORE_DEDICATED_TIME:
-                            shortList = this.getEntitiesWithMaximumTime(shortList);
+                            shortList = this.getEntitiesWithMaximumTime(shortList, relation);
                             break;
                         // In case shortList has more than one item, there will be selected those items that
                         // have the smallest number of desired programming languages
                         case Constants.LESS_PROGRAMMING_LANGUAGES:
-                            shortList = this.getEntitiesWithLessProgrammingLanguages(shortList);
+                            shortList = this.getEntitiesWithLessProgrammingLanguages(shortList, relation);
                             break;
                     }
                     // If the list contains exactly the required number, then the process should finish
@@ -188,7 +196,6 @@ public class Matcher {
      * @param aTypeEntity entity to match.
      * @param bTypeEntity list of entities to search in.
      * @return the list of candidates
-     * @throws IOException
      */
     private ArrayList<Entity> generatesCandidates(final Entity aTypeEntity, final ArrayList<Entity> bTypeEntity) {
         final ArrayList<Entity> candidates = new ArrayList<>();
@@ -297,7 +304,6 @@ public class Matcher {
 
     /**
      * Calculates the number of attributes in common.
-     *
      * @param aTypeValue the first list.
      * @param bTypeValue the second list.
      * @return the number of attributes in common.
@@ -446,22 +452,13 @@ public class Matcher {
     private ArrayList<Entity> getEntitiesWithMaxScore(final ArrayList<Entity> candidates, final int relation) {
         final ArrayList<Entity> entities = new ArrayList<>();
         final ArrayList<Entity> remainingCandidates = candidates;
-        final double maxScore = this.getMaxScore(candidates);
 
         for(int i = 0; i < relation; ++i) {
-            for(Entity candidate : candidates) {
-                if(Double.parseDouble(candidate.getAttributes().get(Constants.SCORE_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)) == this.getMaxScore(remainingCandidates)) {
-                    entities.add(candidate);
-
-                }
-            }
+            entities.addAll(candidates.stream().filter(candidate -> Double.parseDouble(candidate.getAttributes()
+                    .get(Constants.SCORE_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX))
+                    == this.getMaxScore(remainingCandidates)).collect(Collectors.toList()));
             remainingCandidates.removeAll(entities);
         }
-
-
-//        entities.addAll(candidates.stream().filter(entity -> Double.parseDouble(entity.getAttributes()
-//                .get(Constants.SCORE_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)) == maxScore)
-//                .collect(Collectors.toList()));
         return entities;
     }
 
@@ -487,11 +484,17 @@ public class Matcher {
      * @param candidates list of candidates
      * @return list of entities with maximum dedicated time
      */
-    private ArrayList<Entity> getEntitiesWithMaximumTime(final ArrayList<Entity> candidates) {
-        ArrayList<Entity> entities = candidates.stream().filter(entity -> entity.getAttributes()
-                .get(Constants.DEDICATED_TIME_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)
-                .equals(this.getMaxDedicatedTime(candidates))).collect(Collectors.toCollection(ArrayList::new));
+    private ArrayList<Entity> getEntitiesWithMaximumTime(final ArrayList<Entity> candidates, final int relation) {
+        final ArrayList<Entity> remainingCandidates = candidates;
+        ArrayList<Entity> entities = new ArrayList<>();
 
+        for(int i = 0; i < relation; ++i) {
+            entities.addAll(candidates.stream().filter(entity -> entity.getAttributes()
+                    .get(Constants.DEDICATED_TIME_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)
+                    .equals(this.getMaxDedicatedTime(remainingCandidates)))
+                    .collect(Collectors.toCollection(ArrayList::new)));
+            remainingCandidates.removeAll(entities);
+        }
         return entities;
     }
 
@@ -528,12 +531,18 @@ public class Matcher {
      * @param candidates list of candidates
      * @return list of entities
      */
-    private ArrayList<Entity> getEntitiesWithLessProgrammingLanguages(final ArrayList<Entity> candidates) {
-        final ArrayList<Entity> entities = candidates.stream().filter(entity -> entity.getAttributes()
-                .get(Constants.PROGRAMMING_LANGUAGES_ATTRIBUTE).size()
-                == this.getMinimumNumberOfProgrammingLanguages(candidates))
-                .collect(Collectors.toCollection(ArrayList::new));
+    private ArrayList<Entity> getEntitiesWithLessProgrammingLanguages(final ArrayList<Entity> candidates,
+                                                                      final int relation) {
+        ArrayList<Entity> entities = new ArrayList<>();
+        final ArrayList<Entity> remainingCandidates = candidates;
 
+        for(int i = 0; i < relation; ++i) {
+            entities.addAll(candidates.stream().filter(entity -> entity.getAttributes()
+                    .get(Constants.PROGRAMMING_LANGUAGES_ATTRIBUTE).size()
+                    == this.getMinimumNumberOfProgrammingLanguages(remainingCandidates))
+                    .collect(Collectors.toCollection(ArrayList::new)));
+            remainingCandidates.removeAll(entities);
+        }
         return entities;
     }
 

@@ -26,6 +26,6 @@ public class UseCase {
             return;
 
         Matcher matcher = new Matcher(mentors, mentees, constraints);
-        matcher.match(Constants.PROGRAMMING_LANGUAGES_CRITERIA, 3);
+        matcher.match(Constants.PROGRAMMING_LANGUAGES_CRITERIA, 2);
     }
 }
