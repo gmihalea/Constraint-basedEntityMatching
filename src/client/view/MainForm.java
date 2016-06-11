@@ -19,7 +19,7 @@ public class MainForm extends JFrame{
     public final void initUI() {
         setLayout(null);
         setTitle(Constants.TITLE);
-        setSize(600, 400);
+        setSize(Constants.FORM_WIDTH, Constants.FORM_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

@@ -7,12 +7,12 @@ public class Constants {
     public static final int X_POSITION_LAYER_ONE = 30;
     public static final int Y_POSITION_LAYER_ONE = 30;
 
-    //public static final int Y_POSITION_LAYER
-
     public static final int DISTANCE_VERTICAL_BETWEEN_LAYERS = 70;
     public static final int DISTANCE_HORIZONTAL_BETWEEN_LAYERS = 130;
-
     public static final int DISTANCE_BUTTON_LABEL = 20;
+
+    public static final int FORM_WIDTH = 600;
+    public static final int FORM_HEIGHT = 400;
 
     public static final int HEIGHT = 20;
     public static final int WIDTH = 150;
