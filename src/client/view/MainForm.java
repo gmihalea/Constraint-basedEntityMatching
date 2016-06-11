@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
+import java.text.DecimalFormat;
 
 /**
  * Class that incapsulates the user interface.
@@ -149,8 +150,13 @@ public class MainForm extends JFrame{
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
 
+            // Show only one fraction digit
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(1);
+
             nameLabel.setText(f.getName());
-            dimLabel.setText(( (float) f.length() / (float) Constants.K) + Constants.KB);
+            float result = (float) f.length() / (float) Constants.K;
+            dimLabel.setText(df.format(result) + Constants.KB);
 
             // read  and/or display the file somehow. ....
         } else {
