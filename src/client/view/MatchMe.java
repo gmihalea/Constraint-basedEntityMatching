@@ -127,9 +127,17 @@ public class MatchMe extends JFrame{
                         + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
                 Constants.BUTTON_WIDTH, Constants.HEIGHT);
 
+        JButton matchButton = new JButton(Constants.MATCH);
+        matchButton.setBounds(Constants.X_POSITION_LAYER_ONE,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
+                        + 3 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                Constants.BUTTON_WIDTH, Constants.HEIGHT);
+
+
         add(browseMentors);
         add(browseMentees);
         add(browseConstraints);
+        add(matchButton);
 
         /**
          * Actions

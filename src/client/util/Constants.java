@@ -23,6 +23,7 @@ public class Constants {
     public static final String EMPTY_STRING = "";
     public static final String MENTORS = "Mentors";
     public static final String MENTEES = "Mentees";
+    public static final String MATCH = "Match";
     public static final String BROWSE = "Browse";
     public static final String TITLE = "MatchMe";
     public static final String FILE = "File";
