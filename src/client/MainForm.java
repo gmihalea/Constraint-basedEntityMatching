@@ -1,13 +1,13 @@
 package client;
 
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
- * Created by geanina on 08.06.2016.
+ * Class that incapsulates the user interface.
  */
 public class MainForm extends JFrame{
 
@@ -17,110 +17,97 @@ public class MainForm extends JFrame{
     JButton uploadConstraints = new JButton("Upload Constraints");
 
     public MainForm() {
-        super("MatchMe");
+        initUI();
+    }
+
+    public final void initUI() {
+        setLayout(null);
+        setTitle("MatchMe");
         setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
-        final JFileChooser fc = new JFileChooser();
-
-        panel.setLayout(new GridLayout(3,1));
-        panel.add(uploadMentors);
-        panel.add(uploadMentees);
-        panel.add(uploadConstraints);
-
-        uploadMentors.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == uploadMentors) {
-                    int returnVal = fc.showOpenDialog(MainForm.this);
-
-                    if (returnVal == JFileChooser.APPROVE_OPTION) {
-                        File file = fc.getSelectedFile();
-                        //This is where a real application would open the file.
-                        //log.append("Opening: " + file.getName() + "." + newline);
-                    } else {
-                        //log.append("Open command cancelled by user." + newline);
-                    }
-                }
-            }
-        });
-
-        add(panel);
-        // Creates a menubar for a JFrame
+        /**
+         * Menu Bar
+         */
         JMenuBar menuBar = new JMenuBar();
-
-        // Add the menubar to the frame
         setJMenuBar(menuBar);
-
-        // Define and add two drop down menu to the menubar
         JMenu fileMenu = new JMenu("File");
-        JMenu editMenu = new JMenu("Edit");
-        JMenu aboutMenu = new JMenu("About");
+        JMenu helpMenu = new JMenu("Help");
         menuBar.add(fileMenu);
-        menuBar.add(editMenu);
-        menuBar.add(aboutMenu);
+        menuBar.add(helpMenu);
 
-
-
-        // Create and add simple menu item to one of the drop down menu
         JMenuItem newAction = new JMenuItem("New");
-        JMenuItem openAction = new JMenuItem("Open");
         JMenuItem exitAction = new JMenuItem("Exit");
-        JMenuItem cutAction = new JMenuItem("Cut");
-        JMenuItem copyAction = new JMenuItem("Copy");
-        JMenuItem pasteAction = new JMenuItem("Paste");
-
-        // Create and add CheckButton as a menu item to one of the drop down
-        // menu
-        JCheckBoxMenuItem checkAction = new JCheckBoxMenuItem("Check Action");
-        // Create and add Radio Buttons as simple menu items to one of the drop
-        // down menu
-        JRadioButtonMenuItem radioAction1 = new JRadioButtonMenuItem(
-                "Radio Button1");
-        JRadioButtonMenuItem radioAction2 = new JRadioButtonMenuItem(
-                "Radio Button2");
-        // Create a ButtonGroup and add both radio Button to it. Only one radio
-        // button in a ButtonGroup can be selected at a time.
-        ButtonGroup bg = new ButtonGroup();
-        bg.add(radioAction1);
-        bg.add(radioAction2);
         fileMenu.add(newAction);
-        fileMenu.add(openAction);
-        fileMenu.add(checkAction);
-        fileMenu.addSeparator();
         fileMenu.add(exitAction);
-        editMenu.add(cutAction);
-        editMenu.add(copyAction);
-        editMenu.add(pasteAction);
-        editMenu.addSeparator();
-        editMenu.add(radioAction1);
-        editMenu.add(radioAction2);
-        // Add a listener to the New menu item. actionPerformed() method will
-        // invoked, if user triggred this menu item
-        newAction.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("You have clicked on the new action");
-                //Handle open button action.
-                if (e.getSource() == newAction) {
-                    int returnVal = fc.showOpenDialog(MainForm.this);
 
-                    if (returnVal == JFileChooser.APPROVE_OPTION) {
-                        File file = fc.getSelectedFile();
-                        //This is where a real application would open the file.
-                        //log.append("Opening: " + file.getName() + "." + newline);
-                    } else {
-                        //log.append("Open command cancelled by user." + newline);
-                    }
-                }
-            }
-        });
+        JMenuItem gettingStartedAction = new JMenuItem("Getting Started");
+        JMenuItem aboutAction = new JMenuItem("About");
+        helpMenu.add(gettingStartedAction);
+        helpMenu.add(aboutAction);
 
-        setVisible(true);
+        /**
+         * Labels
+         */
+        JLabel uploadMentors = new JLabel("Upload Mentors");
+        uploadMentors.setBounds(30, 30, 150, 20);
+
+        JLabel uploadMentees = new JLabel("Upload Mentees");
+        uploadMentees.setBounds(250, 30, 150, 20);
+
+        JLabel mentorsFileName = new JLabel("");
+        mentorsFileName.setBounds(30, 80, 150, 20);
+
+        JLabel menteesFileName = new JLabel("");
+        menteesFileName.setBounds(250, 80, 150, 20);
+
+        add(uploadMentors);
+        add(uploadMentees);
+        add(mentorsFileName);
+        add(menteesFileName);
+
+        /**
+         * Buttons
+         */
+        JButton browseMentors = new JButton("Browse");
+        browseMentors.setBounds(30, 50, 110, 25);
+
+        JButton browseMentees = new JButton("Browse");
+        browseMentees.setBounds(250, 50, 110, 25);
+
+        add(browseMentors);
+        add(browseMentees);
+
+        /**
+         * Actions
+         */
+        browseMentors.addActionListener(e -> selectFile(mentorsFileName));
+        browseMentees.addActionListener(e -> selectFile(menteesFileName));
+    }
+
+    public void selectFile(final JLabel label) {
+        JFileChooser chooser = new JFileChooser();
+
+        // Permit only CSV files.
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
+        chooser.setFileFilter(filter);
+
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File f = chooser.getSelectedFile();
+
+            label.setText(f.getName() + " ... " + (f.length() / 1000) + "kB");
+            //textField_1.setText(selected.length());
+            // read  and/or display the file somehow. ....
+        } else {
+            // user changed their mind
+        }
     }
 
     public static void main(String[] args) {
-        MainForm me = new MainForm();
+        SwingUtilities.invokeLater(() -> {
+            MainForm mainForm = new MainForm();
+            mainForm.setVisible(true);
+        });
     }
 }
