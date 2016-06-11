@@ -1,6 +1,7 @@
 package server.core;
 
 import server.parsers.CSVParser;
+import server.statistics.Statistics;
 import server.util.*;
 
 import java.io.IOException;
@@ -25,7 +26,9 @@ public class UseCase {
                 && !Checker.checkAllEntitiesCorrectness(constraints))
             return;
 
-        Matcher matcher = new Matcher(mentors, mentees, constraints);
-        matcher.match(Constants.PROGRAMMING_LANGUAGES_CRITERIA, 2);
+        //Matcher matcher = new Matcher(mentors, mentees, constraints);
+        //matcher.match(Constants.PROGRAMMING_LANGUAGES_CRITERIA, 2);
+        System.out.println(Statistics.getPercentage("Country", "Poland", mentees));
+
     }
 }
