@@ -3,7 +3,9 @@ package server.statistics;
 import server.core.Entity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import static java.util.Collections.*;
 import static server.util.CustomContains.containsCaseInsensitive;
 
 /**
@@ -36,7 +38,7 @@ public class Statistics {
      * @param entities list of entities
      * @return list of all possible values
      */
-    public static ArrayList<String> collectAllValues(final String attribute, final ArrayList<Entity> entities) {
+    private static ArrayList<String> collectAllValues(final String attribute, final ArrayList<Entity> entities) {
         final ArrayList<String> allValues = new ArrayList<>();
 
         for(Entity e : entities) {
@@ -46,8 +48,27 @@ public class Statistics {
         return allValues;
     }
 
-    public static ArrayList<String> getMostCommonAttribute(final String attribute, final ArrayList<Entity> entities) {
-        return null;
+    /**
+     * Computes a sorted list with the most common values of a specific attribute
+     * @param attribute the specified attribute
+     * @param entities list of entities
+     * @return sorted list
+     */
+    public static ArrayList<String> getMostCommonValues(final String attribute, final ArrayList<Entity> entities) {
+        final ArrayList<String> allValues = collectAllValues(attribute, entities);
+
+        sort(allValues, (value1, value2) -> {
+            final float percentage1 = getPercentage(attribute,value1, entities);
+            final float percentage2 = getPercentage(attribute,value2, entities);
+
+            if(percentage1 == percentage2)
+                return 0;
+
+            return percentage1 - percentage2 < 0 ? -1 : 1;
+        });
+
+        reverse(allValues);
+        return allValues;
     }
 
 }

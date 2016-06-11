@@ -30,6 +30,6 @@ public class UseCase {
         //matcher.match(Constants.PROGRAMMING_LANGUAGES_CRITERIA, 2);
         //System.out.println(Statistics.getPercentage("Country", "Poland", mentees));
 
-        System.out.println(Statistics.collectAllValues("Languages", mentees));
+        System.out.println(Statistics.getMostCommonValues("ProgrammingLanguages", mentees));
     }
 }
