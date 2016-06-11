@@ -11,8 +11,14 @@ import java.text.DecimalFormat;
 /**
  * Select File class
  */
-public class SelectFile {
+public class SelectFileAction {
 
+    /**
+     * Opens a JFileChooser and lets the user to pick a CSV file
+     * @param nameLabel the label with the name of the file
+     * @param dimLabel the label with the dimension of the file
+     * @param c the main frame
+     */
     public static void selectFile(final JLabel nameLabel, final JLabel dimLabel, Component c) {
         JFileChooser chooser = new JFileChooser();
 
