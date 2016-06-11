@@ -30,5 +30,24 @@ public class Statistics {
         return ((float) noOfAppearances) / ((float) entities.size()) * 100;
     }
 
+    /**
+     * Collects all possible values for a specific attribute
+     * @param attribute specified attribute
+     * @param entities list of entities
+     * @return list of all possible values
+     */
+    public static ArrayList<String> collectAllValues(final String attribute, final ArrayList<Entity> entities) {
+        final ArrayList<String> allValues = new ArrayList<>();
+
+        for(Entity e : entities) {
+            final ArrayList<String> listOfValues = e.getAttributes().get(attribute);
+            listOfValues.stream().filter(value -> !containsCaseInsensitive(value, allValues)).forEach(allValues::add);
+        }
+        return allValues;
+    }
+
+    public static ArrayList<String> getMostCommonAttribute(final String attribute, final ArrayList<Entity> entities) {
+        return null;
+    }
 
 }

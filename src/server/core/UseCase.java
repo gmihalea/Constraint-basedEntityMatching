@@ -28,7 +28,8 @@ public class UseCase {
 
         //Matcher matcher = new Matcher(mentors, mentees, constraints);
         //matcher.match(Constants.PROGRAMMING_LANGUAGES_CRITERIA, 2);
-        System.out.println(Statistics.getPercentage("Country", "Poland", mentees));
+        //System.out.println(Statistics.getPercentage("Country", "Poland", mentees));
 
+        System.out.println(Statistics.collectAllValues("Languages", mentees));
     }
 }
