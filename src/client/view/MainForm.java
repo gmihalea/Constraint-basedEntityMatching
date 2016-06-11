@@ -1,5 +1,7 @@
 package client.view;
 
+import client.util.Constants;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -16,7 +18,7 @@ public class MainForm extends JFrame{
 
     public final void initUI() {
         setLayout(null);
-        setTitle("MatchMe");
+        setTitle(Constants.TITLE);
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -26,55 +28,72 @@ public class MainForm extends JFrame{
          */
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        JMenu fileMenu = new JMenu("File");
-        JMenu helpMenu = new JMenu("Help");
+        JMenu fileMenu = new JMenu(Constants.FILE);
+        JMenu helpMenu = new JMenu(Constants.HELP);
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
 
-        JMenuItem newAction = new JMenuItem("New");
-        JMenuItem exitAction = new JMenuItem("Exit");
+        JMenuItem newAction = new JMenuItem(Constants.NEW);
+        JMenuItem exitAction = new JMenuItem(Constants.EXIT);
         fileMenu.add(newAction);
         fileMenu.add(exitAction);
 
-        JMenuItem gettingStartedAction = new JMenuItem("Getting Started");
-        JMenuItem aboutAction = new JMenuItem("About");
+        JMenuItem gettingStartedAction = new JMenuItem(Constants.GETTING_STARTED);
+        JMenuItem aboutAction = new JMenuItem(Constants.ABOUT);
         helpMenu.add(gettingStartedAction);
         helpMenu.add(aboutAction);
 
         /**
          * Labels
          */
-        JLabel mentors = new JLabel("Mentors");
-        mentors.setBounds(30, 30, 150, 20);
+        JLabel mentors = new JLabel(Constants.MENTORS);
+        mentors.setBounds(Constants.X_POSITION_LAYER_ONE, Constants.Y_POSITION_LAYER_ONE,
+                Constants.WIDTH, Constants.HEIGHT);
 
-        JLabel mentees = new JLabel("Mentees");
-        mentees.setBounds(30, 100, 150, 20);
+        JLabel mentees = new JLabel(Constants.MENTEES);
+        mentees.setBounds(Constants.X_POSITION_LAYER_ONE,
+                Constants.X_POSITION_LAYER_ONE + Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                Constants.WIDTH, Constants.HEIGHT);
 
-        JLabel constraintsLabel = new JLabel("Constraints");
-        constraintsLabel.setBounds(30, 170, 150, 20);
+        JLabel constraintsLabel = new JLabel(Constants.CONSTRAINTS);
+        constraintsLabel.setBounds(Constants.X_POSITION_LAYER_ONE,
+                Constants.X_POSITION_LAYER_ONE + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                Constants.WIDTH, Constants.HEIGHT);
 
-        JLabel mentorsFileName = new JLabel("");
-        mentorsFileName.setBounds(150, 50, 150, 20);
+
+        JLabel mentorsFileName = new JLabel(Constants.EMPTY_STRING);
+        mentorsFileName.setBounds(Constants.X_POSITION_LAYER_ONE + Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL, Constants.WIDTH, Constants.HEIGHT);
         mentorsFileName.setForeground(Color.GRAY);
 
-        JLabel menteesFileName = new JLabel("");
-        menteesFileName.setBounds(150, 120, 150, 20);
+        JLabel menteesFileName = new JLabel(Constants.EMPTY_STRING);
+        menteesFileName.setBounds(Constants.X_POSITION_LAYER_ONE + Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
+                        + Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS, Constants.WIDTH, Constants.HEIGHT);
         menteesFileName.setForeground(Color.GRAY);
 
-        JLabel constraintsFileName = new JLabel("");
-        constraintsFileName.setBounds(150, 190, 150, 20);
+        JLabel constraintsFileName = new JLabel(Constants.EMPTY_STRING);
+        constraintsFileName.setBounds(Constants.X_POSITION_LAYER_ONE + Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
+                        + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS, Constants.WIDTH, Constants.HEIGHT);
         constraintsFileName.setForeground(Color.GRAY);
 
-        JLabel mentorsFileDim = new JLabel("");
-        mentorsFileDim.setBounds(250, 50, 150, 20);
+
+        JLabel mentorsFileDim = new JLabel(Constants.EMPTY_STRING);
+        mentorsFileDim.setBounds(Constants.X_POSITION_LAYER_ONE + 2 * Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL, Constants.WIDTH, Constants.HEIGHT);
         mentorsFileDim.setForeground(Color.GRAY);
 
-        JLabel menteesFileDim = new JLabel("");
-        menteesFileDim.setBounds(250, 120, 150, 20);
+        JLabel menteesFileDim = new JLabel(Constants.EMPTY_STRING);
+        menteesFileDim.setBounds(Constants.X_POSITION_LAYER_ONE + 2 * Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
+                        + Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS, Constants.WIDTH, Constants.HEIGHT);
         menteesFileDim.setForeground(Color.GRAY);
 
-        JLabel constraintsFileDim = new JLabel("");
-        constraintsFileDim.setBounds(250, 190, 150, 20);
+        JLabel constraintsFileDim = new JLabel(Constants.EMPTY_STRING);
+        constraintsFileDim.setBounds(Constants.X_POSITION_LAYER_ONE + 2 * Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
+                        + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS, Constants.WIDTH, Constants.HEIGHT);
         constraintsFileDim.setForeground(Color.GRAY);
 
         add(mentors);
@@ -90,14 +109,22 @@ public class MainForm extends JFrame{
         /**
          * Buttons
          */
-        JButton browseMentors = new JButton("Browse");
-        browseMentors.setBounds(30, 50, 110, 25);
+        JButton browseMentors = new JButton(Constants.BROWSE);
+        browseMentors.setBounds(Constants.X_POSITION_LAYER_ONE,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL,
+                Constants.BUTTON_WIDTH, Constants.HEIGHT);
 
-        JButton browseMentees = new JButton("Browse");
-        browseMentees.setBounds(30, 120, 110, 25);
+        JButton browseMentees = new JButton(Constants.BROWSE);
+        browseMentees.setBounds(Constants.X_POSITION_LAYER_ONE,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
+                        + Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                Constants.BUTTON_WIDTH, Constants.HEIGHT);
 
-        JButton browseConstraints = new JButton("Browse");
-        browseConstraints.setBounds(30, 190, 110, 25);
+        JButton browseConstraints = new JButton(Constants.BROWSE);
+        browseConstraints.setBounds(Constants.X_POSITION_LAYER_ONE,
+                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
+                        + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                Constants.BUTTON_WIDTH, Constants.HEIGHT);
 
         add(browseMentors);
         add(browseMentees);
@@ -115,14 +142,15 @@ public class MainForm extends JFrame{
         JFileChooser chooser = new JFileChooser();
 
         // Permit only CSV files.
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(Constants.FILTER_DESCRIPTION,
+                                                                     Constants.FILE_EXTENSTION);
         chooser.setFileFilter(filter);
 
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
 
             nameLabel.setText(f.getName());
-            dimLabel.setText(((float)f.length() / (float)1000) + "kB");
+            dimLabel.setText(( (float) f.length() / (float) Constants.K) + Constants.KB);
 
             // read  and/or display the file somehow. ....
         } else {
