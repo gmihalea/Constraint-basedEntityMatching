@@ -38,9 +38,9 @@ public class Matcher {
     /**
      * The main match method.
      * Iterates through all aEntity list and finds suitable bEntities
-     * @param criteria
-     * @param relation
-     * @return
+     * @param criteria the criteria based on what will be sorted the aEntity
+     * @param relation how many bEntity to one aEntity
+     * @return the final hashMap containing the match results
      * @throws IOException
      */
     public HashMap<Entity, ArrayList<Entity>> match(final String criteria, final int relation) throws IOException {

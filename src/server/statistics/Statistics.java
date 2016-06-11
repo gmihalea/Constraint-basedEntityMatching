@@ -3,9 +3,8 @@ package server.statistics;
 import server.core.Entity;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
 import static java.util.Collections.*;
+
 import static server.util.CustomContains.containsCaseInsensitive;
 
 /**
@@ -21,7 +20,7 @@ public class Statistics {
      * @return the percentage
      */
     public static float getPercentage(final String attribute, final String valueToCompute,
-                                final ArrayList<Entity> entities) {
+                                      final ArrayList<Entity> entities) {
         int noOfAppearances = 0;
 
         for(Entity e : entities) {
