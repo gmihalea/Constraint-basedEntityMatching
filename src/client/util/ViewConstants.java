@@ -3,7 +3,7 @@ package client.util;
 /**
  * Class with all constants needed for UI.
  */
-public class Constants {
+public class ViewConstants {
     public static final int X_POSITION_LAYER_ONE = 30;
     public static final int Y_POSITION_LAYER_ONE = 30;
 
@@ -38,5 +38,7 @@ public class Constants {
     public static final String FILTER_DESCRIPTION = "CSV FILES";
     public static final String FILE_EXTENSTION = "csv";
 
-
+    public static final String MENTOR = "MENTOR";
+    public static final String MENTEE = "MENTEE";
+    public static final String CONSTRAINT = "CONSTRAINT";
 }

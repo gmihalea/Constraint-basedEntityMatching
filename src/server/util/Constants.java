@@ -5,10 +5,6 @@ package server.util;
  */
 public class Constants {
 
-    public static final String CSV_MENTEES = "./data/MenteesDB.csv";
-    public static final String CSV_MENTORS = "./data/MentorsDB.csv";
-    public static final String CSV_CONSTRAINTS = "./data/ConstraintsDB.csv";
-
     public static final String MORE = ">";
     public static final String COLON = ":";
     public static final String SPACE = " ";

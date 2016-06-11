@@ -1,6 +1,6 @@
 package client.actions;
 
-import client.util.Constants;
+import client.util.ViewConstants;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class MenuAction {
      */
     public static void newAction(final ArrayList<JLabel> labels) {
         for(JLabel label : labels) {
-            label.setText(Constants.EMPTY_STRING);
+            label.setText(ViewConstants.EMPTY_STRING);
         }
     }
 

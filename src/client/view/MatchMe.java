@@ -1,9 +1,8 @@
 package client.view;
 
-import client.actions.MatchButtonAction;
 import client.actions.MenuAction;
 import client.actions.SelectFileAction;
-import client.util.Constants;
+import client.util.ViewConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,8 +21,8 @@ public class MatchMe extends JFrame{
 
     public final void initUI() {
         setLayout(null);
-        setTitle(Constants.TITLE);
-        setSize(Constants.FORM_WIDTH, Constants.FORM_HEIGHT);
+        setTitle(ViewConstants.TITLE);
+        setSize(ViewConstants.FORM_WIDTH, ViewConstants.FORM_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -32,79 +31,79 @@ public class MatchMe extends JFrame{
          */
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        JMenu fileMenu = new JMenu(Constants.FILE);
-        JMenu helpMenu = new JMenu(Constants.HELP);
+        JMenu fileMenu = new JMenu(ViewConstants.FILE);
+        JMenu helpMenu = new JMenu(ViewConstants.HELP);
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
 
-        JMenuItem newAction = new JMenuItem(Constants.NEW);
-        JMenuItem exitAction = new JMenuItem(Constants.EXIT);
+        JMenuItem newAction = new JMenuItem(ViewConstants.NEW);
+        JMenuItem exitAction = new JMenuItem(ViewConstants.EXIT);
         fileMenu.add(newAction);
         fileMenu.add(exitAction);
 
-        JMenuItem gettingStartedAction = new JMenuItem(Constants.GETTING_STARTED);
-        JMenuItem aboutAction = new JMenuItem(Constants.ABOUT);
+        JMenuItem gettingStartedAction = new JMenuItem(ViewConstants.GETTING_STARTED);
+        JMenuItem aboutAction = new JMenuItem(ViewConstants.ABOUT);
         helpMenu.add(gettingStartedAction);
         helpMenu.add(aboutAction);
 
         /**
          * Labels
          */
-        JLabel mentors = new JLabel(Constants.MENTORS);
-        mentors.setBounds(Constants.X_POSITION_LAYER_ONE, Constants.Y_POSITION_LAYER_ONE,
-                Constants.WIDTH, Constants.HEIGHT);
+        JLabel mentors = new JLabel(ViewConstants.MENTORS);
+        mentors.setBounds(ViewConstants.X_POSITION_LAYER_ONE, ViewConstants.Y_POSITION_LAYER_ONE,
+                ViewConstants.WIDTH, ViewConstants.HEIGHT);
         this.labels.add(mentors);
 
-        JLabel mentees = new JLabel(Constants.MENTEES);
-        mentees.setBounds(Constants.X_POSITION_LAYER_ONE,
-                Constants.X_POSITION_LAYER_ONE + Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
-                Constants.WIDTH, Constants.HEIGHT);
+        JLabel mentees = new JLabel(ViewConstants.MENTEES);
+        mentees.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
+                ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.WIDTH, ViewConstants.HEIGHT);
         this.labels.add(mentees);
 
-        JLabel constraintsLabel = new JLabel(Constants.CONSTRAINTS);
-        constraintsLabel.setBounds(Constants.X_POSITION_LAYER_ONE,
-                Constants.X_POSITION_LAYER_ONE + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
-                Constants.WIDTH, Constants.HEIGHT);
+        JLabel constraintsLabel = new JLabel(ViewConstants.CONSTRAINTS);
+        constraintsLabel.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
+                ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.WIDTH, ViewConstants.HEIGHT);
         this.labels.add(constraintsLabel);
 
 
-        JLabel mentorsFileName = new JLabel(Constants.EMPTY_STRING);
-        mentorsFileName.setBounds(Constants.X_POSITION_LAYER_ONE + Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL, Constants.WIDTH, Constants.HEIGHT);
+        JLabel mentorsFileName = new JLabel(ViewConstants.EMPTY_STRING);
+        mentorsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL, ViewConstants.WIDTH, ViewConstants.HEIGHT);
         mentorsFileName.setForeground(Color.GRAY);
         this.labels.add(mentorsFileName);
 
-        JLabel menteesFileName = new JLabel(Constants.EMPTY_STRING);
-        menteesFileName.setBounds(Constants.X_POSITION_LAYER_ONE + Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
-                        + Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS, Constants.WIDTH, Constants.HEIGHT);
+        JLabel menteesFileName = new JLabel(ViewConstants.EMPTY_STRING);
+        menteesFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
+                        + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
         menteesFileName.setForeground(Color.GRAY);
         this.labels.add(menteesFileName);
 
-        JLabel constraintsFileName = new JLabel(Constants.EMPTY_STRING);
-        constraintsFileName.setBounds(Constants.X_POSITION_LAYER_ONE + Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
-                        + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS, Constants.WIDTH, Constants.HEIGHT);
+        JLabel constraintsFileName = new JLabel(ViewConstants.EMPTY_STRING);
+        constraintsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
+                        + 2 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
         constraintsFileName.setForeground(Color.GRAY);
         this.labels.add(constraintsFileName);
 
-        JLabel mentorsFileDim = new JLabel(Constants.EMPTY_STRING);
-        mentorsFileDim.setBounds(Constants.X_POSITION_LAYER_ONE + 2 * Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL, Constants.WIDTH, Constants.HEIGHT);
+        JLabel mentorsFileDim = new JLabel(ViewConstants.EMPTY_STRING);
+        mentorsFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL, ViewConstants.WIDTH, ViewConstants.HEIGHT);
         mentorsFileDim.setForeground(Color.GRAY);
         this.labels.add(mentorsFileDim);
 
-        JLabel menteesFileDim = new JLabel(Constants.EMPTY_STRING);
-        menteesFileDim.setBounds(Constants.X_POSITION_LAYER_ONE + 2 * Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
-                        + Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS, Constants.WIDTH, Constants.HEIGHT);
+        JLabel menteesFileDim = new JLabel(ViewConstants.EMPTY_STRING);
+        menteesFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
+                        + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
         menteesFileDim.setForeground(Color.GRAY);
         this.labels.add(menteesFileDim);
 
-        JLabel constraintsFileDim = new JLabel(Constants.EMPTY_STRING);
-        constraintsFileDim.setBounds(Constants.X_POSITION_LAYER_ONE + 2 * Constants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
-                        + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS, Constants.WIDTH, Constants.HEIGHT);
+        JLabel constraintsFileDim = new JLabel(ViewConstants.EMPTY_STRING);
+        constraintsFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
+                        + 2 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
         constraintsFileDim.setForeground(Color.GRAY);
         this.labels.add(constraintsFileDim);
 
@@ -121,28 +120,28 @@ public class MatchMe extends JFrame{
         /**
          * Buttons
          */
-        JButton browseMentors = new JButton(Constants.BROWSE);
-        browseMentors.setBounds(Constants.X_POSITION_LAYER_ONE,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL,
-                Constants.BUTTON_WIDTH, Constants.HEIGHT);
+        JButton browseMentors = new JButton(ViewConstants.BROWSE);
+        browseMentors.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL,
+                ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
-        JButton browseMentees = new JButton(Constants.BROWSE);
-        browseMentees.setBounds(Constants.X_POSITION_LAYER_ONE,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
-                        + Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
-                Constants.BUTTON_WIDTH, Constants.HEIGHT);
+        JButton browseMentees = new JButton(ViewConstants.BROWSE);
+        browseMentees.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
+                        + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
-        JButton browseConstraints = new JButton(Constants.BROWSE);
-        browseConstraints.setBounds(Constants.X_POSITION_LAYER_ONE,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
-                        + 2 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
-                Constants.BUTTON_WIDTH, Constants.HEIGHT);
+        JButton browseConstraints = new JButton(ViewConstants.BROWSE);
+        browseConstraints.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
+                        + 2 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
-        JButton matchButton = new JButton(Constants.MATCH);
-        matchButton.setBounds(Constants.X_POSITION_LAYER_ONE,
-                Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
-                        + 3 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
-                Constants.BUTTON_WIDTH, Constants.HEIGHT);
+        JButton matchButton = new JButton(ViewConstants.MATCH);
+        matchButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
+                        + 3 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
         matchButton.setEnabled(false);
 
         add(browseMentors);
@@ -153,9 +152,12 @@ public class MatchMe extends JFrame{
         /**
          * Actions
          */
-        browseMentors.addActionListener(e -> SelectFileAction.selectFile(mentorsFileName, mentorsFileDim, this));
-        browseMentees.addActionListener(e -> SelectFileAction.selectFile(menteesFileName, menteesFileDim, this));
-        browseConstraints.addActionListener(e -> SelectFileAction.selectFile(constraintsFileName, constraintsFileDim, this));
+        browseMentors.addActionListener(e -> SelectFileAction.selectFile(mentorsFileName, mentorsFileDim,
+                this, ViewConstants.MENTOR));
+        browseMentees.addActionListener(e -> SelectFileAction.selectFile(menteesFileName, menteesFileDim,
+                this, ViewConstants.MENTEE));
+        browseConstraints.addActionListener(e -> SelectFileAction.selectFile(constraintsFileName, constraintsFileDim,
+                this, ViewConstants.CONSTRAINT));
 
         newAction.addActionListener(e -> MenuAction.newAction(this.labels));
         exitAction.addActionListener(e -> MenuAction.exitAction());
