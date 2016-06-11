@@ -11,6 +11,13 @@ import static server.util.CustomContains.containsCaseInsensitive;
  */
 public class Statistics {
 
+    /**
+     * Computes the percentage of appearance of a specific value in a list.
+     * @param attribute specific attribute (e.g. Country, Languages, etc.)
+     * @param valueToCompute the value of the attribute (e.g. Romania, Poland, etc.)
+     * @param entities the list of entities
+     * @return the percentage
+     */
     public static float getPercentage(final String attribute, final String valueToCompute,
                                 final ArrayList<Entity> entities) {
         int noOfAppearances = 0;
@@ -22,4 +29,6 @@ public class Statistics {
         }
         return ((float) noOfAppearances) / ((float) entities.size()) * 100;
     }
+
+
 }
