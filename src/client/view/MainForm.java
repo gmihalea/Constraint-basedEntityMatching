@@ -1,21 +1,14 @@
-package client;
+package client.view;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 /**
  * Class that incapsulates the user interface.
  */
 public class MainForm extends JFrame{
-
-    JPanel panel = new JPanel();
-    JButton uploadMentors = new JButton("Upload Mentors");
-    JButton uploadMentees = new JButton("Upload Mentees");
-    JButton uploadConstraints = new JButton("Upload Constraints");
 
     public MainForm() {
         initUI();
