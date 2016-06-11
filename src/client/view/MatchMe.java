@@ -11,9 +11,9 @@ import java.text.DecimalFormat;
 /**
  * Class that incapsulates the user interface.
  */
-public class MainForm extends JFrame{
+public class MatchMe extends JFrame{
 
-    public MainForm() {
+    public MatchMe() {
         initUI();
     }
 
@@ -166,7 +166,7 @@ public class MainForm extends JFrame{
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            MainForm mainForm = new MainForm();
+            MatchMe mainForm = new MatchMe();
             mainForm.setVisible(true);
         });
     }
