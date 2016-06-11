@@ -1,5 +1,6 @@
 package client.view;
 
+import client.actions.SelectFile;
 import client.util.Constants;
 
 import javax.swing.*;
@@ -132,7 +133,7 @@ public class MatchMe extends JFrame{
                 Constants.Y_POSITION_LAYER_ONE + Constants.DISTANCE_BUTTON_LABEL
                         + 3 * Constants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
                 Constants.BUTTON_WIDTH, Constants.HEIGHT);
-
+        matchButton.setEnabled(false);
 
         add(browseMentors);
         add(browseMentees);
@@ -142,34 +143,9 @@ public class MatchMe extends JFrame{
         /**
          * Actions
          */
-        browseMentors.addActionListener(e -> selectFile(mentorsFileName, mentorsFileDim));
-        browseMentees.addActionListener(e -> selectFile(menteesFileName, menteesFileDim));
-        browseConstraints.addActionListener(e -> selectFile(constraintsFileName, constraintsFileDim));
-    }
-
-    public void selectFile(final JLabel nameLabel, final JLabel dimLabel) {
-        JFileChooser chooser = new JFileChooser();
-
-        // Permit only CSV files.
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(Constants.FILTER_DESCRIPTION,
-                                                                     Constants.FILE_EXTENSTION);
-        chooser.setFileFilter(filter);
-
-        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            File f = chooser.getSelectedFile();
-
-            // Show only one fraction digit
-            DecimalFormat df = new DecimalFormat();
-            df.setMaximumFractionDigits(1);
-
-            nameLabel.setText(f.getName());
-            float result = (float) f.length() / (float) Constants.K;
-            dimLabel.setText(df.format(result) + Constants.KB);
-
-            // read  and/or display the file somehow. ....
-        } else {
-            // user changed their mind
-        }
+        browseMentors.addActionListener(e -> SelectFile.selectFile(mentorsFileName, mentorsFileDim, this));
+        browseMentees.addActionListener(e -> SelectFile.selectFile(menteesFileName, menteesFileDim, this));
+        browseConstraints.addActionListener(e -> SelectFile.selectFile(constraintsFileName, constraintsFileDim, this));
     }
 
     public static void main(String[] args) {
