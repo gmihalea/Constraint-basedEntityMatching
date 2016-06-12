@@ -131,13 +131,15 @@ public class MatchMe extends JFrame{
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         JButton downloadResultsButton = new JButton(ViewConstants.DOWNLOAD_RESULTS);
-        downloadResultsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 10,
-                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS + ViewConstants.TABLE_HEIGHT + 10,
+        downloadResultsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_DOWNLOAD_BUTTON,
+                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
+                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         JButton showStatisticsButton = new JButton(ViewConstants.SHOW_STATISTICS);
-        showStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 220,
-                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS + ViewConstants.TABLE_HEIGHT + 10,
+        showStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_STATISTICS_BUTTON,
+                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
+                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         add(browseMentorsButton);

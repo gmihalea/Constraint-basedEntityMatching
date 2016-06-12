@@ -10,6 +10,10 @@ public class ViewConstants {
     public static final int DISTANCE_VERTICAL_BETWEEN_LAYERS = 40;
     public static final int DISTANCE_HORIZONTAL_BETWEEN_LAYERS = 160;
     public static final int DISTANCE_BUTTON_LABEL = 20;
+    public static final int DISTANCE_BUTTON_BUTTON = 10;
+
+    public static final int PADDING_X_DOWNLOAD_BUTTON = 10;
+    public static final int PADDING_X_STATISTICS_BUTTON = 220;
 
     public static final int X_TO_START = 200;
     public static final int Y_TO_START = 0;
