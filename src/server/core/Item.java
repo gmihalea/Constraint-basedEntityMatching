@@ -1,8 +1,5 @@
 package server.core;
 
-import server.parsers.CSVParser;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,19 +20,7 @@ public class Item {
         this.attributes = attributes;
     }
 
-    /**
-     *
-     * @return the HashMap of attributes
-     */
     public HashMap<String, ArrayList<String>> getAttributes() {
-        return this.attributes;
+        return attributes;
     }
-
-    /**
-     * Print the HashMap of attributes.
-     */
-    public void printAttributes() throws IOException {
-        CSVParser.printHashMap(this.attributes);
-    }
-
 }

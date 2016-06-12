@@ -17,5 +17,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="poi-3.14-20160307" level="project" />
   </component>
 </module>

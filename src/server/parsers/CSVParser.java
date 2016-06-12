@@ -100,31 +100,4 @@ public class CSVParser {
             hashMap.put(keys[i], value);
         }
     }
-
-    //TODO delete these print methods
-    //For debug only
-    /**
-     * Prints the entire HashMap
-     * @param attributes
-     */
-    public static void printHashMap(final HashMap<String, ArrayList<String>> attributes) throws IOException {
-        for (final Map.Entry<String, ArrayList<String>> entry : attributes.entrySet()) {
-            Printer.printInFile(entry.getKey() + Constants.SPACE + Constants.COLON + Constants.SPACE);
-            for (int i = 0; i < entry.getValue().size(); ++i) {
-                Printer.printInFile(entry.getValue().get(i) + Constants.COMMA + Constants.SPACE);
-            }
-            Printer.printInFile("\n");
-        }
-        Printer.printInFile("\n");
-    }
-
-    /**
-     * Prints a list of HashMaps
-     * @param hashMaps
-     */
-    public static void printAllHashMaps(final ArrayList<HashMap<String, ArrayList<String>>> hashMaps) throws IOException {
-        for (int i = 0; i < hashMaps.size(); ++i) {
-            CSVParser.printHashMap(hashMaps.get(i));
-        }
-    }
 }

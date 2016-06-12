@@ -17,7 +17,9 @@ import java.util.Map;
 public class MatchButtonAction {
 
     private static HashMap<Entity, ArrayList<Entity>> results;
-    private static JScrollPane scrollPane;
+    //TODO change this
+    public  static JScrollPane scrollPane;
+    public static JTable matchingTable;
 
     public static void match(final JLabel mentorsFileName, final JLabel menteesFileName,
                              final JLabel constraintsFileName, final JLabel errorMessage, final JFrame c) {
@@ -42,7 +44,6 @@ public class MatchButtonAction {
 
         results =  matcher.match(Constants.SCORE_CRITERIA, 1);
         insertTableWithResults(c);
-
     }
 
     public static void insertTableWithResults(final JFrame frame) {
@@ -61,7 +62,7 @@ public class MatchButtonAction {
             ++count;
         }
 
-        JTable matchingTable = new JTable(data, columnNames);
+        matchingTable = new JTable(data, columnNames);
         scrollPane = new JScrollPane(matchingTable);
         scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,

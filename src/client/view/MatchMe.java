@@ -165,7 +165,7 @@ public class MatchMe extends JFrame{
 
         matchButton.addActionListener(e -> MatchButtonAction.match(mentorsFileName, menteesFileName,
                                                                    constraintsFileName, errorLabel, this));
-        downloadResultsButton.addActionListener(e -> SaveFileAction.saveFile(this));
+        downloadResultsButton.addActionListener(e -> SaveFileAction.saveFile(this, MatchButtonAction.matchingTable));
     }
 
     public static void main(String[] args) {
