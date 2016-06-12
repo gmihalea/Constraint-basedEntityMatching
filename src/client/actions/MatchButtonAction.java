@@ -40,12 +40,9 @@ public class MatchButtonAction {
                                       SelectFileAction.getMentees(),
                                       SelectFileAction.getConstraints());
 
-        try {
-            results =  matcher.match(Constants.SCORE_CRITERIA, 1);
-            insertTableWithResults(c);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        results =  matcher.match(Constants.SCORE_CRITERIA, 1);
+        insertTableWithResults(c);
+
     }
 
     public static void insertTableWithResults(final JFrame frame) {

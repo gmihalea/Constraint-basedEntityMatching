@@ -10,11 +10,11 @@ import java.io.IOException;
  */
 public class Printer {
 
-    public static void printInFile(final String text) throws IOException {
+    public static void printInFile(final String path, final String text) throws IOException {
 
         BufferedWriter output = null;
         try {
-            final File file = new File(Constants.OUTPUT_FILE_PATH);
+            final File file = new File(path);
             output = new BufferedWriter(new FileWriter(file, true));
             output.write(text);
         } catch ( IOException e ) {

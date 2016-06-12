@@ -2,6 +2,7 @@ package client.view;
 
 import client.actions.MatchButtonAction;
 import client.actions.MenuAction;
+import client.actions.SaveFileAction;
 import client.actions.SelectFileAction;
 import client.util.ViewConstants;
 
@@ -164,6 +165,7 @@ public class MatchMe extends JFrame{
 
         matchButton.addActionListener(e -> MatchButtonAction.match(mentorsFileName, menteesFileName,
                                                                    constraintsFileName, errorLabel, this));
+        downloadResultsButton.addActionListener(e -> SaveFileAction.saveFile(this));
     }
 
     public static void main(String[] args) {

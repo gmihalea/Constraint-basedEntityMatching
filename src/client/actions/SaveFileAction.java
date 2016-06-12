@@ -11,6 +11,7 @@ public class SaveFileAction {
 
     public static void saveFile(final Component c) {
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setSelectedFile(new File("matchingResults.txt"));
         if (fileChooser.showSaveDialog(c) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             // save to file

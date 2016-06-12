@@ -43,32 +43,32 @@ public class Matcher {
      * @return the final hashMap containing the match results
      * @throws IOException
      */
-    public HashMap<Entity, ArrayList<Entity>> match(final String criteria, final int relation) throws IOException {
+    public HashMap<Entity, ArrayList<Entity>> match(final String criteria, final int relation) {
         final HashMap<Entity, ArrayList<Entity>> matching = new HashMap<>();
 
-        Printer.printInFile("Mentor <-> Mentee/s\n");
+        //Printer.printInFile("Mentor <-> Mentee/s\n");
         for(Entity entity : this.aEntity) {
             ArrayList<Entity> matchingEntity = this.pickTheMatchingEntity(entity,
                     this.generatesCandidates(entity, this.bEntity), criteria, relation);
             if(matchingEntity != null) {
                 matching.put(entity, matchingEntity);
-                Printer.printInFile(entity.getAttributes().get("FirstName") + " "
-                        + entity.getAttributes().get("LastName") + " <-> ");
+                //Printer.printInFile(entity.getAttributes().get("FirstName") + " "
+                        //+ entity.getAttributes().get("LastName") + " <-> ");
                 for(Entity e : matchingEntity) {
-                    Printer.printInFile(e.getAttributes().get("FirstName") + " "
-                            + e.getAttributes().get("LastName") + " , ");
+                    //Printer.printInFile(e.getAttributes().get("FirstName") + " "
+                            //+ e.getAttributes().get("LastName") + " , ");
                     this.bEntity.remove(e);
                 }
-                Printer.printInFile("\n");
+                //Printer.printInFile("\n");
             }
         }
-        Printer.printInFile("----------------------------------------------\n\n");
-        Printer.printInFile("Sorting criteria: " + criteria + "\n");
-        Printer.printInFile("Matching couples: " + matching.size() + "\n");
-        Printer.printInFile("Mentors without a match: " + (this.aEntity.size() - matching.size())
-                + " out of " + this.aEntity.size() +  "\n");
-        Printer.printInFile("Mentees without a match: " + this.bEntity.size()
-                + " out of " + (this.bEntity.size() + matching.size()) +  "\n");
+//        Printer.printInFile("----------------------------------------------\n\n");
+//        Printer.printInFile("Sorting criteria: " + criteria + "\n");
+//        Printer.printInFile("Matching couples: " + matching.size() + "\n");
+//        Printer.printInFile("Mentors without a match: " + (this.aEntity.size() - matching.size())
+//                + " out of " + this.aEntity.size() +  "\n");
+//        Printer.printInFile("Mentees without a match: " + this.bEntity.size()
+//                + " out of " + (this.bEntity.size() + matching.size()) +  "\n");
 
         return matching;
     }
