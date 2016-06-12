@@ -23,12 +23,12 @@ public class SelectFileAction {
      * @param dimLabel the label with the dimension of the file
      * @param c the main frame
      */
-    public static void selectFile(final JLabel nameLabel, final JLabel dimLabel, final Component c, final String type) {
+    public static void selectFile(final JLabel nameLabel, final Component c, final String type) {
         JFileChooser chooser = new JFileChooser();
 
         // Permit only CSV actions.
         FileNameExtensionFilter filter = new FileNameExtensionFilter(ViewConstants.FILTER_DESCRIPTION,
-                ViewConstants.FILE_EXTENSTION);
+                                                                     ViewConstants.FILE_EXTENSTION);
         chooser.setFileFilter(filter);
 
         if (chooser.showOpenDialog(c) == JFileChooser.APPROVE_OPTION) {
@@ -40,7 +40,6 @@ public class SelectFileAction {
 
             nameLabel.setText(f.getName());
             float result = (float) f.length() / (float) ViewConstants.K;
-            dimLabel.setText(df.format(result) + ViewConstants.KB);
 
             switch(type) {
                 case ViewConstants.MENTOR:

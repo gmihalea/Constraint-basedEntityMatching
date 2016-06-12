@@ -5,20 +5,23 @@ package client.util;
  */
 public class ViewConstants {
     public static final int X_POSITION_LAYER_ONE = 30;
-    public static final int Y_POSITION_LAYER_ONE = 30;
+    public static final int Y_POSITION_LAYER_ONE = 20;
 
     public static final int DISTANCE_VERTICAL_BETWEEN_LAYERS = 70;
-    public static final int DISTANCE_HORIZONTAL_BETWEEN_LAYERS = 130;
+    public static final int DISTANCE_HORIZONTAL_BETWEEN_LAYERS = 160;
     public static final int DISTANCE_BUTTON_LABEL = 20;
 
     public static final int K = 1000;
 
-    public static final int FORM_WIDTH = 600;
-    public static final int FORM_HEIGHT = 400;
+    public static final int FORM_WIDTH = 485;
+    public static final int FORM_HEIGHT = 185;
 
     public static final int HEIGHT = 20;
     public static final int WIDTH = 150;
-    public static final int BUTTON_WIDTH = 110;
+    public static final int BUTTON_WIDTH = 100;
+
+    public static final int X_MATCH_BUTTON = ( FORM_WIDTH - 2 * BUTTON_WIDTH ) / 2;
+    public static final int Y_MATCH_BUTTON = 100;
 
     public static final String EMPTY_STRING = "";
     public static final String MENTORS = "Mentors";
@@ -41,4 +44,5 @@ public class ViewConstants {
     public static final String MENTOR = "MENTOR";
     public static final String MENTEE = "MENTEE";
     public static final String CONSTRAINT = "CONSTRAINT";
+    public static final String ALL_FILE_MUST_BE_FILLED = "All files should be uploaded.";
 }
