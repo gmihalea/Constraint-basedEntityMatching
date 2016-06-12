@@ -48,10 +48,6 @@ public class MatchButtonAction {
         }
     }
 
-    public static HashMap<Entity, ArrayList<Entity>> getResults() {
-        return results;
-    }
-
     public static void insertTableWithResults(final JFrame frame) {
         String columnNames[] = {ViewConstants.COLUMN_1, ViewConstants.COLUMN_2, ViewConstants.COLUMN_3};
         String[][] data = new String[results.size()][ViewConstants.NO_OF_COLUMNS];

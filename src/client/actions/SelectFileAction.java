@@ -76,18 +76,6 @@ public class SelectFileAction {
         }
     }
 
-    public String getMenteesFilePath() {
-        return menteesFilePath;
-    }
-
-    public String getConstraintsFilePath() {
-        return constraintsFilePath;
-    }
-
-    public String getMentorsFilePath() {
-        return mentorsFilePath;
-    }
-
     public static ArrayList<Constraint> getConstraints() {
         return constraints;
     }

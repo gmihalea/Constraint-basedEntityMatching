@@ -64,11 +64,10 @@ public class MatchMe extends JFrame{
         this.labels.add(menteesLabel);
 
         JLabel constraintsLabel = new JLabel(ViewConstants.CONSTRAINTS);
-        constraintsLabel.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                ViewConstants.Y_POSITION_LAYER_ONE,
+        constraintsLabel.setBounds(ViewConstants.X_POSITION_LAYER_ONE
+                + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS, ViewConstants.Y_POSITION_LAYER_ONE,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
         this.labels.add(constraintsLabel);
-
 
         JLabel mentorsFileName = new JLabel(ViewConstants.EMPTY_STRING);
         mentorsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
@@ -78,19 +77,20 @@ public class MatchMe extends JFrame{
         this.labels.add(mentorsFileName);
 
         JLabel menteesFileName = new JLabel(ViewConstants.EMPTY_STRING);
-        menteesFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+        menteesFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE
+                + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_BUTTON_LABEL,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
         menteesFileName.setForeground(Color.GRAY);
         this.labels.add(menteesFileName);
 
         JLabel constraintsFileName = new JLabel(ViewConstants.EMPTY_STRING);
-        constraintsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+        constraintsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE
+                + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_BUTTON_LABEL,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
         constraintsFileName.setForeground(Color.GRAY);
         this.labels.add(constraintsFileName);
-
 
         JLabel errorLabel = new JLabel(ViewConstants.EMPTY_STRING);
         errorLabel.setBounds(ViewConstants.X_MATCH_BUTTON, ViewConstants.Y_MATCH_BUTTON
@@ -148,11 +148,6 @@ public class MatchMe extends JFrame{
         add(matchButton);
         add(downloadResultsButton);
         add(showStatisticsButton);
-
-        /**
-         * Matching Table
-         */
-
 
         /**
          * Actions
