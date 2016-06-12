@@ -135,10 +135,20 @@ public class MatchMe extends JFrame{
         matchButton.setBounds(ViewConstants.X_MATCH_BUTTON, ViewConstants.Y_MATCH_BUTTON,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
+        JButton exportResultsButton = new JButton(ViewConstants.MATCH);
+        exportResultsButton.setBounds(ViewConstants.X_MATCH_BUTTON, ViewConstants.Y_MATCH_BUTTON,
+                2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
+
+        JButton showStatisticsButton = new JButton(ViewConstants.MATCH);
+        showStatisticsButton.setBounds(ViewConstants.X_MATCH_BUTTON, ViewConstants.Y_MATCH_BUTTON,
+                2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
+
         add(browseMentorsButton);
         add(browseMenteesButton);
         add(browseConstraintsButton);
         add(matchButton);
+        add(exportResultsButton);
+        add(showStatisticsButton);
 
         /**
          * Matching Table

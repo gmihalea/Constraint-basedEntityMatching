@@ -46,4 +46,9 @@ public class ViewConstants {
     public static final String CONSTRAINT = "CONSTRAINT";
     public static final String ALL_FILE_MUST_BE_FILLED = "All files should be uploaded.";
     public static final String INVALID_FILE = "Invalid file";
+
+    public static final int NO_OF_COLUMNS = 3;
+    public static final String COLUMN_1 = "No";
+    public static final String COLUMN_2 = "Mentors";
+    public static final String COLUMN_3 = "Mentees";
 }

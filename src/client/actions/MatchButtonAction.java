@@ -6,7 +6,6 @@ import server.core.Matcher;
 import server.util.Constants;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,22 +53,20 @@ public class MatchButtonAction {
     }
 
     public static void insertTableWithResults(final JFrame frame) {
-        String columnNames[] = {"No", "Mentors", "Mentees"};
-        String[][] data = new String[results.size()][3];
+        String columnNames[] = {ViewConstants.COLUMN_1, ViewConstants.COLUMN_2, ViewConstants.COLUMN_3};
+        String[][] data = new String[results.size()][ViewConstants.NO_OF_COLUMNS];
 
         int count = 0;
         for(Map.Entry<Entity, ArrayList<Entity>> entry : results.entrySet()){
             data[count][0] = Integer.toString(count);
             data[count][1] = entry.getKey().getAttributes().get("FirstName").get(0)
-                    + " " + entry.getKey().getAttributes().get("LastName").get(0);
+                    + ViewConstants.EMPTY_STRING + entry.getKey().getAttributes().get("LastName").get(0);
             data[count][2] = entry.getValue().get(0).getAttributes().get("FirstName").get(0)
-                    + " " + entry.getValue().get(0).getAttributes().get("LastName").get(0);
+                    + ViewConstants.EMPTY_STRING + entry.getValue().get(0).getAttributes().get("LastName").get(0);
             count++;
         }
-        System.out.println("count: " + count);
 
         JTable matchingTable = new JTable(data, columnNames);
-
         scrollPane = new JScrollPane(matchingTable);
         scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE, ViewConstants.Y_MATCH_BUTTON + 40, 430, 380);
         frame.add(scrollPane);
