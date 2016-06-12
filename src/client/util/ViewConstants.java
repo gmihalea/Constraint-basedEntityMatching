@@ -5,7 +5,7 @@ package client.util;
  */
 public class ViewConstants {
     public static final int X_POSITION_LAYER_ONE = 30;
-    public static final int Y_POSITION_LAYER_ONE = 20;
+    public static final int Y_POSITION_LAYER_ONE = 10;
 
     public static final int DISTANCE_VERTICAL_BETWEEN_LAYERS = 70;
     public static final int DISTANCE_HORIZONTAL_BETWEEN_LAYERS = 160;
@@ -21,7 +21,7 @@ public class ViewConstants {
     public static final int BUTTON_WIDTH = 100;
 
     public static final int X_MATCH_BUTTON = ( FORM_WIDTH - 2 * BUTTON_WIDTH ) / 2;
-    public static final int Y_MATCH_BUTTON = 100;
+    public static final int Y_MATCH_BUTTON = 90;
 
     public static final String EMPTY_STRING = "";
     public static final String MENTORS = "Mentors";

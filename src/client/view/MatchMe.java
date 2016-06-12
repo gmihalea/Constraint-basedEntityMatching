@@ -4,11 +4,16 @@ import client.actions.MatchButtonAction;
 import client.actions.MenuAction;
 import client.actions.SelectFileAction;
 import client.util.ViewConstants;
+import server.core.Entity;
+import server.util.Constants;
+import server.util.Printer;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class that incapsulates the user interface.
@@ -139,21 +144,6 @@ public class MatchMe extends JFrame{
          * Matching Table
          */
 
-        // Create columns names
-        String columnNames[] = { "Column 1", "Column 2", "Column 3" };
-
-        // Create some data
-        String dataValues[][] =
-                {
-                        { "12", "234", "67" },
-                        { "-123", "43", "853" },
-                        { "93", "89.2", "109" },
-                        { "279", "9033", "3092" }
-                };
-
-        JTable matchingTable = new JTable(dataValues, columnNames);
-        matchingTable.setBounds(ViewConstants.X_POSITION_LAYER_ONE, 300, 300, 300);
-        add(matchingTable);
 
         /**
          * Actions
