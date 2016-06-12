@@ -45,4 +45,5 @@ public class ViewConstants {
     public static final String MENTEE = "MENTEE";
     public static final String CONSTRAINT = "CONSTRAINT";
     public static final String ALL_FILE_MUST_BE_FILLED = "All files should be uploaded.";
+    public static final String INVALID_FILE = "Invalid file";
 }

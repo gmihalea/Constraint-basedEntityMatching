@@ -94,15 +94,15 @@ public class MatchMe extends JFrame{
 
         JLabel errorLabel = new JLabel(ViewConstants.EMPTY_STRING);
         errorLabel.setBounds(ViewConstants.X_MATCH_BUTTON, ViewConstants.Y_MATCH_BUTTON
-                + ViewConstants.DISTANCE_BUTTON_LABEL, 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
+                + ViewConstants.DISTANCE_BUTTON_LABEL, 3 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
         errorLabel.setForeground(Color.RED);
         this.labels.add(errorLabel);
 
         add(mentorsLabel);
         add(menteesLabel);
+        add(constraintsLabel);
         add(mentorsFileName);
         add(menteesFileName);
-        add(constraintsLabel);
         add(constraintsFileName);
         add(errorLabel);
 

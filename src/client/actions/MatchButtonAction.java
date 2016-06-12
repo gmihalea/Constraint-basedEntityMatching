@@ -13,8 +13,13 @@ public class MatchButtonAction {
     public static void match(final JLabel mentorsFileName, final JLabel menteesFileName,
                              final JLabel constraintsFileName, final JLabel errorMessage, final Component c) {
         if(ViewConstants.EMPTY_STRING.equals(mentorsFileName.getText())
+                || ViewConstants.INVALID_FILE.equals(mentorsFileName.getText())
+
                 || ViewConstants.EMPTY_STRING.equals(menteesFileName.getText())
-                || ViewConstants.EMPTY_STRING.equals(constraintsFileName.getText())) {
+                || ViewConstants.INVALID_FILE.equals(menteesFileName.getText())
+
+                || ViewConstants.EMPTY_STRING.equals(constraintsFileName.getText())
+                || ViewConstants.INVALID_FILE.equals(constraintsFileName.getText())) {
             errorMessage.setText(ViewConstants.ALL_FILE_MUST_BE_FILLED);
         } else {
             errorMessage.setText(ViewConstants.EMPTY_STRING);
