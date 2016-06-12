@@ -4,16 +4,10 @@ import client.actions.MatchButtonAction;
 import client.actions.MenuAction;
 import client.actions.SelectFileAction;
 import client.util.ViewConstants;
-import server.core.Entity;
-import server.util.Constants;
-import server.util.Printer;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Class that incapsulates the user interface.
@@ -32,6 +26,7 @@ public class MatchMe extends JFrame{
         setSize(ViewConstants.FORM_WIDTH, ViewConstants.FORM_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setLocation(ViewConstants.X_TO_START, ViewConstants.Y_TO_START);
         setResizable(false);
 
         /**
@@ -135,19 +130,21 @@ public class MatchMe extends JFrame{
         matchButton.setBounds(ViewConstants.X_MATCH_BUTTON, ViewConstants.Y_MATCH_BUTTON,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
-        JButton exportResultsButton = new JButton(ViewConstants.MATCH);
-        exportResultsButton.setBounds(ViewConstants.X_MATCH_BUTTON, ViewConstants.Y_MATCH_BUTTON,
+        JButton downloadResultsButton = new JButton(ViewConstants.DOWNLOAD_RESULTS);
+        downloadResultsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 10,
+                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS + ViewConstants.TABLE_HEIGHT + 10,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
-        JButton showStatisticsButton = new JButton(ViewConstants.MATCH);
-        showStatisticsButton.setBounds(ViewConstants.X_MATCH_BUTTON, ViewConstants.Y_MATCH_BUTTON,
+        JButton showStatisticsButton = new JButton(ViewConstants.SHOW_STATISTICS);
+        showStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 220,
+                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS + ViewConstants.TABLE_HEIGHT + 10,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         add(browseMentorsButton);
         add(browseMenteesButton);
         add(browseConstraintsButton);
         add(matchButton);
-        add(exportResultsButton);
+        add(downloadResultsButton);
         add(showStatisticsButton);
 
         /**

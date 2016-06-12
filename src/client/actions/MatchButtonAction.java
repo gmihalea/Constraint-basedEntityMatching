@@ -59,16 +59,20 @@ public class MatchButtonAction {
         int count = 0;
         for(Map.Entry<Entity, ArrayList<Entity>> entry : results.entrySet()){
             data[count][0] = Integer.toString(count);
-            data[count][1] = entry.getKey().getAttributes().get("FirstName").get(0)
-                    + ViewConstants.EMPTY_STRING + entry.getKey().getAttributes().get("LastName").get(0);
-            data[count][2] = entry.getValue().get(0).getAttributes().get("FirstName").get(0)
-                    + ViewConstants.EMPTY_STRING + entry.getValue().get(0).getAttributes().get("LastName").get(0);
-            count++;
+            data[count][1] = entry.getKey().getAttributes().get(ViewConstants.FIRST_NAME_ATTRIBUTE).get(0)
+                    + ViewConstants.SPACE + entry.getKey().getAttributes()
+                    .get(ViewConstants.LAST_NAME_ATTRIBUTE).get(0);
+            data[count][2] = entry.getValue().get(0).getAttributes().get(ViewConstants.FIRST_NAME_ATTRIBUTE).get(0)
+                    + ViewConstants.SPACE + entry.getValue().get(0).getAttributes()
+                    .get(ViewConstants.LAST_NAME_ATTRIBUTE).get(0);
+            ++count;
         }
 
         JTable matchingTable = new JTable(data, columnNames);
         scrollPane = new JScrollPane(matchingTable);
-        scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE, ViewConstants.Y_MATCH_BUTTON + 40, 430, 380);
+        scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
+                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.TABLE_WIDTH, ViewConstants.TABLE_HEIGHT);
         frame.add(scrollPane);
     }
 }

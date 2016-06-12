@@ -47,7 +47,6 @@ public class SelectFileAction {
             df.setMaximumFractionDigits(1);
 
             nameLabel.setText(f.getName());
-            float result = (float) f.length() / (float) ViewConstants.K;
 
             ArrayList<? extends Item> items = new ArrayList<>();
 
