@@ -1,6 +1,8 @@
 package client.actions;
 
 import client.util.ViewConstants;
+import server.core.Constraint;
+import server.core.Entity;
 import server.core.Item;
 import server.util.Constants;
 
@@ -19,6 +21,10 @@ public class SelectFileAction {
     private static String mentorsFilePath;
     private static String menteesFilePath;
     private static String constraintsFilePath;
+
+    private static ArrayList<Entity> mentors;
+    private static ArrayList<Entity> mentees;
+    private static ArrayList<Constraint> constraints;
 
     /**
      * Opens a JFileChooser and lets the user to pick a CSV file
@@ -49,27 +55,25 @@ public class SelectFileAction {
                 case ViewConstants.MENTOR:
                     mentorsFilePath = f.getAbsolutePath();
                     items = server.parsers.CSVParser.parseCSV(mentorsFilePath, Constants.ENTITY);
+                    mentors = (ArrayList<Entity>) items;
                     break;
                 case ViewConstants.MENTEE:
                     menteesFilePath = f.getAbsolutePath();
                     items = server.parsers.CSVParser.parseCSV(menteesFilePath, Constants.ENTITY);
+                    mentees = (ArrayList<Entity>) items;
                     break;
                 case ViewConstants.CONSTRAINT:
                     constraintsFilePath = f.getAbsolutePath();
                     items = server.parsers.CSVParser.parseCSV(constraintsFilePath, Constants.CONSTRAINT);
+                    constraints = (ArrayList<Constraint>) items;
                     break;
             }
             if(server.util.Checker.checkAllEntitiesCorrectness(items)) {
                 nameLabel.setForeground(Color.GREEN);
             } else {
-                nameLabel.setText("Invalid file");
+                nameLabel.setText(ViewConstants.INVALID_FILE);
                 nameLabel.setForeground(Color.RED);
             }
-
-            //TODO check actions !!!
-            // read  and/or display the file somehow. ....
-        } else {
-            // user changed their mind
         }
     }
 
@@ -83,5 +87,17 @@ public class SelectFileAction {
 
     public String getMentorsFilePath() {
         return mentorsFilePath;
+    }
+
+    public static ArrayList<Constraint> getConstraints() {
+        return constraints;
+    }
+
+    public static ArrayList<Entity> getMentees() {
+        return mentees;
+    }
+
+    public static ArrayList<Entity> getMentors() {
+        return mentors;
     }
 }
