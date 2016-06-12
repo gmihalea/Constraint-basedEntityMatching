@@ -69,41 +69,50 @@ public class MatchMe extends JFrame{
 
         JLabel mentorsFileName = new JLabel(ViewConstants.EMPTY_STRING);
         mentorsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL, ViewConstants.WIDTH, ViewConstants.HEIGHT);
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL,
+                ViewConstants.WIDTH, ViewConstants.HEIGHT);
         mentorsFileName.setForeground(Color.GRAY);
         this.labels.add(mentorsFileName);
 
         JLabel menteesFileName = new JLabel(ViewConstants.EMPTY_STRING);
         menteesFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
-                        + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
+                + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.WIDTH, ViewConstants.HEIGHT);
         menteesFileName.setForeground(Color.GRAY);
         this.labels.add(menteesFileName);
 
         JLabel constraintsFileName = new JLabel(ViewConstants.EMPTY_STRING);
-        constraintsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+        constraintsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE
+                + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
-                        + 2 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
+                + 2 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.WIDTH, ViewConstants.HEIGHT);
         constraintsFileName.setForeground(Color.GRAY);
         this.labels.add(constraintsFileName);
 
         JLabel mentorsFileDim = new JLabel(ViewConstants.EMPTY_STRING);
-        mentorsFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
-                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL, ViewConstants.WIDTH, ViewConstants.HEIGHT);
+        mentorsFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE
+                + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL,
+                ViewConstants.WIDTH, ViewConstants.HEIGHT);
         mentorsFileDim.setForeground(Color.GRAY);
         this.labels.add(mentorsFileDim);
 
         JLabel menteesFileDim = new JLabel(ViewConstants.EMPTY_STRING);
-        menteesFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+        menteesFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE
+                + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
-                        + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
+                + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
         menteesFileDim.setForeground(Color.GRAY);
         this.labels.add(menteesFileDim);
 
         JLabel constraintsFileDim = new JLabel(ViewConstants.EMPTY_STRING);
-        constraintsFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+        constraintsFileDim.setBounds(ViewConstants.X_POSITION_LAYER_ONE
+                + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE + ViewConstants.DISTANCE_BUTTON_LABEL
-                        + 2 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS, ViewConstants.WIDTH, ViewConstants.HEIGHT);
+                + 2 * ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
+                ViewConstants.WIDTH, ViewConstants.HEIGHT);
         constraintsFileDim.setForeground(Color.GRAY);
         this.labels.add(constraintsFileDim);
 
