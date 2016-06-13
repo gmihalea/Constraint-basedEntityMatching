@@ -68,4 +68,18 @@ public class ViewConstants {
     public static final String SUGGESTED_FILE_NAME = "matchingResults.xls";
     public static final String MATCHING_RESULTS = "Matching Results";
 
+    public static final String STATISTICS_COLUMN_1 = "No";
+    public static final String STATISTICS_COLUMN_2 = "Attribute";
+    public static final String STATISTICS_COLUMN_3 = "Value";
+    public static final String STATISTICS_COLUMN_4 = "Percentage";
+
+    public static final String STATISTICS_ATTRIBUTE_1 = "Country";
+    public static final String STATISTICS_ATTRIBUTE_2 = "ProgrammingLanguages";
+    public static final String STATISTICS_ATTRIBUTE_3 = "Languages";
+    public static final String STATISTICS_ATTRIBUTE_4 = "DedicatedTime";
+
+    public static final int STATISTICS_ROWS_NO = 10;
+    public static final int STATISTICS_COLUMNS_NO = 4;
+
+
 }

@@ -1,9 +1,6 @@
 package client.view;
 
-import client.actions.MatchDataAction;
-import client.actions.MenuAction;
-import client.actions.ExportDataAction;
-import client.actions.UploadFileAction;
+import client.actions.*;
 import client.util.ViewConstants;
 
 import javax.swing.*;
@@ -160,12 +157,14 @@ public class MatchMe extends JFrame{
         browseConstraintsButton.addActionListener(e -> UploadFileAction.selectFile(constraintsFileName,
                 this, ViewConstants.CONSTRAINT));
 
-        newAction.addActionListener(e -> MenuAction.newAction(this.labels));
+        newAction.addActionListener(e -> MenuAction.newAction(this.labels, this));
         exitAction.addActionListener(e -> MenuAction.exitAction());
 
         matchButton.addActionListener(e -> MatchDataAction.match(mentorsFileName, menteesFileName,
                                                                    constraintsFileName, errorLabel, this));
-        downloadResultsButton.addActionListener(e -> ExportDataAction.saveFile(this, MatchDataAction.matchingTable));
+        downloadResultsButton.addActionListener(e -> ExportDataAction.saveFile(this,
+                MatchDataAction.getMatchingTable()));
+        showStatisticsButton.addActionListener(e -> StatisticsAction.showStatistics(this));
     }
 
     public static void main(String[] args) {

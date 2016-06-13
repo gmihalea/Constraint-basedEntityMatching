@@ -16,9 +16,8 @@ import java.util.Map;
 public class MatchDataAction {
 
     private static HashMap<Entity, ArrayList<Entity>> results;
-    //TODO change this
-    public  static JScrollPane scrollPane;
-    public static JTable matchingTable;
+    private static JScrollPane scrollPane;
+    private static JTable matchingTable;
 
     public static void match(final JLabel mentorsFileName, final JLabel menteesFileName,
                              final JLabel constraintsFileName, final JLabel errorMessage, final JFrame c) {
@@ -46,8 +45,8 @@ public class MatchDataAction {
     }
 
     public static void insertTableWithResults(final JFrame frame) {
-        String columnNames[] = {ViewConstants.COLUMN_1, ViewConstants.COLUMN_2, ViewConstants.COLUMN_3};
-        String[][] data = new String[results.size()][ViewConstants.NO_OF_COLUMNS];
+        final String columnNames[] = {ViewConstants.COLUMN_1, ViewConstants.COLUMN_2, ViewConstants.COLUMN_3};
+        final String[][] data = new String[results.size()][ViewConstants.NO_OF_COLUMNS];
 
         int count = 0;
         for(Map.Entry<Entity, ArrayList<Entity>> entry : results.entrySet()){
@@ -67,5 +66,13 @@ public class MatchDataAction {
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
                 ViewConstants.TABLE_WIDTH, ViewConstants.TABLE_HEIGHT);
         frame.add(scrollPane);
+    }
+
+    public static JTable getMatchingTable() {
+        return matchingTable;
+    }
+
+    public static HashMap<Entity, ArrayList<Entity>> getResults() {
+        return results;
     }
 }

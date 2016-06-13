@@ -69,5 +69,4 @@ public class Statistics {
         reverse(allValues);
         return allValues;
     }
-
 }

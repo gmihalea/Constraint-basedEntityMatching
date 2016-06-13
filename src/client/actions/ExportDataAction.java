@@ -16,6 +16,7 @@ public class ExportDataAction {
 
     /**
      * Action for Download Results Button
+     *
      * @param c the context
      * @param table the table with the data to be saved
      */
@@ -30,6 +31,7 @@ public class ExportDataAction {
 
     /**
      * Exports a JTable to Excel file.
+     *
      * @param table table to export
      * @param path the path to the excel file
      */
