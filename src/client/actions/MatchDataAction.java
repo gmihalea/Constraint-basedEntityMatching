@@ -61,6 +61,10 @@ public class MatchDataAction {
         }
 
         matchingTable = new JTable(data, columnNames);
+        matchingTable.getColumnModel().getColumn(0).setMaxWidth(30);
+        matchingTable.getColumnModel().getColumn(1).setMinWidth(190);
+        matchingTable.getColumnModel().getColumn(2).setMinWidth(190);
+        matchingTable.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
         scrollPane = new JScrollPane(matchingTable);
         scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,

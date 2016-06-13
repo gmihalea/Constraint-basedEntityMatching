@@ -72,6 +72,11 @@ public class StatisticsAction {
         }
 
         statisticsTable = new JTable(data, columnNames);
+        statisticsTable.getColumnModel().getColumn(0).setMaxWidth(25);
+        statisticsTable.getColumnModel().getColumn(1).setMinWidth(220);
+        statisticsTable.getColumnModel().getColumn(2).setMinWidth(80);
+        statisticsTable.getColumnModel().getColumn(3).setMinWidth(85);
+        statisticsTable.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
         scrollPane = new JScrollPane(statisticsTable);
         scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
