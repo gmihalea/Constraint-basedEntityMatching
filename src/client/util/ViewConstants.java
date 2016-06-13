@@ -15,6 +15,9 @@ public class ViewConstants {
     public static final int PADDING_X_DOWNLOAD_BUTTON = 10;
     public static final int PADDING_X_STATISTICS_BUTTON = 220;
 
+    public static final int PADDING_VERRTICAL = 50;
+    public static final int STATISTICS_HEIGHT = 150;
+
     public static final int X_TO_START = 200;
     public static final int Y_TO_START = 0;
 
@@ -80,6 +83,11 @@ public class ViewConstants {
 
     public static final int STATISTICS_ROWS_NO = 10;
     public static final int STATISTICS_COLUMNS_NO = 4;
+    public static final String MATCHED_MENTORS = "Matched Mentors";
+    public static final String MATCHED_MENTEES = "Matched Mantees";
+    public static final String PERCENT = " %";
+    public static final String FORMAT_TWO_DIGITS = "%.02f";
+    public static final String OUT_OF = " / ";
 
 
 }
