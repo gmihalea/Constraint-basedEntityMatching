@@ -144,14 +144,14 @@ public class MatchMe extends JFrame{
         downloadStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_DOWNLOAD_BUTTON,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
                         + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON
-                        + ViewConstants.PADDING_Y_STATISTISC_BUTTON,
+                        + ViewConstants.PADDING_Y_STATISTISC_BUTTON - 10,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         JButton hideStatisticsButton = new JButton(ViewConstants.HIDE_STATISTICS);
         hideStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_STATISTICS_BUTTON,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
                         + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON
-                        + ViewConstants.PADDING_Y_STATISTISC_BUTTON,
+                        + ViewConstants.PADDING_Y_STATISTISC_BUTTON - 10,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         add(browseMentorsButton);
@@ -181,6 +181,7 @@ public class MatchMe extends JFrame{
         downloadResultsButton.addActionListener(e -> ExportDataAction.saveFile(this,
                 MatchDataAction.getMatchingTable()));
         showStatisticsButton.addActionListener(e -> StatisticsAction.showStatistics(this));
+        hideStatisticsButton.addActionListener(e -> StatisticsAction.hideStatistics(this));
     }
 
     public static void main(String[] args) {
