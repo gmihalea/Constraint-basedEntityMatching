@@ -34,7 +34,7 @@ public class MatchDataAction {
         }
         errorMessage.setText(ViewConstants.EMPTY_STRING);
 
-        c.setSize(ViewConstants.FORM_WIDTH, 3 * ViewConstants.FORM_HEIGHT - ViewConstants.X_POSITION_LAYER_ONE - 10);
+        c.setSize(ViewConstants.FORM_WIDTH, 4 * ViewConstants.FORM_HEIGHT + 30);
 
         Matcher matcher = new Matcher(UploadFileAction.getMentors(),
                                       UploadFileAction.getMentees(),

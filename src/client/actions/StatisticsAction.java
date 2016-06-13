@@ -16,7 +16,7 @@ public class StatisticsAction {
     private static JTable statisticsTable;
 
     public static void showStatistics(final JFrame frame) {
-        frame.setSize(ViewConstants.FORM_WIDTH, 4 * ViewConstants.FORM_HEIGHT - ViewConstants.X_POSITION_LAYER_ONE);
+        frame.setSize(ViewConstants.FORM_WIDTH, 5 * ViewConstants.FORM_HEIGHT + 100);
         insertTableWithStatistics(frame);
     }
 
@@ -87,7 +87,7 @@ public class StatisticsAction {
     }
 
     public static void hideStatistics(final JFrame frame) {
-        frame.setSize(ViewConstants.FORM_WIDTH, 3 * ViewConstants.FORM_HEIGHT - ViewConstants.X_POSITION_LAYER_ONE - 10);
+        frame.setSize(ViewConstants.FORM_WIDTH, 4 * ViewConstants.FORM_HEIGHT + 30);
         scrollPane.setVisible(false);
     }
 

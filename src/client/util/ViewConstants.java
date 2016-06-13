@@ -23,7 +23,7 @@ public class ViewConstants {
     public static final int Y_TO_START = 0;
 
     public static final int FORM_WIDTH = 485;
-    public static final int FORM_HEIGHT = 185;
+    public static final int FORM_HEIGHT = 120;
 
     public static final int TABLE_WIDTH = 430;
     public static final int TABLE_HEIGHT = 360;
