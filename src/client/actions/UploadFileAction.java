@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Select File class
  */
-public class SelectFileAction {
+public class UploadFileAction {
 
     private static String mentorsFilePath;
     private static String menteesFilePath;

@@ -6,7 +6,6 @@ import server.core.Matcher;
 import server.util.Constants;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +13,7 @@ import java.util.Map;
 /**
  * Match Button Action
  */
-public class MatchButtonAction {
+public class MatchDataAction {
 
     private static HashMap<Entity, ArrayList<Entity>> results;
     //TODO change this
@@ -38,9 +37,9 @@ public class MatchButtonAction {
 
         c.setSize(ViewConstants.FORM_WIDTH, 3 * ViewConstants.FORM_HEIGHT);
 
-        Matcher matcher = new Matcher(SelectFileAction.getMentors(),
-                                      SelectFileAction.getMentees(),
-                                      SelectFileAction.getConstraints());
+        Matcher matcher = new Matcher(UploadFileAction.getMentors(),
+                                      UploadFileAction.getMentees(),
+                                      UploadFileAction.getConstraints());
 
         results =  matcher.match(Constants.SCORE_CRITERIA, 1);
         insertTableWithResults(c);

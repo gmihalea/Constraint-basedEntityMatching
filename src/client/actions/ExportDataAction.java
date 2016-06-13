@@ -12,7 +12,7 @@ import java.io.*;
 /**
  * Save File Action Class
  */
-public class SaveFileAction {
+public class ExportDataAction {
 
     /**
      * Action for Download Results Button

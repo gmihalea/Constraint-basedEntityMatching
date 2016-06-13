@@ -1,9 +1,9 @@
 package client.view;
 
-import client.actions.MatchButtonAction;
+import client.actions.MatchDataAction;
 import client.actions.MenuAction;
-import client.actions.SaveFileAction;
-import client.actions.SelectFileAction;
+import client.actions.ExportDataAction;
+import client.actions.UploadFileAction;
 import client.util.ViewConstants;
 
 import javax.swing.*;
@@ -153,19 +153,19 @@ public class MatchMe extends JFrame{
         /**
          * Actions
          */
-        browseMentorsButton.addActionListener(e -> SelectFileAction.selectFile(mentorsFileName,
+        browseMentorsButton.addActionListener(e -> UploadFileAction.selectFile(mentorsFileName,
                 this, ViewConstants.MENTOR));
-        browseMenteesButton.addActionListener(e -> SelectFileAction.selectFile(menteesFileName,
+        browseMenteesButton.addActionListener(e -> UploadFileAction.selectFile(menteesFileName,
                 this, ViewConstants.MENTEE));
-        browseConstraintsButton.addActionListener(e -> SelectFileAction.selectFile(constraintsFileName,
+        browseConstraintsButton.addActionListener(e -> UploadFileAction.selectFile(constraintsFileName,
                 this, ViewConstants.CONSTRAINT));
 
         newAction.addActionListener(e -> MenuAction.newAction(this.labels));
         exitAction.addActionListener(e -> MenuAction.exitAction());
 
-        matchButton.addActionListener(e -> MatchButtonAction.match(mentorsFileName, menteesFileName,
+        matchButton.addActionListener(e -> MatchDataAction.match(mentorsFileName, menteesFileName,
                                                                    constraintsFileName, errorLabel, this));
-        downloadResultsButton.addActionListener(e -> SaveFileAction.saveFile(this, MatchButtonAction.matchingTable));
+        downloadResultsButton.addActionListener(e -> ExportDataAction.saveFile(this, MatchDataAction.matchingTable));
     }
 
     public static void main(String[] args) {
