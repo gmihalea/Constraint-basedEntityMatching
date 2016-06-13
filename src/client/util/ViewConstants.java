@@ -5,17 +5,18 @@ package client.util;
  */
 public class ViewConstants {
     public static final int X_POSITION_LAYER_ONE = 30;
-    public static final int Y_POSITION_LAYER_ONE = 10;
+    public static final int Y_POSITION_LAYER_ONE = 0;
 
-    public static final int DISTANCE_VERTICAL_BETWEEN_LAYERS = 40;
+    public static final int DISTANCE_VERTICAL_BETWEEN_LAYERS = 30;
     public static final int DISTANCE_HORIZONTAL_BETWEEN_LAYERS = 160;
     public static final int DISTANCE_BUTTON_LABEL = 20;
     public static final int DISTANCE_BUTTON_BUTTON = 10;
 
     public static final int PADDING_X_DOWNLOAD_BUTTON = 10;
+    public static final int PADDING_Y_STATISTISC_BUTTON = 200;
     public static final int PADDING_X_STATISTICS_BUTTON = 220;
 
-    public static final int PADDING_VERRTICAL = 50;
+    public static final int PADDING_VERTICAL = 50;
     public static final int STATISTICS_HEIGHT = 150;
 
     public static final int X_TO_START = 200;
@@ -32,7 +33,7 @@ public class ViewConstants {
     public static final int BUTTON_WIDTH = 100;
 
     public static final int X_MATCH_BUTTON = ( FORM_WIDTH - 2 * BUTTON_WIDTH ) / 2;
-    public static final int Y_MATCH_BUTTON = 90;
+    public static final int Y_MATCH_BUTTON = 60;
 
     public static final String SPACE = " ";
     public static final String EMPTY_STRING = "";
@@ -66,7 +67,7 @@ public class ViewConstants {
     public static final String FIRST_NAME_ATTRIBUTE = "FirstName";
     public static final String LAST_NAME_ATTRIBUTE = "LastName";
 
-    public static final String DOWNLOAD_RESULTS = "Download results";
+    public static final String DOWNLOAD_RESULTS = "Export results";
     public static final String SHOW_STATISTICS = "Show statistics";
     public static final String SUGGESTED_FILE_NAME = "matchingResults.xls";
     public static final String MATCHING_RESULTS = "Matching Results";
@@ -89,5 +90,6 @@ public class ViewConstants {
     public static final String FORMAT_TWO_DIGITS = "%.02f";
     public static final String OUT_OF = " / ";
 
-
+    public static final String HIDE_STATISTICS = "Hide statistics";
+    public static final String EXPORT_STATISTICS = "Export statistics";
 }

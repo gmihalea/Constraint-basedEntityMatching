@@ -63,7 +63,7 @@ public class MatchMe extends JFrame{
 
         JLabel constraintsLabel = new JLabel(ViewConstants.CONSTRAINTS);
         constraintsLabel.setBounds(ViewConstants.X_POSITION_LAYER_ONE
-                + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS, ViewConstants.Y_POSITION_LAYER_ONE,
+                    + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS, ViewConstants.Y_POSITION_LAYER_ONE,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
         this.labels.add(constraintsLabel);
 
@@ -76,7 +76,7 @@ public class MatchMe extends JFrame{
 
         JLabel menteesFileName = new JLabel(ViewConstants.EMPTY_STRING);
         menteesFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE
-                + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                    + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_BUTTON_LABEL,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
         menteesFileName.setForeground(Color.GRAY);
@@ -84,7 +84,7 @@ public class MatchMe extends JFrame{
 
         JLabel constraintsFileName = new JLabel(ViewConstants.EMPTY_STRING);
         constraintsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE
-                + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                    + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE + 2 * ViewConstants.DISTANCE_BUTTON_LABEL,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
         constraintsFileName.setForeground(Color.GRAY);
@@ -120,7 +120,7 @@ public class MatchMe extends JFrame{
 
         JButton browseConstraintsButton = new JButton(ViewConstants.BROWSE);
         browseConstraintsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE
-                + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
+                    + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE  + ViewConstants.DISTANCE_BUTTON_LABEL,
                 ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
@@ -140,12 +140,28 @@ public class MatchMe extends JFrame{
                         + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
+        JButton downloadStatisticsButton = new JButton(ViewConstants.EXPORT_STATISTICS);
+        downloadStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_DOWNLOAD_BUTTON,
+                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
+                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON
+                        + ViewConstants.PADDING_Y_STATISTISC_BUTTON,
+                2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
+
+        JButton hideStatisticsButton = new JButton(ViewConstants.HIDE_STATISTICS);
+        hideStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_STATISTICS_BUTTON,
+                ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
+                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON
+                        + ViewConstants.PADDING_Y_STATISTISC_BUTTON,
+                2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
+
         add(browseMentorsButton);
         add(browseMenteesButton);
         add(browseConstraintsButton);
         add(matchButton);
         add(downloadResultsButton);
         add(showStatisticsButton);
+        add(downloadStatisticsButton);
+        add(hideStatisticsButton);
 
         /**
          * Actions

@@ -16,7 +16,7 @@ public class StatisticsAction {
     private static JTable statisticsTable;
 
     public static void showStatistics(final JFrame frame) {
-        frame.setSize(ViewConstants.FORM_WIDTH, 4 * ViewConstants.FORM_HEIGHT);
+        frame.setSize(ViewConstants.FORM_WIDTH, 4 * ViewConstants.FORM_HEIGHT - ViewConstants.X_POSITION_LAYER_ONE);
         insertTableWithStatistics(frame);
     }
 
@@ -75,7 +75,7 @@ public class StatisticsAction {
         scrollPane = new JScrollPane(statisticsTable);
         scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
-                + ViewConstants.PADDING_VERRTICAL + ViewConstants.TABLE_HEIGHT, ViewConstants.TABLE_WIDTH,
+                + ViewConstants.PADDING_VERTICAL + ViewConstants.TABLE_HEIGHT, ViewConstants.TABLE_WIDTH,
                 ViewConstants.STATISTICS_HEIGHT);
         frame.add(scrollPane);
     }
