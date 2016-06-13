@@ -79,4 +79,8 @@ public class StatisticsAction {
                 ViewConstants.STATISTICS_HEIGHT);
         frame.add(scrollPane);
     }
+
+    public static JScrollPane getScrollPane() {
+        return scrollPane;
+    }
 }

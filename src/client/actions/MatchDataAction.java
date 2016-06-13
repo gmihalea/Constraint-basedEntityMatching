@@ -65,6 +65,7 @@ public class MatchDataAction {
         scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS,
                 ViewConstants.TABLE_WIDTH, ViewConstants.TABLE_HEIGHT);
+        scrollPane.setVisible(true);
         frame.add(scrollPane);
     }
 
@@ -74,5 +75,9 @@ public class MatchDataAction {
 
     public static HashMap<Entity, ArrayList<Entity>> getResults() {
         return results;
+    }
+
+    public static JScrollPane getScrollPane() {
+        return scrollPane;
     }
 }

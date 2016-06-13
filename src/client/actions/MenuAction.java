@@ -20,6 +20,7 @@ public class MenuAction {
             label.setText(ViewConstants.EMPTY_STRING);
         }
         c.setSize(ViewConstants.FORM_WIDTH, ViewConstants.FORM_HEIGHT);
+        MatchDataAction.getScrollPane().setVisible(false);
     }
 
     /**
