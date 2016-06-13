@@ -89,4 +89,8 @@ public class StatisticsAction {
     public static JScrollPane getScrollPane() {
         return scrollPane;
     }
+
+    public static JTable getStatisticsTable() {
+        return statisticsTable;
+    }
 }

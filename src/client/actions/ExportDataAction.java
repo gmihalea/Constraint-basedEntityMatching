@@ -20,9 +20,9 @@ public class ExportDataAction {
      * @param c the context
      * @param table the table with the data to be saved
      */
-    public static void saveFile(final Component c, final JTable table) {
+    public static void saveFile(final Component c, final JTable table, final String suggestedFileName) {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setSelectedFile(new File(ViewConstants.SUGGESTED_FILE_NAME));
+        fileChooser.setSelectedFile(new File(suggestedFileName));
         if (fileChooser.showSaveDialog(c) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             exportToExcel(table, file.getAbsolutePath());

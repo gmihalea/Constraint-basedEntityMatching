@@ -69,7 +69,8 @@ public class ViewConstants {
 
     public static final String DOWNLOAD_RESULTS = "Export results";
     public static final String SHOW_STATISTICS = "Show statistics";
-    public static final String SUGGESTED_FILE_NAME = "matchingResults.xls";
+    public static final String SUGGESTED_RESULTS_FILE_NAME = "matchingResults.xls";
+    public static final String SUGGESTED_STATISTICS_FILE_NAME = "matchingStatistics.xls";
     public static final String MATCHING_RESULTS = "Matching Results";
 
     public static final String STATISTICS_COLUMN_1 = "No";

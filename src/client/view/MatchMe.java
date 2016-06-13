@@ -179,7 +179,9 @@ public class MatchMe extends JFrame{
         matchButton.addActionListener(e -> MatchDataAction.match(mentorsFileName, menteesFileName,
                                                                    constraintsFileName, errorLabel, this));
         downloadResultsButton.addActionListener(e -> ExportDataAction.saveFile(this,
-                MatchDataAction.getMatchingTable()));
+                MatchDataAction.getMatchingTable(), ViewConstants.SUGGESTED_RESULTS_FILE_NAME));
+        downloadStatisticsButton.addActionListener(e -> ExportDataAction.saveFile(this,
+                StatisticsAction.getStatisticsTable(), ViewConstants.SUGGESTED_STATISTICS_FILE_NAME));
         showStatisticsButton.addActionListener(e -> StatisticsAction.showStatistics(this));
         hideStatisticsButton.addActionListener(e -> StatisticsAction.hideStatistics(this));
     }
