@@ -1,6 +1,8 @@
 package client.actions;
 
 import client.util.ViewConstants;
+import client.view.AboutView;
+import client.view.GettingStartedView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,5 +30,21 @@ public class MenuAction {
      */
     public static void exitAction() {
         System.exit(0);
+    }
+
+    /**
+     * Action that opens a new Getting Started Frame
+     */
+    public static void gettingStarted() {
+        GettingStartedView gettingStartedView = new GettingStartedView();
+        gettingStartedView.setVisible(true);
+    }
+
+    /**
+     * Action that opens a new About Frame
+     */
+    public static void about() {
+        AboutView aboutView = new AboutView();
+        aboutView.setVisible(true);
     }
 }

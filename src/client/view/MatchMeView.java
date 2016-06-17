@@ -8,19 +8,19 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Class that incapsulates the user interface.
+ * Class that incapsulates the main frame of the application.
  */
-public class MatchMe extends JFrame{
+public class MatchMeView extends JFrame{
 
     private ArrayList<JLabel> labels = new ArrayList<>();
 
-    public MatchMe() {
+    public MatchMeView() {
         initUI();
     }
 
     public final void initUI() {
         setLayout(null);
-        setTitle(ViewConstants.TITLE);
+        setTitle(ViewConstants.MATCH_ME_TITLE);
         setSize(ViewConstants.FORM_WIDTH, ViewConstants.FORM_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -53,19 +53,16 @@ public class MatchMe extends JFrame{
         JLabel mentorsLabel = new JLabel(ViewConstants.MENTORS);
         mentorsLabel.setBounds(ViewConstants.X_POSITION_LAYER_ONE, ViewConstants.Y_POSITION_LAYER_ONE,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
-        this.labels.add(mentorsLabel);
 
         JLabel menteesLabel = new JLabel(ViewConstants.MENTEES);
         menteesLabel.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS,
                 ViewConstants.Y_POSITION_LAYER_ONE,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
-        this.labels.add(menteesLabel);
 
         JLabel constraintsLabel = new JLabel(ViewConstants.CONSTRAINTS);
         constraintsLabel.setBounds(ViewConstants.X_POSITION_LAYER_ONE
                     + 2 * ViewConstants.DISTANCE_HORIZONTAL_BETWEEN_LAYERS, ViewConstants.Y_POSITION_LAYER_ONE,
                 ViewConstants.WIDTH, ViewConstants.HEIGHT);
-        this.labels.add(constraintsLabel);
 
         JLabel mentorsFileName = new JLabel(ViewConstants.EMPTY_STRING);
         mentorsFileName.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
@@ -184,11 +181,13 @@ public class MatchMe extends JFrame{
                 StatisticsAction.getStatisticsTable(), ViewConstants.SUGGESTED_STATISTICS_FILE_NAME));
         showStatisticsButton.addActionListener(e -> StatisticsAction.showStatistics(this));
         hideStatisticsButton.addActionListener(e -> StatisticsAction.hideStatistics(this));
+        gettingStartedAction.addActionListener(e -> MenuAction.gettingStarted());
+        aboutAction.addActionListener(e -> MenuAction.about());
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            MatchMe mainForm = new MatchMe();
+            MatchMeView mainForm = new MatchMeView();
             mainForm.setVisible(true);
         });
     }
