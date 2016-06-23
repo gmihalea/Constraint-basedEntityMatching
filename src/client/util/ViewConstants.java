@@ -41,7 +41,7 @@ public class ViewConstants {
     public static final String MENTEES = "Mentees";
     public static final String MATCH = "Match";
     public static final String BROWSE = "Browse";
-    public static final String MATCH_ME_TITLE = "MatchMeView";
+    public static final String MATCH_ME_TITLE = "MatchMe";
     public static final String ABOUT_TITLE = "About";
     public static final String GETTING_STARTED_TITLE = "Getting Started";
     public static final String FILE = "File";
