@@ -76,6 +76,4 @@ public class Constants {
     public static final String PROGRAMMING_LANGUAGES_ATTRIBUTE = "ProgrammingLanguages";
 
     public static final String PROGRAMMING_LEVEL_BEGINNER = "Beginner";
-
-    public static final String OUTPUT_FILE_PATH = "/home/geanina/Desktop/Licenta/EntityMatching/output.txt";
 }

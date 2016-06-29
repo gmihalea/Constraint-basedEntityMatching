@@ -40,7 +40,7 @@ public class Sorter {
                                                                final int type,
                                                                final String criteria) {
 
-        // Sorts by the Score criteria (checks which of the items has a bigger score)
+        /* Sorts by the Score criteria (checks which of the items has a bigger score) */
         if(Constants.SCORE_CRITERIA.equals(criteria)) {
             Collections.sort(list, (item1, item2) -> {
                 final double diff = Double.parseDouble(item1.getAttributes().get(criteria)
@@ -53,7 +53,7 @@ public class Sorter {
 
                 return diff < 0 ? -1 : 1;
             });
-        // Sorts by the ProgrammingLanguages criteria (checks which of the items' list has more elements)
+        /* Sorts by the ProgrammingLanguages criteria (checks which of the items' list has more elements) */
         } else if(Constants.PROGRAMMING_LANGUAGES_CRITERIA.equals(criteria)) {
             Collections.sort(list, (item1, item2) -> {
                 final int noOfProgrammingLanguages1 = item1.getAttributes().get(criteria).size();
