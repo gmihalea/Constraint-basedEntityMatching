@@ -1,33 +1,6 @@
-/**
- * Copyright (c) 2016, Geanina Mihalea <geanina.mihalea@gmail.com>.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this
- * list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
 package server.core;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -88,14 +61,13 @@ public class Matcher {
                 }
             }
             else {
-                System.out.println("Unmatched: " + this.aEntity.get(aEntity.size() - 1).getAttributes().get("FirstName")
-                        +  "  " + this.aEntity.get(aEntity.size() - 1).getAttributes().get("LastName"));
                 this.unmatchedMentors.add(entity);
             }
         }
         final long stopTime = System.currentTimeMillis();
         final long elapsedTime = stopTime - startTime;
         System.out.println("Elapsed time on the match function: " + elapsedTime + " ms");
+
         unmatchedMentees = this.bEntity;
         return matching;
     }
@@ -115,22 +87,24 @@ public class Matcher {
         ArrayList<Entity> sortedListOfCandidates;
 
         switch (criteria) {
-            // If the criteria is Score, then the list of candidates should be sorted descending.
+            /*
+             * If the criteria is Score, then the list
+             * of candidates should be sorted descending.
+             */
             case Constants.SCORE_CRITERIA:
                 sortedListOfCandidates = (ArrayList<Entity>) Sorter.sortListByCriteria(candidates,
                         Constants.DESCENDING_SORT, criteria);
                 break;
-            // If the criteria is ProgrammingLanguages, then the list of candidates should be sorted ascending.
+            /* If the criteria is ProgrammingLanguages, then the list of candidates should be sorted ascending. */
             case Constants.PROGRAMMING_LANGUAGES_CRITERIA:
                 sortedListOfCandidates = (ArrayList<Entity>) Sorter.sortListByCriteria(candidates,
                         Constants.ASCENDING_SORT, criteria);
                 break;
-            // If the criteria does not match any of the above possibilities, then it is wrong.
+            /* If the criteria does not match any of the above possibilities, then it is wrong. */
             default:
                 System.out.println("[ERROR]: Wrong parameter <criteria> in pickTheMatchingEntity().");
                 return null;
         }
-
         if(candidates.size() == 0) {
             return null;
         }
@@ -169,10 +143,12 @@ public class Matcher {
                         case Constants.GMT_MIN_CONSTRAINT:
                             shortList = this.getMinimumTimeZoneEntities(aTypeEntity, candidates, relation);
                             break;
-                        // In case there are candidates who have the same time zone difference
-                        // If the aTypeEntity has multiple choices for ProgrammingLevel (e.g all of them: Beginner
-                        // Medium Confident) and it also has the maximum DedicatedTime (more than 7 or 10 h),
-                        // then it should be matched with a Beginner
+                        /*
+                         * In case there are candidates who have the same time zone difference
+                         * If the aTypeEntity has multiple choices for ProgrammingLevel (e.g all of them: Beginner
+                         * Medium Confident) and it also has the maximum DedicatedTime (more than 7 or 10 h),
+                         * then it should be matched with a Beginner
+                         */
                         case Constants.MORE_DEDICATED_TIME_WITH_BEGINNER_CONSTRAINT:
                             if (aTypeEntity.getAttributes().get(Constants.PROGRAMMING_LEVEL_ATTRIBUTE)
                                     .contains(Constants.PROGRAMMING_LEVEL_BEGINNER)
@@ -180,44 +156,49 @@ public class Matcher {
                                     .get(Constants.DEDICATED_TIME_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX))
                                     || Constants.MORE_THAN_TEN_HOURS.equals(aTypeEntity.getAttributes()
                                     .get(Constants.DEDICATED_TIME_ATTRIBUTE).get(Constants.CONSTRAINTS_INDEX)))) {
-                                // In the short list remain only those entities that contain Beginner as
-                                // ProgrammingLevel attribute
+                                /*
+                                 * In the short list remain only those entities that contain Beginner as
+                                 * ProgrammingLevel attribute
+                                 */
                                 shortList = this.extractBeginners(shortList);
                             }
                             break;
-                        // In case shortList has more than one item, there will be selected those items that
-                        // have the biggest score
+
+                        /*
+                        * In case shortList has more than one item, there will be selected those items that
+                        * have the biggest score
+                        */
                         case Constants.BIGGER_SCORE_CONSTRAINT:
                             shortList = this.getEntitiesWithMaxScore(shortList, relation);
                             break;
-                        // In case shortList has more than one item, there will be selected those items that
-                        // have the biggest dedicated time
+                        /*
+                         * In case shortList has more than one item, there will be selected those items that
+                         * have the biggest dedicated time
+                         */
                         case Constants.MORE_DEDICATED_TIME:
                             shortList = this.getEntitiesWithMaximumTime(shortList, relation);
                             break;
-                        // In case shortList has more than one item, there will be selected those items that
-                        // have the smallest number of desired programming languages
+                        /*
+                         * In case shortList has more than one item, there will be selected those items that
+                         * have the smallest number of desired programming languages
+                         */
                         case Constants.LESS_PROGRAMMING_LANGUAGES:
                             shortList = this.getEntitiesWithLessProgrammingLanguages(shortList, relation);
                             break;
                     }
-                    // If the list contains exactly the required number, then the process should finish
+                    /* If the list contains exactly the required number, then the process should finish */
                     if(shortList.size() == relation)
                         found = true;
                 }
             }
         }
-        // If there still are cases in which shortList includes more than required number of candidates, the last ones
-        // would be dropped
-//        if(relation < shortList.size()) {
-//            for(int i = relation; i < shortList.size(); ++i) {
-//                shortList.remove(shortList.get(i));
-//            }
-//        }
+        /*
+         * If there still are cases in which shortList includes more than required number of candidates, the last ones
+         * would be dropped
+         */
         ArrayList<Entity> e = new ArrayList<>();
         e.add(shortList.get(0));
         return e;
-        //return shortList;
     }
 
     /**
@@ -230,7 +211,7 @@ public class Matcher {
     private ArrayList<Entity> generatesCandidates(final Entity aTypeEntity, final ArrayList<Entity> bTypeEntity) {
         final ArrayList<Entity> candidates = new ArrayList<>();
 
-        // Iterates through all bTypeEntities and check eligibility
+        /* Iterates through all bTypeEntities and check eligibility */
         for (int i = 0; i < bTypeEntity.size(); ++i) {
 
             if (checkEligibility(aTypeEntity, bTypeEntity.get(i))) {
@@ -271,7 +252,7 @@ public class Matcher {
     private boolean evaluateHardConstraint(final ArrayList<String> aTypeValue,
                                            final ArrayList<String> bTypeValue,
                                            final HashMap.Entry<String, ArrayList<String>> constraint) {
-        // Iterates through all the list, in case the constraint is more complex ( e.g. min1, max3)
+        /* Iterates through all the list, in case the constraint is more complex ( e.g. min1, max3) */
         for (int i = 0; i < constraint.getValue().size(); ++i) {
             final String originalConstraint = constraint.getValue().get(i);
             final String typeOfConstraint = originalConstraint.substring(0, Constants.CONSTRAINTS_CODE_SIZE);
@@ -279,18 +260,18 @@ public class Matcher {
                     originalConstraint.length());
 
             if (Constants.HARD_CONSTRAINT.equals(typeOfConstraint)) {
-                // All the elements in aTypeValue must be different from the elements in bTypeValue
+                /* All the elements in aTypeValue must be different from the elements in bTypeValue */
                 if (Constants.DIFF.equals(pieceOfConstraint)) {
-                    // If the two lists are not entirely different, then the constraint is not respected
+                    /* If the two lists are not entirely different, then the constraint is not respected */
                     if (!this.checkDiff(aTypeValue, bTypeValue)) {
                         return false;
                     }
                 }
                 if (pieceOfConstraint.startsWith(Constants.MIN)) {
-                    // Extract the number that follows the string MIN
+                    /* Extract the number that follows the string MIN */
                     final int threshold = Integer.parseInt(pieceOfConstraint.substring(Constants.MIN.length()));
 
-                    // The number of attributes in common must be greater than or equal to count
+                    /* The number of attributes in common must be greater than or equal to count */
                     if (this.computeAttributesInCommon(aTypeValue, bTypeValue) < threshold) {
                         return false;
                     }
@@ -298,7 +279,7 @@ public class Matcher {
                 if (pieceOfConstraint.startsWith(Constants.MAX)) {
                     final int threshold = Integer.parseInt(pieceOfConstraint.substring(Constants.MAX.length()));
 
-                    // The number of attributes in common must be lower than or equal to the threshold
+                    /* The number of attributes in common must be lower than or equal to the threshold */
                     if (this.computeAttributesInCommon(aTypeValue, bTypeValue) > threshold) {
                         return false;
                     }
@@ -325,7 +306,6 @@ public class Matcher {
                 ++noOfDifferences;
             }
         }
-
         if (noOfDifferences == aTypeValue.size()) {
             return true;
         }
@@ -356,7 +336,7 @@ public class Matcher {
     private Map<String, ArrayList<String>> getSoftConstraintsByPriority() {
         final Set<Map.Entry<String,ArrayList<String>>> softCons = new HashSet<>();
 
-        // Removes all the hard constraints
+        /* Removes all the hard constraints */
         for (final Map.Entry<String, ArrayList<String>> entry : this.constraints.getAttributes().entrySet()) {
             final String value = entry.getValue().get(Constants.CONSTRAINTS_INDEX);
             if(value.startsWith(Constants.SOFT_CONSTRAINT)) {
@@ -366,7 +346,7 @@ public class Matcher {
 
         List<Map.Entry<String,ArrayList<String>>> list = new LinkedList<>(softCons);
 
-        // Sort the soft constraints based on their priority.
+        /* Sort the soft constraints based on their priority. */
         Collections.sort(list, (e1, e2) -> {
             final int priority1 = Integer.parseInt(e1.getValue().get(Constants.CONSTRAINTS_INDEX)
                     .substring(Constants.CONSTRAINTS_CODE_SIZE + 1, Constants.CONSTRAINTS_CODE_SIZE + 2));
@@ -544,7 +524,7 @@ public class Matcher {
             if(dedicatedTime.startsWith(Constants.MORE)) {
                 hours = Integer.parseInt(dedicatedTime.substring(1, dedicatedTime.length()));
             } else {
-                // The format is int-int (e.g 3-5)
+                /* The format is int-int (e.g 3-5) */
                 hours = (Integer.parseInt(dedicatedTime.substring(0, 1))
                         + Integer.parseInt(dedicatedTime.substring(2, 3))) / 2;
             }
