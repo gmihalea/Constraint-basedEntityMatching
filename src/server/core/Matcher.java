@@ -27,6 +27,9 @@ public class Matcher {
      */
     private Constraint constraints;
 
+    public static ArrayList<Entity> unmatchedMentors = new ArrayList<>();
+    public static ArrayList<Entity> unmatchedMentees = new ArrayList<>();
+
     public Matcher(final ArrayList<Entity> aEntity,
                    final ArrayList<Entity> bEntity,
                    final ArrayList<Constraint> constraints) {
@@ -44,32 +47,30 @@ public class Matcher {
      * @throws IOException
      */
     public HashMap<Entity, ArrayList<Entity>> match(final String criteria, final int relation) {
+
+        final long startTime = System.currentTimeMillis();
+
         final HashMap<Entity, ArrayList<Entity>> matching = new HashMap<>();
 
-        //Printer.printInFile("Mentor <-> Mentee/s\n");
         for(Entity entity : this.aEntity) {
             ArrayList<Entity> matchingEntity = this.pickTheMatchingEntity(entity,
                     this.generatesCandidates(entity, this.bEntity), criteria, relation);
             if(matchingEntity != null) {
                 matching.put(entity, matchingEntity);
-                //Printer.printInFile(entity.getAttributes().get("FirstName") + " "
-                        //+ entity.getAttributes().get("LastName") + " <-> ");
                 for(Entity e : matchingEntity) {
-                    //Printer.printInFile(e.getAttributes().get("FirstName") + " "
-                            //+ e.getAttributes().get("LastName") + " , ");
                     this.bEntity.remove(e);
                 }
-                //Printer.printInFile("\n");
+            }
+            else {
+                System.out.println("Unmatched: " + this.aEntity.get(aEntity.size() - 1).getAttributes().get("FirstName")
+                        +  "  " + this.aEntity.get(aEntity.size() - 1).getAttributes().get("LastName"));
+                this.unmatchedMentors.add(entity);
             }
         }
-//        Printer.printInFile("----------------------------------------------\n\n");
-//        Printer.printInFile("Sorting criteria: " + criteria + "\n");
-//        Printer.printInFile("Matching couples: " + matching.size() + "\n");
-//        Printer.printInFile("Mentors without a match: " + (this.aEntity.size() - matching.size())
-//                + " out of " + this.aEntity.size() +  "\n");
-//        Printer.printInFile("Mentees without a match: " + this.bEntity.size()
-//                + " out of " + (this.bEntity.size() + matching.size()) +  "\n");
-
+        final long stopTime = System.currentTimeMillis();
+        final long elapsedTime = stopTime - startTime;
+        System.out.println("Elapsed time on the match function: " + elapsedTime + " ms");
+        unmatchedMentees = this.bEntity;
         return matching;
     }
 
@@ -182,12 +183,15 @@ public class Matcher {
         }
         // If there still are cases in which shortList includes more than required number of candidates, the last ones
         // would be dropped
-        if(relation > shortList.size()) {
-            for(int i = relation; i < shortList.size(); ++i) {
-                shortList.remove(shortList.get(i));
-            }
-        }
-        return shortList;
+//        if(relation < shortList.size()) {
+//            for(int i = relation; i < shortList.size(); ++i) {
+//                shortList.remove(shortList.get(i));
+//            }
+//        }
+        ArrayList<Entity> e = new ArrayList<>();
+        e.add(shortList.get(0));
+        return e;
+        //return shortList;
     }
 
     /**

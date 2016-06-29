@@ -80,7 +80,7 @@ public class StatisticsAction {
         scrollPane = new JScrollPane(statisticsTable);
         scrollPane.setBounds(ViewConstants.X_POSITION_LAYER_ONE,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
-                + ViewConstants.PADDING_VERTICAL + ViewConstants.TABLE_HEIGHT - 10, ViewConstants.TABLE_WIDTH,
+                + ViewConstants.PADDING_VERTICAL + ViewConstants.TABLE_HEIGHT - 5, ViewConstants.TABLE_WIDTH,
                 ViewConstants.STATISTICS_HEIGHT);
         scrollPane.setVisible(true);
         frame.add(scrollPane);

@@ -68,7 +68,7 @@ public class UploadFileAction {
                     break;
             }
             if(server.util.Checker.checkAllEntitiesCorrectness(items)) {
-                nameLabel.setForeground(Color.GREEN);
+                nameLabel.setForeground(new Color(0, 153, 51));
             } else {
                 nameLabel.setText(ViewConstants.INVALID_FILE);
                 nameLabel.setForeground(Color.RED);

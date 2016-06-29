@@ -128,20 +128,20 @@ public class MatchMeView extends JFrame{
         JButton downloadResultsButton = new JButton(ViewConstants.DOWNLOAD_RESULTS);
         downloadResultsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_DOWNLOAD_BUTTON,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
-                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON,
+                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON + 10,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         JButton showStatisticsButton = new JButton(ViewConstants.SHOW_STATISTICS);
         showStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_STATISTICS_BUTTON,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
-                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON,
+                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON + 10,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         JButton downloadStatisticsButton = new JButton(ViewConstants.EXPORT_STATISTICS);
         downloadStatisticsButton.setBounds(ViewConstants.X_POSITION_LAYER_ONE + ViewConstants.PADDING_X_DOWNLOAD_BUTTON,
                 ViewConstants.Y_MATCH_BUTTON + ViewConstants.DISTANCE_VERTICAL_BETWEEN_LAYERS
-                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON
-                        + ViewConstants.PADDING_Y_STATISTISC_BUTTON - 10,
+                        + ViewConstants.TABLE_HEIGHT + ViewConstants.DISTANCE_BUTTON_BUTTON - 10
+                        + ViewConstants.PADDING_Y_STATISTISC_BUTTON,
                 2 * ViewConstants.BUTTON_WIDTH, ViewConstants.HEIGHT);
 
         JButton hideStatisticsButton = new JButton(ViewConstants.HIDE_STATISTICS);
