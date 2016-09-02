@@ -6,7 +6,7 @@ refer to the same entity. This task has an important role in many domains such
 information integration, natural language understanding, information processing
 on the World Wide Web or emerging Semantic Web.
 
-Input:
+__**Input:**__
 
 | A Entities    | B Entities    | Constraints |
 |:------------: |:-------------:| :----------:|
@@ -16,7 +16,7 @@ Input:
 | entityAn      | entityBm      | constraintp |
 
 
-Output:
+__**Output:**__
 
 | Entity A    | Matches                          |
 |:----------: |:--------------------------------:|
