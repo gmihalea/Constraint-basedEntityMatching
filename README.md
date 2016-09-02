@@ -8,15 +8,19 @@ on the World Wide Web or emerging Semantic Web.
 
 Input:
 
-Entities A       Entities B          Constraints
-entityA1         entityB1            constraint1
-entityA2         entityB2            constraint2
-...              ...                 ...
-entityAn         entityBm            constraintp
+| A Entities    | B Entities    | Constraints |
+|:------------: |:-------------:| :----------:|
+| entityA1      | entityB1      | constraint1 |
+| entityA2      | entityB2      | constraint2 |
+| ...           | ...           |    ...      |
+| entityAn      | entityBm      | constraintp |
 
 
 Output:
-(entityAi - entityBj, entityBk, ..., entityBs),
-(entityAe - entityBy, entityBh, ..., entityBs),
-...
-(entityAm - entityBl, entityBq, ..., entityBd)
+
+| Entity A    | Matches                          |
+|:----------: |:--------------------------------:|
+| entityAi    | entityBj, entityBk, ..., entityBs|
+| entityAe    | entityBy, entityBh, ..., entityBs|
+| ...         | ...                              |
+| entityAm    | entityBl, entityBq, ..., entityBd|
