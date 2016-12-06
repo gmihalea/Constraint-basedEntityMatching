@@ -25,3 +25,4 @@ __**Output:**__
 | ...         | ...                              |
 | entityAg    | entityBl, entityBq, ..., entityBd|
 
+It also computes statistics based on the input data.
