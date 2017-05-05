@@ -21,7 +21,7 @@ __**Output:**__
 | Entity A    | Matches                          |
 |:----------: |:--------------------------------:|
 | entityAi    | entityBj, entityBk, ..., entityBs|
-| entityAe    | entityBy, entityBh, ..., entityBs|
+| entityAe    | entityBy, entityBh, ..., entityBr|
 | ...         | ...                              |
 | entityAg    | entityBl, entityBq, ..., entityBd|
 
